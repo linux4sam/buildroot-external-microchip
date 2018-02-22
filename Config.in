@@ -1,2 +1,3 @@
 source "$BR2_EXTERNAL_MCHP_PATH/package/launcher/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/qt5quick1d/Config.in"
+source "$BR2_EXTERNAL_MCHP_PATH/package/samegame/Config.in"
