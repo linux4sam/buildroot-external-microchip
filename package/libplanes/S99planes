@@ -1,0 +1,31 @@
+#!/bin/sh
+
+start()
+{
+    echo "Starting Demo..."
+
+    while true; do
+	cd /usr/share/planes/
+	for f in *.config; do
+	    echo $f
+	    planes -f 1000 -c $f
+	done
+    done &
+}
+
+stop()
+{
+  killall -9 planes
+}
+
+
+case "$1" in
+  start)
+    start
+  ;;
+  stop)
+    stop
+  ;;
+  *)
+  ;;
+esac
