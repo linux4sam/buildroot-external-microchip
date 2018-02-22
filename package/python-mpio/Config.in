@@ -1,0 +1,9 @@
+config BR2_PACKAGE_PYTHON_MPIO
+	bool "python-mpio"
+	depends on BR2_PACKAGE_PYTHON_PYQT5
+	help
+	  Microchip Peripheral I/O.  A simple Python interface to hardware
+	  peripherals found on Microchip boards and processors.
+
+comment "python-mpio depends on pyqt5"
+	depends on !BR2_PACKAGE_PYTHON_PYQT5
