@@ -1,0 +1,20 @@
+
+choice
+	prompt "Init configuration"
+
+config BR2_PACKAGE_LAUNCHER_INIT
+	bool "Application Launcher"
+	depends on BR2_PACKAGE_LAUNCHER
+	help
+	  Use the application launcher init script.
+
+config BR2_PACKAGE_PLANES_INIT
+	bool "planes"
+	depends on BR2_PACKAGE_LIBPLANES
+	help
+	  Use the planes init script.
+
+config BR2_PACKAGE_INIT_NONE
+	bool "none"
+
+endchoice

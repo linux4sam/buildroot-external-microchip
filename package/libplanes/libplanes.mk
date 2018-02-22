@@ -21,6 +21,15 @@ define LIBPLANES_RUN_AUTOGEN
 endef
 LIBPLANES_POST_PATCH_HOOKS += LIBPLANES_RUN_AUTOGEN
 
+define PLANES_INSTALL_INIT
+        $(INSTALL) -m 0755 -D $(PLANES_PKGDIR)/S99planes \
+                $(TARGET_DIR)/etc/init.d/S99planes
+endef
+
+ifeq ($(BR2_PACKAGE_PLANES_INIT),y)
+PLANES_POST_INSTALL_TARGET_HOOKS += PLANES_INSTALL_INIT
+endif
+
 define LIBPLANES_INSTALL_MENU
         $(INSTALL) -m 0644 -D $(@D)/scripts/planes.png \
                 $(TARGET_DIR)/opt/ApplicationLauncher/applications/resources/planes.png

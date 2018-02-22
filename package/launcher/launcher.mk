@@ -24,4 +24,17 @@ define LAUNCHER_INSTALL_TARGET_CMDS
 		$(TARGET_DIR)/opt/ApplicationLauncher/applications_list.xml
 endef
 
+define LAUNCHER_INSTALL_INIT
+        $(INSTALL) -m 0755 -D $(LAUNCHER_PKGDIR)/S99demo \
+                $(TARGET_DIR)/etc/init.d/S99demo
+        $(INSTALL) -m 0644 -D $(LAUNCHER_PKGDIR)/setup.sh \
+                $(TARGET_DIR)/etc/profile.d/setup.sh
+	$(INSTALL) -D -m 0664 $(LAUNCHER_PKGDIR)/demo.config \
+		$(TARGET_DIR)/opt/ApplicationLauncher/demo.config
+endef
+
+ifeq ($(BR2_PACKAGE_LAUNCHER_INIT),y)
+LAUNCHER_POST_INSTALL_TARGET_HOOKS += LAUNCHER_INSTALL_INIT
+endif
+
 $(eval $(generic-package))
