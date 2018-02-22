@@ -1,0 +1,7 @@
+config BR2_PACKAGE_BROWSER
+	bool "QML Web Browser"
+	depends on BR2_PACKAGE_QT5
+	depends on BR2_PACKAGE_QT5QUICK1D
+	depends on BR2_PACKAGE_QT5WEBKIT
+	help
+	  QML web browser.
