@@ -1,0 +1,8 @@
+config BR2_PACKAGE_SMARTREFRIGERATOR
+	bool "Smart Refrigerator"
+	depends on BR2_PACKAGE_QT5
+	depends on BR2_PACKAGE_QT5QUICK1D
+	depends on BR2_PACKAGE_QT5WEBKIT
+	depends on BR2_PACKAGE_LIBV4L
+	help
+	  Smart refrigerator demo.
