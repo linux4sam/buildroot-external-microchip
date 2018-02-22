@@ -1,6 +1,7 @@
 source "$BR2_EXTERNAL_MCHP_PATH/package/browser/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/launcher/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/g1-binaries/Config.in"
+source "$BR2_EXTERNAL_MCHP_PATH/package/gst1-at91/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/homeautomation/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/minehunt/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/libplanes/Config.in"

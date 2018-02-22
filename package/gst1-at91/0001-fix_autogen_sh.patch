@@ -1,0 +1,54 @@
+From 0dca5facc84aca9abd6f1724807a25282895a907 Mon Sep 17 00:00:00 2001
+From: Joshua Henderson <joshua.henderson@microchip.com>
+Date: Mon, 22 May 2017 10:36:24 -0700
+Subject: [PATCH] Rework autogen.sh to work outside of yocto
+
+---
+ autogen.sh | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/autogen.sh b/autogen.sh
+index 303bda6..7aa30e8 100755
+--- a/autogen.sh
++++ b/autogen.sh
+@@ -32,7 +32,7 @@ then
+     ln -s ../../common/hooks/pre-commit.hook .git/hooks/pre-commit
+ fi
+ 
+-CONFIGURE_DEF_OPT='--enable-maintainer-mode --enable-gtk-doc'
++CONFIGURE_DEF_OPT='--enable-maintainer-mode'
+ 
+ if test "x$package" = "xgstreamer"; then
+   CONFIGURE_DEF_OPT="$CONFIGURE_DEF_OPT --enable-docbook --enable-failing-tests --enable-poisoning"
+@@ -40,8 +40,19 @@ fi
+ 
+ autogen_options $@
+ 
++version_check()
++{
++    :
++}
++
++libtoolize=libtoolize
++autoheader=autoheader
++aclocal=aclocal
++automake=automake
++autoconf=autoconf
++
+ printf "+ check for build tools"
+-if test ! -z "$NOCHECK"; then echo ": skipped version checks"; else  echo; fi
++if test ! -z "$NOCHECK"; then echo ": skipped version checks"; else
+ version_check "autoconf" "$AUTOCONF autoconf autoconf270 autoconf269 autoconf268 " \
+               "ftp://ftp.gnu.org/pub/gnu/autoconf/" 2 68 || DIE=1
+ version_check "automake" "$AUTOMAKE automake automake-1.11" \
+@@ -59,6 +70,7 @@ aclocal_check || DIE=1
+ autoheader_check || DIE=1
+ 
+ die_check $DIE
++fi
+ 
+ # if no arguments specified then this will be printed
+ if test -z "$*" && test -z "$NOCONFIGURE"; then
+-- 
+2.7.4
+
