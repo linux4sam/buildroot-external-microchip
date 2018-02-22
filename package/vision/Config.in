@@ -1,0 +1,7 @@
+config BR2_PACKAGE_VISION
+	bool "Vision Demo Application"
+	depends on BR2_PACKAGE_PYTHON_PYQT5
+	depends on BR2_PACKAGE_OPENCV3
+	depends on BR2_PACKAGE_PYTHON_SETUPTOOLS
+	help
+	  OpenCV machine vision demo application.
