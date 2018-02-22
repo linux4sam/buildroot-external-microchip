@@ -1,0 +1,8 @@
+config BR2_PACKAGE_VIDEOPLAYER
+	bool "Video Player"
+	depends on BR2_PACKAGE_QT5
+	depends on BR2_PACKAGE_GSTREAMER1
+	depends on BR2_PACKAGE_GST1_AT91
+	depends on BR2_PACKAGE_LIBPLANES
+	help
+	  Video player application.
