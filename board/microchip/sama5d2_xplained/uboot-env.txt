@@ -1,0 +1,7 @@
+bootargs=console=ttyS0,115200 root=/dev/mmcblk1p2 rw rootfstype=ext4 rootwait video=Unknown-1:800x480-16
+bootcmd=fatload mmc 1 0x21000000 at91-sama5d2_xplained_pda7.dtb; fatload mmc 1 0x22000000 zImage; bootz 0x22000000 - 0x21000000
+bootdelay=1
+ethact=gmac0
+stderr=serial
+stdin=serial
+stdout=serial
