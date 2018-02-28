@@ -1,0 +1,11 @@
+config BR2_PACKAGE_PYTHON_IOCONTROL
+	bool "python-iocontrol"
+	depends on BR2_PACKAGE_PYTHON_PYQT5
+	depends on BR2_PACKAGE_PYTHON_MPIO
+	help
+	  I/O Control Application.  This application is a graphical application
+	  to analyze and manipulate hardware peripherals using the Microchip
+	  Peripheral I/O (MPIO) package.
+
+comment "python-iocontrol depends on pyqt5 and mpio"
+	depends on !BR2_PACKAGE_PYTHON_PYQT5 || !BR2_PACKAGE_PYTHON_MPIO
