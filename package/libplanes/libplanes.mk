@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBPLANES_VERSION = a3e2f9315f0ed55655f396eb1cf13ccf41ca5ba9
+LIBPLANES_VERSION = 65728dc2cd180fe40360e4a849b32161b5db2f4d
 LIBPLANES_SITE = https://github.com/linux4sam/libplanes
 LIBPLANES_SITE_METHOD = git
 LIBPLANES_LICENSE = MIT
