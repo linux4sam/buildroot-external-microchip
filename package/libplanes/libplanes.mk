@@ -4,9 +4,8 @@
 #
 ################################################################################
 
-LIBPLANES_VERSION = 65728dc2cd180fe40360e4a849b32161b5db2f4d
-LIBPLANES_SITE = https://github.com/linux4sam/libplanes
-LIBPLANES_SITE_METHOD = git
+LIBPLANES_VERSION = 08f7dc12436572c1c36a457e36e5d6ea453f66ac
+LIBPLANES_SITE = $(call github,linux4sam,libplanes,$(LIBPLANES_VERSION))
 LIBPLANES_LICENSE = MIT
 LIBPLANES_LICENSE_FILES = COPYING
 LIBPLANES_DEPENDENCIES = libdrm cairo cjson lua
