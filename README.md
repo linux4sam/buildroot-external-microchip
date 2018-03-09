@@ -17,6 +17,10 @@ dependencies are required.
     libncurses5-dev texinfo autoconf automake libtool mercurial git-core \
     gperf gawk expat curl cvs libexpat-dev bzr swig
 
+In some cases, these additional dependencies may also need to be installed.
+
+    sudo apt-get install libc6:i386 libstdc++6:i386 zlib1g:i386
+
 
 ## Buildroot Dependencies
 
