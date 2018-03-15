@@ -24,8 +24,8 @@ required.  It will let you know what those are.
 ## Buildroot Dependencies
 
 Many of the demo applications included in this external depend on Qt 5.9 or
-later.  This buildroot external requires a new version of buildroot later that
-2018.02-rc1.
+later.  This buildroot external requires a new version of buildroot equal to or
+greater than 2018.02-at91.
 
 
 ## Build
@@ -34,8 +34,8 @@ Clone, configure, and build.  When building, use the appropriate defconfig in
 the `buildroot-external-microchip/configs` directory for your board.
 
     git clone https://github.com/linux4sam/buildroot-external-microchip.git
-    git clone https://git.buildroot.net/buildroot
-    cd buildroot
+    git clone https://github.com/linux4sam/buildroot-at91.git -b 2018.02-at91
+    cd buildroot-at91
     BR2_EXTERNAL=../buildroot-external-microchip/ make sama5d4_xplained_demo_defconfig
     make
 
