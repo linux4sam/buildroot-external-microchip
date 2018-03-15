@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-VIDEOPLAYER_VERSION = 526ff3a609791aacfd4eeeb386831cf6e77c5061
+VIDEOPLAYER_VERSION = 55a956242e99c6fab0182ddd999fbd309de28b2f
 VIDEOPLAYER_SITE = $(call github,linux4sam,atmel-video-player,$(VIDEOPLAYER_VERSION))
 VIDEOPLAYER_LICENSE = Atmel LIMITED License Agreement
 VIDEOPLAYER_LICENSE_FILES = COPYING
