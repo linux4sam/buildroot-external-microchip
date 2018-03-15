@@ -15,11 +15,10 @@ dependencies are required.
 
     sudo apt-get install subversion build-essential bison flex gettext \
     libncurses5-dev texinfo autoconf automake libtool mercurial git-core \
-    gperf gawk expat curl cvs libexpat-dev bzr swig
+    gperf gawk expat curl cvs libexpat-dev bzr swig unzip bc python-dev
 
-In some cases, these additional dependencies may also need to be installed.
-
-    sudo apt-get install libc6:i386 libstdc++6:i386 zlib1g:i386
+In some cases, buildroot will notify that additional host dependencies are
+required.  It will let you know what those are.
 
 
 ## Buildroot Dependencies
