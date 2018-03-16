@@ -38,6 +38,8 @@ define LIBPLANES_INSTALL_MENU
                 $(TARGET_DIR)/opt/planes/planes-loop.sh
         $(INSTALL) -m 0755 -D $(@D)/python/examples/splash.py \
                 $(TARGET_DIR)/usr/share/planes/splash.py
+        $(INSTALL) -m 0755 -D $(@D)/python/examples/example.py \
+                $(TARGET_DIR)/usr/share/planes/example.py
 endef
 
 LIBPLANES_POST_INSTALL_TARGET_HOOKS += LIBPLANES_INSTALL_MENU
