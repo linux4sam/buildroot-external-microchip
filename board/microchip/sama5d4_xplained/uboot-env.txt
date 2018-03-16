@@ -1,6 +1,6 @@
 board=sama5d4_xplained
 board_name=sama5d4_xplained
-bootargs=console=ttyS0,115200 earlyprintk root=/dev/mmcblk0p2 rw rootwait
+bootargs=console=ttyS0,115200 earlyprintk root=/dev/mmcblk0p2 rw rootwait rootfstype=ext4
 bootcmd=if test ! -n ${dtb_name}; then setenv dtb_name at91-${board_name}.dtb; fi; fatload mmc 0:1 0x21000000 ${dtb_name}; fatload mmc 0:1 0x22000000 zImage; bootz 0x22000000 - 0x21000000
 bootdelay=1
 dtb_name=at91-sama5d4_xplained_pda7.dtb
