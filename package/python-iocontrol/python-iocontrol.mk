@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-PYTHON_IOCONTROL_VERSION = bb6d6a3f3340b3b43b41bf2232e52cc3d2c01ac4
+PYTHON_IOCONTROL_VERSION = e133edbafe2f267c976c25b4cba767328a5f7610
 PYTHON_IOCONTROL_SITE = $(call github,linux4sam,iocontrol,$(PYTHON_IOCONTROL_VERSION))
 PYTHON_IOCONTROL_LICENSE = GPL-3.0-only, MIT (QDarkStyleSheet)
 PYTHON_IOCONTROL_LICENSE_FILES = LICENSE LICENSE.MIT
