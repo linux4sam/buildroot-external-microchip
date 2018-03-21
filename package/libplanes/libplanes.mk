@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBPLANES_VERSION = 08f7dc12436572c1c36a457e36e5d6ea453f66ac
+LIBPLANES_VERSION = 2b173ed752e19945f470df3edf2c1487fa9d03d3
 LIBPLANES_SITE = $(call github,linux4sam,libplanes,$(LIBPLANES_VERSION))
 LIBPLANES_LICENSE = MIT
 LIBPLANES_LICENSE_FILES = COPYING
