@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-PTC_EXAMPLES_VERSION = v1.0
+PTC_EXAMPLES_VERSION = v1.1
 PTC_EXAMPLES_SITE = $(call github,linux4sam,ptc_examples,$(PTC_EXAMPLES_VERSION))
 PTC_EXAMPLES_LICENSE = Apache-2.0 (programs), Microchip (firmware and config files)
 PTC_EXAMPLES_LICENSE_FILES = src/COPYING cfg/LICENCE.ptc_cfg fw/LICENCE.ptc_fw

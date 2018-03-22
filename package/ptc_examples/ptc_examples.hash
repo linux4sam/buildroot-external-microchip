@@ -1,5 +1,5 @@
-# From https://codeload.github.com/linux4sam/ptc_examples/tar.gz/v1.0
-sha256 bf3dd979832489a2ce6414fcf83963d38c5293120327d9fdf7461a1f85177e37  ptc_examples-v1.0.tar.gz
+# From https://codeload.github.com/linux4sam/ptc_examples/tar.gz/v1.1
+sha256 333171ce778752933a123dea505dad43add4aeeb86b6c44e7149ccd30dea840c  ptc_examples-v1.1.tar.gz
 
 # Hash for license files
 sha256 a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9  src/COPYING
