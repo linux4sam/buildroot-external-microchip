@@ -45,6 +45,8 @@ define LIBPLANES_INSTALL_MENU
                 $(TARGET_DIR)/opt/ApplicationLauncher/applications/xml/09-planes.xml
         $(INSTALL) -m 0755 -D $(@D)/scripts/planes-loop.sh \
                 $(TARGET_DIR)/opt/planes/planes-loop.sh
+        $(INSTALL) -m 0755 -D $(@D)/scripts/planes-loop.py \
+                $(TARGET_DIR)/opt/planes/planes-loop.py
         $(INSTALL) -m 0755 -D $(@D)/python/examples/splash.py \
                 $(TARGET_DIR)/usr/share/planes/splash.py
         $(INSTALL) -m 0755 -D $(@D)/python/examples/example.py \
