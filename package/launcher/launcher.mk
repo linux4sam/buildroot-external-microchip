@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LAUNCHER_VERSION = 06e8935693b7d91699a46b5af60c3ee308c8864b
+LAUNCHER_VERSION = v1.10
 LAUNCHER_SITE = $(call github,linux4sam,application-launcher,$(LAUNCHER_VERSION))
 LAUNCHER_LICENSE = Atmel LIMITED License Agreement
 LAUNCHER_LICENSE_FILES = COPYING
