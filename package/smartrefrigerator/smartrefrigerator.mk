@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-SMARTREFRIGERATOR_VERSION = 5c7bbb38ec639313d6b0e0d8e6919856eff8fc0a
+SMARTREFRIGERATOR_VERSION = v1.6
 SMARTREFRIGERATOR_SITE = $(call github,linux4sam,smart-refrigerator,$(SMARTREFRIGERATOR_VERSION))
 SMARTREFRIGERATOR_LICENSE = Atmel LIMITED License Agreement
 SMARTREFRIGERATOR_DEPENDENCIES = qt5base qt5quick1d qt5webkit libv4l
