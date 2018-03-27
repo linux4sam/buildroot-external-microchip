@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-BROWSER_VERSION = 0626a3e087940bca6ced55ceee0df0074c0e9fee
+BROWSER_VERSION = v1.7
 BROWSER_SITE = $(call github,linux4sam,qml-browser,$(BROWSER_VERSION))
 BROWSER_LICENSE = Atmel LIMITED License Agreement
 BROWSER_DEPENDENCIES = qt5base qt5quick1d qt5webkit
