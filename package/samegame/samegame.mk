@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-SAMEGAME_VERSION = 795cbd545a13ce49d1cde3887a5b7e2d91c46866
+SAMEGAME_VERSION = v1.6
 SAMEGAME_SITE = $(call github,linux4sam,samegame,$(SAMEGAME_VERSION))
 SAMEGAME_LICENSE = BSD-3-Clause
 SAMEGAME_DEPENDENCIES = qt5base qt5quick1d qt5declarative
