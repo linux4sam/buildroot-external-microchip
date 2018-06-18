@@ -4,16 +4,16 @@
 #
 ################################################################################
 
-G1_BINARIES_VERSION = 1.2
-G1_BINARIES_SITE = ftp://ftp.linux4sam.org/pub/demo/qtdemo
-G1_BINARIES_SOURCE = g1-binaries-${G1_BINARIES_VERSION}.tar.gz
-G1_BINARIES_LICENSE = PROPRIETARY
-G1_BINARIES_INSTALL_TARGET = NO
+G1_BINARIES_VERSION = cb81273566b7c1609ce27bbf38af8042946472f7
+G1_BINARIES_SITE = https://github.com/linux4sam/g1_decoder.git
+G1_BINARIES_SITE_METHOD = git
+G1_BINARIES_LICENSE = BSD
+G1_BINARIES_INSTALL_TARGET = YES
 G1_BINARIES_INSTALL_STAGING = YES
 
-define G1_BINARIES_INSTALL_STAGING_CMDS
-	cp -dpfr $(@D)/include/* $(STAGING_DIR)/usr/include/
-	cp -dpfr $(@D)/lib/* $(STAGING_DIR)/usr/lib/
+define G1_BINARIES_RUN_AUTOGEN
+        cd $(@D) && PATH=$(BR_PATH) ./autogen.sh
 endef
+G1_BINARIES_POST_PATCH_HOOKS += G1_BINARIES_RUN_AUTOGEN
 
-$(eval $(generic-package))
+$(eval $(autotools-package))
