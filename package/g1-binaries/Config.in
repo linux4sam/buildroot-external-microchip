@@ -1,5 +1,0 @@
-config BR2_PACKAGE_G1_BINARIES
-	bool "g1-binaries"
-	depends on BR2_arm
-	help
-	  G1 binaries

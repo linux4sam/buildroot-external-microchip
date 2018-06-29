@@ -1,0 +1,5 @@
+config BR2_PACKAGE_G1_DECODER
+	bool "g1-decoder"
+	depends on BR2_arm
+	help
+	  G1 video decoder for sama5d4 soc

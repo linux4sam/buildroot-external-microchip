@@ -16,7 +16,7 @@ GST1_AT91_DEPENDENCIES += \
 	host-pkgconf \
 	gstreamer1 \
 	gst1-plugins-base \
-	g1-binaries \
+	g1-decoder \
 	libdrm
 
 define GST1_AT91_RUN_AUTOGEN
