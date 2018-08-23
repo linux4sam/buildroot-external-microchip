@@ -1,4 +1,4 @@
-comment "libplanes depends on libdrm and cairo"
+comment "libplanes depends on libdrm, cairo, lua, and cjson"
 	depends on !BR2_PACKAGE_CAIRO || !BR2_PACKAGE_CJSON || !BR2_PACKAGE_LIBDRM || !BR2_PACKAGE_LUA
 
 config BR2_PACKAGE_LIBPLANES
