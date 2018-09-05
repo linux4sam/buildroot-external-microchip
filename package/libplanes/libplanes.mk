@@ -8,7 +8,10 @@ LIBPLANES_VERSION = 6d65d1df800188f2f1e31518a6b35629a792e35d
 LIBPLANES_SITE = $(call github,linux4sam,libplanes,$(LIBPLANES_VERSION))
 LIBPLANES_LICENSE = MIT
 LIBPLANES_LICENSE_FILES = COPYING
-LIBPLANES_DEPENDENCIES = libdrm cairo cjson lua
+LIBPLANES_AUTORECONF = YES
+LIBPLANES_AUTORECONF_OPTS += -I $(HOST_DIR)/usr/share/autoconf-archive
+LIBPLANES_DEPENDENCIES = libdrm cairo cjson lua \
+	host-pkgconf host-autoconf-archive
 
 ifeq ($(BR2_PACKAGE_DIRECTFB),y)
 LIBPLANES_DEPENDENCIES += directfb
