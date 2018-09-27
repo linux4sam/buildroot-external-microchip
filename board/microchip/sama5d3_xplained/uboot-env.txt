@@ -6,7 +6,7 @@ video=${video_mode}
 board_name=sama5d3_xplained
 bootargs=console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait rootfstype=ext4 atmel.pm_modes=standby,ulp1
 bootcmd=run at91_pda_detect; run at91_prepare_video_bootargs; run at91_prepare_bootargs; run at91_prepare_overlays_config; run bootcmd_boot;
-bootcmd_boot=fatload mmc 0:1 ${loadaddr} fitImage-${board_name}.itb; bootm ${loadaddr}#kernel_dtb${at91_overlays_config};
+bootcmd_boot=fatload mmc 0:1 ${loadaddr} ${board_name}.itb; bootm ${loadaddr}#kernel_dtb${at91_overlays_config};
 bootdelay=1
 loadaddr=0x21000000
 pda4300test=test -n $pda && test $pda = 4300 && setenv pda_var 'pda4' && setenv video_mode ${video_mode_pda4}

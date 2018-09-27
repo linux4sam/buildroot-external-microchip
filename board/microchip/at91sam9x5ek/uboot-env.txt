@@ -6,7 +6,7 @@ at91sam9x25_test=test -n $cpu && test $cpu = AT91SAM9X25 && setenv board_name sa
 at91sam9x35_test=test -n $cpu && test $cpu = AT91SAM9X35 && setenv board_name sam9x35
 bootargs=console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 rootwait video=Unknown-1:800x480-16
 bootcmd=run at91_test_cpu; run bootcmd_boot;
-bootcmd_boot=fatload mmc 0:1 ${fitaddr} fitImage-at91sam9x5ek.itb; bootm ${fitaddr}${at91_dtb_config};
+bootcmd_boot=fatload mmc 0:1 ${fitaddr} at91sam9x5ek.itb; bootm ${fitaddr}${at91_dtb_config};
 bootdelay=1
 fitaddr=0x24000000
 loadaddr=0x21000000
