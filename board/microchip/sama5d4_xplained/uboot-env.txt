@@ -9,10 +9,10 @@ bootcmd=run at91_set_display; run at91_pda_detect; run at91_prepare_video_bootar
 bootcmd_boot=fatload mmc 0:1 ${loadaddr} ${board_name}.itb; bootm ${loadaddr}#kernel_dtb${at91_overlays_config};
 bootdelay=1
 loadaddr=0x21000000
-pda4300test=test -n $pda && test $pda = 4300 && setenv pda_var 'pda4' && setenv video_mode ${video_mode_pda4}
-pda5000test=test -n $pda && test $pda = 5000  &&  setenv pda_var 'pda5' && setenv video_mode ${video_mode_pda5}
-pda7000btest=test -n $pda && test $pda = 7000B &&  setenv pda_var 'pda7b' && setenv video_mode ${video_mode_pda7b}
-pda7000test=test -n $pda && test $pda = 7000 &&  setenv pda_var 'pda7' && setenv video_mode ${video_mode_pda7}
+pda4300test=test -n $display && test $display = 4300 && setenv display_var 'pda4' && setenv video_mode ${video_mode_pda4}
+pda5000test=test -n $display && test $display = 5000 && setenv display_var 'pda5' && setenv video_mode ${video_mode_pda5}
+pda7000btest=test -n $display && test $display = 7000B && setenv display_var 'pda7b' && setenv video_mode ${video_mode_pda7b}
+pda7000test=test -n $display && test $display = 7000 && setenv display_var 'pda7' && setenv video_mode ${video_mode_pda7}
 hdmi_test=test -n $display && test $display = hdmi && setenv display_var 'hdmi' && setenv video_mode ${video_mode_hdmi}
 stderr=serial@ffffee00
 stdin=serial@ffffee00
