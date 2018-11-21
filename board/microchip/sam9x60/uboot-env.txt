@@ -1,0 +1,5 @@
+baudrate=115200
+bootargs=mem=256M console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 rootwait
+bootcmd=fatload mmc 0:1 0x21000000 at91sam9x60ek.dtb;fatload mmc 0:1 0x22000000 zImage;bootz 0x22000000 - 0x21000000
+bootdelay=3
+cpu=SAM9X60
