@@ -15,7 +15,7 @@ dependencies are required.
 
     sudo apt-get install subversion build-essential bison flex gettext \
     libncurses5-dev texinfo autoconf automake libtool mercurial git-core \
-    gperf gawk expat curl cvs libexpat-dev bzr unzip bc python-dev
+    gperf gawk expat curl cvs libexpat-dev bzr unzip bc python-dev mtools
 
 In some cases, buildroot will notify that additional host dependencies are
 required.  It will let you know what those are.
