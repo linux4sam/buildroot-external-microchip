@@ -1,0 +1,31 @@
+From 3ed1342ef0fd51816e394075195e3395a397861d Mon Sep 17 00:00:00 2001
+Message-Id: <3ed1342ef0fd51816e394075195e3395a397861d.1547150348.git.sandeep.sheriker@microchip.com>
+In-Reply-To: <605d6dab5106587a59aaaa241cc1089a310704f0.1547150348.git.sandeep.sheriker@microchip.com>
+References: <605d6dab5106587a59aaaa241cc1089a310704f0.1547150348.git.sandeep.sheriker@microchip.com>
+From: Sandeep Sheriker M <sandeepsheriker.mallikarjun@microchip.com>
+Date: Mon, 7 Jan 2019 13:50:45 -0700
+Subject: [EGT][patch v5 2/3] egt:examples: Add LIB_MAGIC.
+
+Adding LIB_MAGIC to avoid dependency errors.
+
+Signed-off-by: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+---
+ examples/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/examples/Makefile.am b/examples/Makefile.am
+index 12f5abc..918060a 100644
+--- a/examples/Makefile.am
++++ b/examples/Makefile.am
+@@ -25,7 +25,7 @@ AM_LDFLAGS = -pthread
+ 
+ LDADD = $(LIBPLANES_LIBS) $(CAIRO_LIBS) $(LIBDRM_LIBS) $(TSLIB_LIBS) \
+ 	$(LUA_LIBS) $(CJSON_LIBS) $(GSTREAMER_LIBS) $(LIBJPEG_LIBS) \
+-	$(LIBINPUT_LIBS)
++	$(LIBINPUT_LIBS) $(MAGIC_LIB)
+ 
+ #CXXFLAGS="$CXXFLAGS -std=c++11 -pedantic -Ofast -flto -fwhole-program"
+ #LDFLAGS="$LDFLAGS -flto -fwhole-program"
+-- 
+2.7.4
+
