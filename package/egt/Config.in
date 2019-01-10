@@ -1,0 +1,40 @@
+config BR2_PACKAGE_EGT
+	bool "egt graphics library"
+	select BR2_PACKAGE_LIBEVDEV
+	select BR2_PACKAGE_LIBGPIOD
+        select BR2_PACKAGE_G1_DECODER
+        select BR2_PACKAGE_LIBDRM
+        select BR2_PACKAGE_LIBPLANES
+        select BR2_PACKAGE_CAIRO
+        select BR2_PACKAGE_CAIRO_PDF
+        select BR2_PACKAGE_CAIRO_PNG
+        select BR2_PACKAGE_CAIRO_PS
+        select BR2_PACKAGE_CAIRO_SVG
+        select BR2_PACKAGE_PANGO
+        select BR2_PACKAGE_JPEG
+        select BR2_PACKAGE_LIBPNG
+        select BR2_PACKAGE_GSTREAMER1
+        select BR2_PACKAGE_GST1_PLUGINS_BASE
+        select BR2_PACKAGE_GST1_PLUGINS_BASE_PLUGIN_ALSA
+        select BR2_PACKAGE_GST1_PLUGINS_BASE_PLUGIN_APP
+        select BR2_PACKAGE_GST1_PLUGINS_BASE_PLUGIN_AUDIOCONVERT
+        select BR2_PACKAGE_GST1_PLUGINS_BASE_PLUGIN_AUDIORESAMPLE
+        select BR2_PACKAGE_GST1_PLUGINS_BASE_PLUGIN_PLAYBACK
+        select BR2_PACKAGE_GST1_PLUGINS_BASE_PLUGIN_VIDEOCONVERT
+        select BR2_PACKAGE_GST1_PLUGINS_BASE_PLUGIN_VIDEOSCALE
+        select BR2_PACKAGE_GST1_PLUGINS_BASE_PLUGIN_VOLUME
+        select BR2_PACKAGE_GST1_PLUGINS_GOOD
+        select BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_ISOMP4
+        select BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_RTSP
+        select BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_CAIRO
+        select BR2_PACKAGE_GST1_LIBAV
+	select BR2_PACKAGE_FILE
+	help
+	  EGT graphics library for microchip sam9x and sama5 mpu's.
+
+if BR2_PACKAGE_EGT
+config BR2_PACKAGE_EGT_INSTALL_EXAMPLES
+        bool "Compile and install examples"
+        help
+          If unsure, say N.
+endif
