@@ -4,8 +4,10 @@
 #
 ################################################################################
 
-LIBPLANES_VERSION = 7d702630bc00461f72a1ce109739ee4e34903b4c
-LIBPLANES_SITE = $(call github,linux4sam,libplanes,$(LIBPLANES_VERSION))
+LIBPLANES_VERSION = devel
+LIBPLANES_SITE = ssh://git@bitbucket.microchip.com/~c16205/libplanes.git
+LIBPLANES_SITE_METHOD = git
+LIBPLANES_GIT_SUBMODULES = YES
 LIBPLANES_LICENSE = MIT
 LIBPLANES_LICENSE_FILES = COPYING
 LIBPLANES_AUTORECONF = YES
