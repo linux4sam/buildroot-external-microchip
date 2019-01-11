@@ -11,6 +11,19 @@ EGT_GIT_SUBMODULES = YES
 EGT_LICENSE = BSD
 EGT_INSTALL_TARGET = YES
 EGT_INSTALL_STAGING = YES
+EGT_DEPENDENCIES = \
+libevdev \
+libgpiod \
+g1-decoder \
+libdrm \
+libplanes \
+cairo \
+pango \
+jpeg \
+libpng \
+gstreamer1 \
+rapidxml \
+file
 
 define EGT_RUN_AUTOGEN
         cd $(@D) && PATH=$(BR_PATH) ./autogen.sh
