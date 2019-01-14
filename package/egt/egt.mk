@@ -25,6 +25,8 @@ gstreamer1 \
 rapidxml \
 file
 
+EGT_CONF_OPTS = --prefix=/usr/share/egt --exec-prefix=/usr/share/egt
+
 define EGT_RUN_AUTOGEN
         cd $(@D) && PATH=$(BR_PATH) ./autogen.sh
 endef
