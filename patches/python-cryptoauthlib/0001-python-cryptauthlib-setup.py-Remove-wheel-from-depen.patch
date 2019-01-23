@@ -1,0 +1,41 @@
+From b253e067bec3bc8fcc29f92a4c41a7024cff7113 Mon Sep 17 00:00:00 2001
+From: Tudor Ambarus <tudor.ambarus@microchip.com>
+Date: Mon, 16 Mar 2020 11:08:28 +0200
+Subject: [PATCH] python-cryptauthlib: setup.py: Remove wheel from dependencies
+ list
+
+Fixes the following compile error:
+
+  File "/home/tudor/work/buildroot-at91/output/host/lib/python3.8/site-packages//
+setuptools/command/easy_install.py", line 673, in easy_install
+    raise DistutilsError(msg)
+distutils.errors.DistutilsError: Could not find suitable distribution for Requirr
+ement.parse('wheel')
+package/pkg-generic.mk:238: recipe for target '/home/tudor/work/buildroot-at91/oo
+utput/build/python-cryptoauthlib-20200205/.stamp_built' failed
+make[1]: *** [/home/tudor/work/buildroot-at91/output/build/python-cryptoauthlib--
+20200205/.stamp_built] Error 1
+Makefile:84: recipe for target '_all' failed
+make: *** [_all] Error 2
+
+Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index cff350a9650e..cb80686430d3 100644
+--- a/setup.py
++++ b/setup.py
+@@ -219,7 +219,7 @@ if __name__ == '__main__':
+         include_package_data=True,
+         distclass=BinaryDistribution,
+         cmdclass=_COMMANDS,
+-        setup_requires=['setuptools>=38.6.0', 'wheel'],
++        setup_requires=['setuptools>=38.6.0'],
+         install_requires=['enum34;python_version<"3.4"'],
+         ext_modules=_EXTENSIONS,
+         python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4',
+-- 
+2.23.0
+

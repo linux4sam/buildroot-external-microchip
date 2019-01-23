@@ -9,6 +9,8 @@ source "$BR2_EXTERNAL_MCHP_PATH/package/python-mpio/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/wilc_firmware/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/9bit/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/plplot/Config.in"
+source "$BR2_EXTERNAL_MCHP_PATH/package/cryptoauthlib/Config.in"
+source "$BR2_EXTERNAL_MCHP_PATH/package/python-cryptoauthlib/Config.in"
 
 menu "EGT Applications"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/egt/Config.in"

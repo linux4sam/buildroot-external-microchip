@@ -1,0 +1,9 @@
+config BR2_PACKAGE_CRYPTOAUTHLIB
+	bool "cryptoauthlib"
+	depends on !BR2_STATIC_LIBS
+	depends on BR2_USE_MMU
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	help
+      Use cryptoauthlib as a pkcs11 provider.
+
+      https://github.com/MicrochipTech/cryptoauthlib/blob/pkcs11/app/pkcs11/README.md
