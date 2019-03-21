@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-EGT_VERSION = d586bb08343d7d9b108927b50d727e2edf60a27d
+EGT_VERSION = 0.1-alpha
 EGT_SITE = ssh://git@bitbucket.microchip.com/~c16205/egt.git
 EGT_SITE_METHOD = git
 EGT_GIT_SUBMODULES = YES
