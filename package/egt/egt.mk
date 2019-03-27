@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-EGT_VERSION = 0.1-alpha
-EGT_SITE = ssh://git@bitbucket.microchip.com/~c16205/egt.git
+EGT_VERSION = 1ab2d333b670ee4c2308f837fb41fa12145d9ee1
+EGT_SITE = ssh://git@bitbucket.microchip.com/linux4sam/egt.git
 EGT_SITE_METHOD = git
 EGT_GIT_SUBMODULES = YES
 EGT_LICENSE = BSD
@@ -24,8 +24,6 @@ libpng \
 gstreamer1 \
 rapidxml \
 file
-
-EGT_CONF_OPTS = --prefix=/usr/share/egt --exec-prefix=/usr/share/egt
 
 define EGT_RUN_AUTOGEN
         cd $(@D) && PATH=$(BR_PATH) ./autogen.sh
