@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBM2D_VERSION = 90b2afe9d69e74c211eecf90e742b113935f7441
+LIBM2D_VERSION = 3523d0dc6bbf4f80d953b691c40548e5ce46693a
 LIBM2D_SITE = https://bitbucket.microchip.com/scm/~c16205/libm2d.git
 LIBM2D_SITE_METHOD = git
 LIBM2D_LICENSE = MIT
