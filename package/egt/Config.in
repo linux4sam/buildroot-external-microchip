@@ -28,7 +28,6 @@ config BR2_PACKAGE_EGT
         select BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_RTSP
         select BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_CAIRO
         select BR2_PACKAGE_GST1_LIBAV
-        select BR2_PACKAGE_RAPIDXML
-	select BR2_PACKAGE_FILE 
+	select BR2_PACKAGE_FILE
 	help
 	  EGT graphics library for microchip sam9x and sama5 mpu's.
