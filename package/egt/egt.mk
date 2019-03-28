@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-EGT_VERSION = 1ab2d333b670ee4c2308f837fb41fa12145d9ee1
-EGT_SITE = ssh://git@bitbucket.microchip.com/linux4sam/egt.git
+EGT_VERSION = 46918378c8fd8d73db56b89f15a65e7e6e34425a
+EGT_SITE = https://bitbucket.microchip.com/scm/linux4sam/egt.git
 EGT_SITE_METHOD = git
 EGT_GIT_SUBMODULES = YES
 EGT_LICENSE = BSD
