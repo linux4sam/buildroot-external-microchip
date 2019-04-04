@@ -1,0 +1,347 @@
+From 9d3c603b237d6da9977b8ab0a6afe5e1aaa210c7 Mon Sep 17 00:00:00 2001
+From: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+Date: Tue, 26 Mar 2019 15:44:02 -0700
+Subject: [PATCH] Add support to gem handle
+
+Signed-off-by: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+---
+ sys/kms/gstkmsallocator.c | 20 ++++++++++++++----
+ sys/kms/gstkmsallocator.h |  6 +++++-
+ sys/kms/gstkmssink.c      | 53 +++++++++++++++++++++++++++++++++++++++++++++--
+ sys/kms/gstkmssink.h      |  6 ++++++
+ 4 files changed, 78 insertions(+), 7 deletions(-)
+
+diff --git a/sys/kms/gstkmsallocator.c b/sys/kms/gstkmsallocator.c
+index 17e851d..a4ae20f 100644
+--- a/sys/kms/gstkmsallocator.c
++++ b/sys/kms/gstkmsallocator.c
+@@ -1,10 +1,12 @@
+ /* GStreamer
+  *
+  * Copyright (C) 2016 Igalia
++ * Copyright (C) Microchip Technology Inc.
+  *
+  * Authors:
+  *  Víctor Manuel Jáquez Leal <vjaquez@igalia.com>
+  *  Javier Martin <javiermartin@by.com.es>
++ *  Sandeep Sheriker M <sandeepsheriker.mallikarjun@microchip.com>
+  *
+  * This library is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU Library General Public
+@@ -42,6 +44,7 @@
+ 
+ #include "gstkmsallocator.h"
+ #include "gstkmsutils.h"
++#include "gstkmssink.h"
+ 
+ #ifndef DRM_RDWR
+ #define DRM_RDWR O_RDWR
+@@ -111,6 +114,7 @@ gst_kms_allocator_memory_reset (GstKMSAllocator * allocator, GstKMSMemory * mem)
+   if (!check_fd (allocator))
+     return;
+ 
++  if (allocator->kmssink->Ismaster) {
+   if (mem->fb_id) {
+     GST_DEBUG_OBJECT (allocator, "removing fb id %d", mem->fb_id);
+     drmModeRmFB (allocator->priv->fd, mem->fb_id);
+@@ -136,6 +140,7 @@ gst_kms_allocator_memory_reset (GstKMSAllocator * allocator, GstKMSMemory * mem)
+ 
+   g_free (mem->bo);
+   mem->bo = NULL;
++  }
+ }
+ 
+ /* Copied from gst_v4l2_object_extrapolate_stride() */
+@@ -181,7 +186,7 @@ gst_kms_allocator_memory_create (GstKMSAllocator * allocator,
+   kmsmem->bo = g_malloc0 (sizeof (*kmsmem->bo));
+   if (!kmsmem->bo)
+     return FALSE;
+-
++  if (allocator->kmssink->Ismaster) {
+   fmt = gst_drm_format_from_video (GST_VIDEO_INFO_FORMAT (vinfo));
+   arg.bpp = gst_drm_bpp_from_drm (fmt);
+   arg.width = GST_VIDEO_INFO_WIDTH (vinfo);
+@@ -232,6 +237,9 @@ done:
+         " but we require at least %" G_GSIZE_FORMAT " to hold a frame",
+         kmsmem->bo->size, GST_VIDEO_INFO_SIZE (vinfo));
+     return FALSE;
++  } else {
++    kmsmem->bo->handle = allocator->kmssink->gemhandle;
++    kmsmem->bo->size = allocator->kmssink->gemsize;
+   }
+ 
+   return TRUE;
+@@ -422,12 +430,15 @@ gst_kms_allocator_init (GstKMSAllocator * allocator)
+ }
+ 
+ GstAllocator *
+-gst_kms_allocator_new (int fd)
++gst_kms_allocator_new (GstKMSSink * self)
+ {
+   GstAllocator *alloc;
+ 
+   alloc = g_object_new (GST_TYPE_KMS_ALLOCATOR, "name",
+-      "KMSMemory::allocator", "drm-fd", fd, NULL);
++      "KMSMemory::allocator", "drm-fd", self->fd, NULL);
++
++  alloc->kmssink = self;
++
+   gst_object_ref_sink (alloc);
+ 
+   return alloc;
+@@ -464,7 +475,7 @@ gst_kms_allocator_add_fb (GstKMSAllocator * alloc, GstKMSMemory * kmsmem,
+ 
+   GST_DEBUG_OBJECT (alloc, "bo handles: %d, %d, %d, %d", bo_handles[0],
+       bo_handles[1], bo_handles[2], bo_handles[3]);
+-
++  if (alloc->kmssink->Ismaster) {
+   ret = drmModeAddFB2 (alloc->priv->fd, w, h, fmt, bo_handles, pitches,
+       offsets, &kmsmem->fb_id, 0);
+   if (ret) {
+@@ -472,6 +483,7 @@ gst_kms_allocator_add_fb (GstKMSAllocator * alloc, GstKMSMemory * kmsmem,
+         strerror (-ret), ret);
+     return FALSE;
+   }
++  }
+ 
+   return TRUE;
+ }
+diff --git a/sys/kms/gstkmsallocator.h b/sys/kms/gstkmsallocator.h
+index 9d00126..bcf277a 100644
+--- a/sys/kms/gstkmsallocator.h
++++ b/sys/kms/gstkmsallocator.h
+@@ -1,10 +1,12 @@
+ /* GStreamer
+  *
+  * Copyright (C) 2016 Igalia
++ * Copyright (C) Microchip Technology Inc.
+  *
+  * Authors:
+  *  Víctor Manuel Jáquez Leal <vjaquez@igalia.com>
+  *  Javier Martin <javiermartin@by.com.es>
++ *  Sandeep Sheriker M <sandeepsheriker.mallikarjun@microchip.com>
+  *
+  * This library is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU Library General Public
+@@ -28,6 +30,7 @@
+ 
+ #include <gst/gst.h>
+ #include <gst/video/video.h>
++#include  "gstkmssink.h"
+ 
+ G_BEGIN_DECLS
+ 
+@@ -63,6 +66,7 @@ struct _GstKMSMemory
+ struct _GstKMSAllocator
+ {
+   GstAllocator parent;
++  GstKMSSink *kmssink;
+   GstKMSAllocatorPrivate *priv;
+ };
+ 
+@@ -75,7 +79,7 @@ GType gst_kms_allocator_get_type (void) G_GNUC_CONST;
+ gboolean gst_is_kms_memory (GstMemory *mem);
+ guint32 gst_kms_memory_get_fb_id (GstMemory *mem);
+ 
+-GstAllocator* gst_kms_allocator_new (gint fd);
++GstAllocator *gst_kms_allocator_new (GstKMSSink * self);
+ 
+ GstMemory*    gst_kms_allocator_bo_alloc (GstAllocator *allocator,
+ 					  GstVideoInfo *vinfo);
+diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
+index 1331883..2d3ad27 100644
+--- a/sys/kms/gstkmssink.c
++++ b/sys/kms/gstkmssink.c
+@@ -1,10 +1,13 @@
+ /* GStreamer
+  *
+  * Copyright (C) 2016 Igalia
++ * Copyright (C) Microchip Technology Inc.
+  *
+  * Authors:
+  *  Víctor Manuel Jáquez Leal <vjaquez@igalia.com>
+  *  Javier Martin <javiermartin@by.com.es>
++ *  Sandeep Sheriker M
++ *	<sandeepsheriker.mallikarjun@microchip.com>
+  *
+  * This library is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU Library General Public
+@@ -23,6 +26,12 @@
+  *
+  */
+ 
++/*
++ * kmsink is customized for Microchip(Atmel AT91) SAMA5D4 to
++ * implement as a DRM client using GEM handle and render video
++ * frames directly on planes of a DRM/KMS device using zerocopy.
++ */
++
+ /**
+  * SECTION:element-kmssink
+  * @title: kmssink
+@@ -88,6 +97,7 @@ enum
+   PROP_CAN_SCALE,
+   PROP_DISPLAY_WIDTH,
+   PROP_DISPLAY_HEIGHT,
++  PROP_GEM_NAME,
+   PROP_N
+ };
+ 
+@@ -584,6 +594,7 @@ gst_kms_sink_start (GstBaseSink * bsink)
+   drmModePlane *plane;
+   gboolean universal_planes;
+   gboolean ret;
++  struct drm_gem_open gemobj;
+ 
+   self = GST_KMS_SINK (bsink);
+   universal_planes = FALSE;
+@@ -605,6 +616,26 @@ gst_kms_sink_start (GstBaseSink * bsink)
+   if (!get_drm_caps (self))
+     goto bail;
+ 
++
++  GST_INFO_OBJECT (self, "GEM Name: %d\n", self->gemname);
++  if (self->gemname > 0) {
++
++    memset (&gemobj, 0, sizeof (gemobj));
++    gemobj.name = self->gemname;
++    ret = drmIoctl (self->fd, DRM_IOCTL_GEM_OPEN, &gemobj);
++    if (ret < 0) {
++      GST_ERROR_OBJECT (self, "could not flink %d", ret);
++      goto bail;
++    }
++    self->gemhandle = gemobj.handle;
++    self->gemsize = gemobj.size;
++    GST_INFO_OBJECT (self, "GEM handle: %d\n", gemobj.handle);
++    GST_INFO_OBJECT (self, "GEM Size: %lld\n", gemobj.size);
++    self->Ismaster = FALSE;
++    self->can_scale = FALSE;
++  } else {
++
++  self->can_scale = TRUE;
+   res = drmModeGetResources (self->fd);
+   if (!res)
+     goto resources_failed;
+@@ -673,7 +704,7 @@ retry_find_plane:
+ 
+   GST_INFO_OBJECT (self, "display size: pixels = %dx%d / millimeters = %dx%d",
+       self->hdisplay, self->vdisplay, self->mm_width, self->mm_height);
+-
++  }
+   self->pollfd.fd = self->fd;
+   gst_poll_add_fd (self->poll, &self->pollfd);
+   gst_poll_fd_ctl_read (self->poll, &self->pollfd, TRUE);
+@@ -874,7 +905,7 @@ ensure_kms_allocator (GstKMSSink * self)
+ {
+   if (self->allocator)
+     return;
+-  self->allocator = gst_kms_allocator_new (self->fd);
++  self->allocator = gst_kms_allocator_new (self);
+ }
+ 
+ static GstBufferPool *
+@@ -1417,6 +1448,8 @@ gst_kms_sink_show_frame (GstVideoSink * vsink, GstBuffer * buf)
+ 
+   if (!buffer)
+     return GST_FLOW_ERROR;
++
++  if (self->Ismaster) {
+   fb_id = gst_kms_memory_get_fb_id (gst_buffer_peek_memory (buffer, 0));
+   if (fb_id == 0)
+     goto buffer_invalid;
+@@ -1428,6 +1461,7 @@ gst_kms_sink_show_frame (GstVideoSink * vsink, GstBuffer * buf)
+     self->buffer_id = fb_id;
+     goto sync_frame;
+   }
++  }
+ 
+   if ((crop = gst_buffer_get_video_crop_meta (buffer))) {
+     GstVideoInfo vinfo = self->vinfo;
+@@ -1483,6 +1517,7 @@ retry_set_plane:
+       "drmModeSetPlane at (%i,%i) %ix%i sourcing at (%i,%i) %ix%i",
+       result.x, result.y, result.w, result.h, src.x, src.y, src.w, src.h);
+ 
++  if (self->Ismaster) {
+   ret = drmModeSetPlane (self->fd, self->plane_id, self->crtc_id, fb_id, 0,
+       result.x, result.y, result.w, result.h,
+       /* source/cropping coordinates are given in Q16 */
+@@ -1494,6 +1529,7 @@ retry_set_plane:
+     }
+     goto set_plane_failed;
+   }
++  }
+ 
+ sync_frame:
+   /* Wait for the previous frame to complete redraw */
+@@ -1609,6 +1645,9 @@ gst_kms_sink_set_property (GObject * object, guint prop_id,
+     case PROP_CAN_SCALE:
+       sink->can_scale = g_value_get_boolean (value);
+       break;
++    case PROP_GEM_NAME:
++      sink->gemname = g_value_get_int (value);
++      break;
+     default:
+       if (!gst_video_overlay_set_property (object, PROP_N, prop_id, value))
+         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+@@ -1640,6 +1679,8 @@ gst_kms_sink_get_property (GObject * object, guint prop_id,
+     case PROP_FORCE_MODESETTING:
+       g_value_set_boolean (value, sink->modesetting_enabled);
+       break;
++    case PROP_GEM_NAME:
++      g_value_set_int (value, sink->gemname);
+     case PROP_CAN_SCALE:
+       g_value_set_boolean (value, sink->can_scale);
+       break;
+@@ -1678,6 +1719,9 @@ gst_kms_sink_init (GstKMSSink * sink)
+   sink->fd = -1;
+   sink->conn_id = -1;
+   sink->plane_id = -1;
++  sink->gemhandle = 0;
++  sink->gemsize = 0;
++  sink->Ismaster = TRUE;
+   sink->can_scale = TRUE;
+   gst_poll_fd_init (&sink->pollfd);
+   sink->poll = gst_poll_new (TRUE);
+@@ -1775,6 +1819,11 @@ gst_kms_sink_class_init (GstKMSSinkClass * klass)
+       "When enabled, the sink try to configure the display mode", FALSE,
+       G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_CONSTRUCT);
+ 
++  g_properties[PROP_GEM_NAME] = g_param_spec_int ("gem-name", "gem-name",
++      "when gem name is set, kmssink will function as drm client"
++      "and communicate with drm master using gem name", -1, G_MAXINT32, -1,
++      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_CONSTRUCT);
++
+   /**
+    * kmssink:can-scale:
+    *
+diff --git a/sys/kms/gstkmssink.h b/sys/kms/gstkmssink.h
+index a80699c..69c3240 100644
+--- a/sys/kms/gstkmssink.h
++++ b/sys/kms/gstkmssink.h
+@@ -1,10 +1,12 @@
+ /* GStreamer
+  *
+  * Copyright (C) 2016 Igalia
++ * Copyright (C) Microchip Technology Inc.
+  *
+  * Authors:
+  *  Víctor Manuel Jáquez Leal <vjaquez@igalia.com>
+  *  Javier Martin <javiermartin@by.com.es>
++ *  Sandeep Sheriker M <sandeepsheriker.mallikarjun@microchip.com>
+  *
+  * This library is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU Library General Public
+@@ -81,6 +83,10 @@ struct _GstKMSSink {
+   GstPoll *poll;
+   GstPollFD pollfd;
+ 
++  gint32 gemname;
++  guint32 gemsize, gemhandle;
++  gboolean Ismaster;
++
+   /* render video rectangle */
+   GstVideoRectangle render_rect;
+ 
+-- 
+2.7.4
+
