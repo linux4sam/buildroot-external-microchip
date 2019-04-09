@@ -1,0 +1,5 @@
+# https://github.com/linux4wilc/firmware
+sha256 7d9a698015573ebda855d213c08ef2ca5624654520f23d0b7bebc5c47a4b914a wilc_firmware-wilc_linux_15_2.tar.gz
+
+# Hash for licence files
+sha256 71355eee947a312594dbdaac039827544f93d23949b65c356b7b0ce09e2600fb LICENCE.wilc_fw
