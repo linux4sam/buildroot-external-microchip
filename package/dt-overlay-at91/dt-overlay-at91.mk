@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-DT_OVERLAY_AT91_VERSION = f60568421ed8fc39faa6f34bbbb171063b0b8edf
+DT_OVERLAY_AT91_VERSION = 259ad4a9ca0a0c16a26527442128e3fd9ebc0b77
 DT_OVERLAY_AT91_SITE = $(call github,linux4sam,dt-overlay-at91,$(DT_OVERLAY_AT91_VERSION))
 DT_OVERLAY_AT91_LICENSE = GPL-2.0 MIT 
 DT_OVERLAY_AT91_LICENSE_FILES = COPYING LICENSES/GPL-2.0 LICENSES/MIT
