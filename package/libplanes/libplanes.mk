@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBPLANES_VERSION = b35a4344c4ecc2effef3a1033bfaa3f919a728a5
+LIBPLANES_VERSION = 0a1be8dd0aab70b6ccdc4739e343f8518fd75439
 LIBPLANES_SITE = https://bitbucket.microchip.com/scm/~c16205/libplanes.git
 LIBPLANES_SITE_METHOD = git
 LIBPLANES_GIT_SUBMODULES = YES
