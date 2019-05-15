@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBOSMSCOUT
+	bool "libosmscout"
+	select BR2_PACKAGE_CAIRO
+	select BR2_PACKAGE_PANGO
+	select BR2_PACKAGE_LIBPNG
+	select BR2_PACKAGE_LIBXML2
+	help
+	  Libosmscout is a C++ library for offline map rendering, routing and
+	  location lookup based on OpenStreetMap data
+
+	  https://github.com/Framstag/libosmscout
