@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-HOMEAUTOMATION_VERSION = v1.10
+HOMEAUTOMATION_VERSION = db5150828852e33282dd0d4fb5b9b24a9e418fcb
 HOMEAUTOMATION_SITE = $(call github,linux4sam,home-automation,$(HOMEAUTOMATION_VERSION))
 HOMEAUTOMATION_LICENSE = Atmel LIMITED License Agreement
 HOMEAUTOMATION_DEPENDENCIES = qt5base qt5webkit qt5quick1d libv4l
