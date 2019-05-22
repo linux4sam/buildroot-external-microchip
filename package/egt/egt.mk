@@ -24,6 +24,14 @@ libpng \
 gstreamer1 \
 file
 
+EGT_CONF_OPTS =
+
+ifeq ($(BR2_PACKAGE_EGT_INSTALL_EXAMPLES),y)
+EGT_CONF_OPTS += --enable-examples
+else
+EGT_CONF_OPTS += --disable-examples
+endif
+
 ifeq ($(BR2_PACKAGE_LIBCURL),y)
 EGT_DEPENDENCIES += libcurl
 endif
