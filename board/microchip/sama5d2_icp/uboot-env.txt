@@ -1,0 +1,8 @@
+board_name=sama5d2_icp
+bootargs=console=ttyS0,115200 mtdparts=atmel_nand:256k(bootstrap)ro,768k(uboot)ro,256k(env_redundant),256k(env),6656k(itb)ro,-(rootfs) root=/dev/mmcblk0p2 rw rootwait rootfstype=ext4 atmel.pm_modes=standby,ulp1
+bootcmd=fatload mmc 0:1 ${loadaddr} ${board_name}.itb; bootm ${loadaddr}#kernel_dtb;
+bootdelay=1
+loadaddr=0x21000000
+stderr=serial@ffffee00
+stdin=serial@ffffee00
+stdout=serial@ffffee00
