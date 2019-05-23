@@ -1,0 +1,7 @@
+config BR2_PACKAGE_9BIT
+	bool "Microchip SAMA5 9-bit/Multidrop Serial Mode"
+	help
+	  This repositories contains some examples to work with and evaluate 9-bit UART solutions on Microchip SAMA5 processors.
+	  Some processors support hardware 9-bit mode and features surrounding this mode, and some do not.
+	  However, even in those cases it is still possible to make use of 9-bit mode.
+	  In all cases, the Linux kernel API does not provide a standard way of using all of the necessary features.
