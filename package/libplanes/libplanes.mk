@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-LIBPLANES_VERSION = 759c8723c857067ae88487621842e5fad0a5b11a
-LIBPLANES_SITE = https://bitbucket.microchip.com/scm/~c16205/libplanes.git
+LIBPLANES_VERSION = b5d6f8590da09c0c25099335967c13926a130100
+LIBPLANES_SITE = https://github.com/linux4sam/libplanes
 LIBPLANES_SITE_METHOD = git
 LIBPLANES_GIT_SUBMODULES = YES
 LIBPLANES_LICENSE = MIT
