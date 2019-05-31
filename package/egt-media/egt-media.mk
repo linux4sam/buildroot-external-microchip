@@ -20,6 +20,7 @@ define EGT_MEDIA_EXTRACT_CMDS
 endef
 
 define EGT_MEDIA_INSTALL_TARGET_CMDS
+	mkdir -p $(TARGET_DIR)/usr/share/egt/examples
         $(call suitable-extractor, $(EGT_MEDIA_FILENAME)) \
 		$(DL_DIR)/$(EGT_MEDIA_FILENAME) | \
                 $(TAR) --strip-components=1 -C  $(TARGET_DIR)/usr/share/egt/examples $(TAR_OPTIONS) -
