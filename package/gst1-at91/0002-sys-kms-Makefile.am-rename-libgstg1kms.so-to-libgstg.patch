@@ -1,0 +1,57 @@
+From 0796565516a4bbd599aa15bd9b2a4e6c27760174 Mon Sep 17 00:00:00 2001
+From: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+Date: Mon, 3 Jun 2019 17:21:37 -0700
+Subject: [gst1-hantro-g1][patch  2/5] sys/kms/Makefile.am: rename
+ libgstg1kms.so to libgstg1kmssink.so
+
+in gstreamer 1.14 & later, libgstg1kmssink.so library should match
+plugin name.
+
+Signed-off-by: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+---
+ sys/kms/Makefile.am | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/sys/kms/Makefile.am b/sys/kms/Makefile.am
+index 73c093e..2fc933a 100644
+--- a/sys/kms/Makefile.am
++++ b/sys/kms/Makefile.am
+@@ -1,12 +1,13 @@
+-plugin_LTLIBRARIES = libgstg1kms.la
+-libgstg1kms_la_SOURCES = 			\
++plugin_LTLIBRARIES = libgstg1kmssink.la
++
++libgstg1kmssink_la_SOURCES = 			\
+ 	gstg1kmssink.c				\
+ 	gstkmsutils.c				\
+ 	gstkmsallocator.c			\
+ 	gstkmsbufferpool.c			\
+-	$(NUL)
++	$(NULL)
+ 
+-libgstg1kms_la_CFLAGS = 			\
++libgstg1kmssink_la_CFLAGS = 			\
+ 	$(GST_PLUGINS_BASE_CFLAGS) 		\
+ 	$(GST_BASE_CFLAGS) 			\
+ 	$(GST_VIDEO_CFLAGS)			\
+@@ -17,7 +18,7 @@ libgstg1kms_la_CFLAGS = 			\
+        -I$(top_builddir)/gst-libs/ext/g1/bus \
+ 	$(NULL)
+ 
+-libgstg1kms_la_LIBADD = 			\
++libgstg1kmssink_la_LIBADD = 			\
+ 	$(GST_PLUGINS_BASE_LIBS) 		\
+ 	$(GST_BASE_LIBS) 			\
+ 	$(GST_VIDEO_LIBS)			\
+@@ -29,7 +30,7 @@ libgstg1kms_la_LIBADD = 			\
+ 	$(top_builddir)/gst-libs/ext/g1/bus/libgstbusallocator-@GST_API_VERSION@.la \
+ 	$(NULL)
+ 
+-libgstg1kms_la_LDFLAGS = 			\
++libgstg1kmssink_la_LDFLAGS = 			\
+ 	$(GST_PLUGIN_LDFLAGS)			\
+ 	$(NULL)
+ 
+-- 
+2.7.4
+

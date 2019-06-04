@@ -1,0 +1,202 @@
+From 8234de57fa648b25fc7aac603a9d0aa9a196dc03 Mon Sep 17 00:00:00 2001
+From: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+Date: Tue, 4 Jun 2019 08:48:47 -0700
+Subject: [gst1-hantro-g1][patch  5/5] gst1-hantro-g1: update autogen.sh &
+ configure.ac
+
+update autogen.sh & configure.ac as used in gst1-plugin-bad-1.16
+version
+
+Signed-off-by: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+---
+ autogen.sh   | 69 +++++++++++++++++++++++++++++++-----------------------------
+ configure.ac | 24 +++++++++++++++------
+ 2 files changed, 53 insertions(+), 40 deletions(-)
+
+diff --git a/autogen.sh b/autogen.sh
+index 303bda6..090f2cf 100755
+--- a/autogen.sh
++++ b/autogen.sh
+@@ -4,7 +4,6 @@ test -n "$srcdir" || srcdir=.
+ olddir=`pwd`
+ cd "$srcdir"
+ 
+-DIE=0
+ package=gst-hantro-g1
+ srcfile=ext/g1/gstg1.c
+ 
+@@ -29,36 +28,49 @@ fi
+ if test ! \( -x .git/hooks/pre-commit -a -L .git/hooks/pre-commit \);
+ then
+     rm -f .git/hooks/pre-commit
+-    ln -s ../../common/hooks/pre-commit.hook .git/hooks/pre-commit
++    if ! ln -s ../../common/hooks/pre-commit.hook .git/hooks/pre-commit 2> /dev/null
++    then
++        echo "Failed to create commit hook symlink, copying instead ..."
++        cp common/hooks/pre-commit.hook .git/hooks/pre-commit
++    fi
++fi
++
++# GNU gettext automake support doesn't get along with git.
++# https://bugzilla.gnome.org/show_bug.cgi?id=661128
++if test -d po ; then
++  touch -t 200001010000 po/gst-plugins-bad-1.0.pot
+ fi
+ 
+ CONFIGURE_DEF_OPT='--enable-maintainer-mode --enable-gtk-doc'
+ 
+ if test "x$package" = "xgstreamer"; then
+-  CONFIGURE_DEF_OPT="$CONFIGURE_DEF_OPT --enable-docbook --enable-failing-tests --enable-poisoning"
++  CONFIGURE_DEF_OPT="$CONFIGURE_DEF_OPT --enable-failing-tests --enable-poisoning"
++elif test "x$package" = "xgst-plugins-bad"; then
++  CONFIGURE_DEF_OPT="$CONFIGURE_DEF_OPT --with-player-tests"
+ fi
+ 
+ autogen_options $@
+ 
+ printf "+ check for build tools"
+-if test ! -z "$NOCHECK"; then echo ": skipped version checks"; else  echo; fi
+-version_check "autoconf" "$AUTOCONF autoconf autoconf270 autoconf269 autoconf268 " \
+-              "ftp://ftp.gnu.org/pub/gnu/autoconf/" 2 68 || DIE=1
+-version_check "automake" "$AUTOMAKE automake automake-1.11" \
+-              "ftp://ftp.gnu.org/pub/gnu/automake/" 1 11 || DIE=1
+-version_check "autopoint" "autopoint" \
+-              "ftp://ftp.gnu.org/pub/gnu/gettext/" 0 17 || DIE=1
+-version_check "libtoolize" "$LIBTOOLIZE libtoolize glibtoolize" \
+-              "ftp://ftp.gnu.org/pub/gnu/libtool/" 2 2 6 || DIE=1
+-version_check "pkg-config" "" \
+-              "http://www.freedesktop.org/software/pkgconfig" 0 8 0 || DIE=1
+-
+-die_check $DIE
+-
+-aclocal_check || DIE=1
+-autoheader_check || DIE=1
+-
+-die_check $DIE
++if test -z "$NOCHECK"; then
++  echo
++
++  printf "  checking for autoreconf ... "
++  echo
++  which "autoreconf" 2>/dev/null || {
++    echo "not found! Please install the autoconf package."
++    exit 1
++  }
++
++  printf "  checking for pkg-config ... "
++  echo
++  which "pkg-config" 2>/dev/null || {
++    echo "not found! Please install pkg-config."
++    exit 1
++  }
++else
++  echo ": skipped version checks"
++fi
+ 
+ # if no arguments specified then this will be printed
+ if test -z "$*" && test -z "$NOCONFIGURE"; then
+@@ -72,23 +84,14 @@ fi
+ toplevel_check $srcfile
+ 
+ # autopoint
+-if test -d po ; then
+-  tool_run "$autopoint" "--force"
++if test -d po && grep ^AM_GNU_GETTEXT_VERSION configure.ac >/dev/null ; then
++  tool_run "autopoint" "--force"
+ fi
+ 
+ # aclocal
+ if test -f acinclude.m4; then rm acinclude.m4; fi
+ 
+-tool_run "$libtoolize" "--copy --force"
+-tool_run "$aclocal" "-I m4 -I common/m4 $ACLOCAL_FLAGS"
+-tool_run "$autoheader"
+-
+-# touch the stamp-h.in build stamp so we don't re-run autoheader in maintainer mode
+-echo timestamp > stamp-h.in 2> /dev/null
+-
+-tool_run "$autoconf"
+-debug "automake: $automake"
+-tool_run "$automake" "--add-missing --copy"
++autoreconf --force --install || exit 1
+ 
+ test -n "$NOCONFIGURE" && {
+   echo "+ skipping configure stage for package $package, as requested."
+diff --git a/configure.ac b/configure.ac
+index ad4854c..79079af 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -57,6 +57,12 @@ AS_AUTOTOOLS_ALTERNATE
+ dnl Add parameters for aclocal
+ AC_SUBST(ACLOCAL_AMFLAGS, "-I m4 -I common/m4")
+ 
++dnl set up gettext
++dnl the version check needs to stay here because autopoint greps for it
++AM_GNU_GETTEXT_VERSION([0.17])
++AM_GNU_GETTEXT([external])
++AG_GST_GETTEXT([gst-plugins-bad-$GST_API_VERSION])
++
+ dnl *** check for arguments to configure ***
+ 
+ AG_GST_ARG_DISABLE_FATAL_WARNINGS
+@@ -78,7 +84,9 @@ AG_GST_ARG_ENABLE_EXTERNAL
+ 
+ AG_GST_ARG_ENABLE_EXPERIMENTAL
+ 
++AG_GST_PKG_CONFIG_PATH
+ dnl *** checks for platform ***
++AG_GST_PLATFORM
+ 
+ dnl * hardware/architecture *
+ 
+@@ -100,10 +108,6 @@ AC_PROG_CXX
+ dnl determine if c++ is available on this system
+ AC_CHECK_PROG(HAVE_CXX, $CXX, yes, no)
+ 
+-dnl determine c++ preprocessor
+-dnl FIXME: do we need this ?
+-AC_PROG_CXXCPP
+-
+ AC_PROG_OBJC
+ 
+ dnl check if the compiler supports '-c' and '-o' options
+@@ -147,12 +151,18 @@ dnl GLib
+ GLIB_REQ=2.32.0
+ AG_GST_GLIB_CHECK([$GLIB_REQ])
+ 
++PKG_CHECK_MODULES(GMODULE_NO_EXPORT, gmodule-no-export-2.0)
++
+ dnl checks for gstreamer
+ dnl uninstalled is selected preferentially -- see pkg-config(1)
+ AG_GST_CHECK_GST($GST_API_VERSION, [$GST_REQ], yes)
+ AG_GST_CHECK_GST_BASE($GST_API_VERSION, [$GST_REQ], yes)
+-AG_GST_CHECK_GST_CONTROLLER($GST_API_VERSION, [$GST_REQ], yes) 
+ AG_GST_CHECK_GST_CHECK($GST_API_VERSION, [$GST_REQ], no)
++AG_GST_CHECK_GST_CONTROLLER($GST_API_VERSION, [$GST_REQ], yes)
++AG_GST_PKG_CHECK_MODULES(GST_VIDEO, gstreamer-video-[$GST_API_VERSION], [$GSTPB_REQ], yes)
++AG_GST_PKG_CHECK_MODULES(GST_AUDIO, gstreamer-audio-[$GST_API_VERSION], [$GSTPB_REQ], yes)
++AG_GST_PKG_CHECK_MODULES(GST_PBUTILS, gstreamer-pbutils-[$GST_API_VERSION], [$GSTPB_REQ], yes)
++
+ 
+ GST_TOOLS_DIR=`$PKG_CONFIG --variable=toolsdir gstreamer-$GST_API_VERSION`
+ if test -z $GST_TOOLS_DIR; then
+@@ -210,14 +220,14 @@ dnl define an ERROR_CFLAGS Makefile variable
+ dnl -Wundef: too many broken headers
+ AG_GST_SET_ERROR_CFLAGS($FATAL_WARNINGS, [
+       -Wmissing-declarations -Wmissing-prototypes -Wredundant-decls
+-      -Wwrite-strings -Wold-style-definition -Waggregate-return
++      -Wwrite-strings -Wformat-security -Wold-style-definition
+       -Winit-self -Wmissing-include-dirs -Waddress -Wno-multichar
+       -Wnested-externs $NO_WARNINGS])
+ 
+ dnl define an ERROR_CXXFLAGS Makefile variable
+ AG_GST_SET_ERROR_CXXFLAGS($FATAL_WARNINGS, [
+         -Wmissing-declarations -Wredundant-decls
+-        -Wwrite-strings
++        -Wwrite-strings -Wformat-nonliteral -Wformat-security
+         -Winit-self -Wmissing-include-dirs -Waddress -Wno-multichar
+         $NO_WARNINGS])
+ 
+-- 
+2.7.4
+

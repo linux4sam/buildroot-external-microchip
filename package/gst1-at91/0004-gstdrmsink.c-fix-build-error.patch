@@ -1,0 +1,73 @@
+From 6d8e7ded32fea2f4dc9956b50134f0177fa5152a Mon Sep 17 00:00:00 2001
+From: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+Date: Tue, 4 Jun 2019 08:43:40 -0700
+Subject: [gst1-hantro-g1][patch  4/5] gstdrmsink.c: fix build error
+
+fix build error due to change in drm/kms cflags & ldflags.
+
+Signed-off-by: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+---
+ sys/drmsink/gstdrmsink.c | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
+
+diff --git a/sys/drmsink/gstdrmsink.c b/sys/drmsink/gstdrmsink.c
+index 7e21ebb..5a95600 100644
+--- a/sys/drmsink/gstdrmsink.c
++++ b/sys/drmsink/gstdrmsink.c
+@@ -66,9 +66,9 @@
+ #include <stdint.h>
+ #include <math.h>
+ #include <glib/gprintf.h>
++#include <drm.h>
+ #include <xf86drmMode.h>
+ #include <xf86drm.h>
+-#include <libkms.h>
+ 
+ #include <gst/gst.h>
+ #include <gst/video/gstvideosink.h>
+@@ -101,7 +101,7 @@ GST_DRMSINK_MESSAGE_OBJECT (GstDrmsink * drmsink, const gchar * message)
+ {
+   if (!drmsink->framebuffersink.silent)
+     g_print ("%s.\n", message);
+-    GST_INFO_OBJECT (drmsink, "%s", message);
++  GST_INFO_OBJECT (drmsink, "%s", message);
+ }
+ 
+ #define DEFAULT_DRM_DEVICE "/dev/dri/card0"
+@@ -382,12 +382,12 @@ gst_drmsink_find_mode_and_plane (GstDrmsink * drmsink, GstVideoRectangle * dim)
+   if (!encoder)
+     goto error_no_encoder;
+ 
+-  /*Sama5d4 can support only up to 720p video format resolution*/
+-  for(i=0; i < connector->count_modes; i++) {
++  /*Sama5d4 can support only up to 720p video format resolution */
++  for (i = 0; i < connector->count_modes; i++) {
+     mode = &connector->modes[i];
+-    if((mode->hdisplay <= 1280) && (mode->vdisplay <= 720) ){
++    if ((mode->hdisplay <= 1280) && (mode->vdisplay <= 720)) {
+       memcpy (&drmsink->mode, &connector->modes[i],
+-        sizeof (connector->modes[i]));
++          sizeof (connector->modes[i]));
+       dim->x = dim->y = 0;
+       dim->w = mode->hdisplay;
+       dim->h = mode->vdisplay;
+@@ -420,7 +420,7 @@ gst_drmsink_find_mode_and_plane (GstDrmsink * drmsink, GstVideoRectangle * dim)
+       drmModeFreePlane (plane);
+     }
+   }
+-  GST_INFO_OBJECT (drmsink,"Plane-id %d \n",drmsink->plane->plane_id);
++  GST_INFO_OBJECT (drmsink, "Plane-id %d \n", drmsink->plane->plane_id);
+   drmsink->plane->crtc_x = drmsink->cx;
+   drmsink->plane->crtc_y = drmsink->cy;
+ 
+@@ -893,7 +893,6 @@ gst_drmsink_video_memory_allocator_alloc (GstAllocator * allocator, gsize size,
+     drmModeRmFB (drmsink_video_memory_allocator->drmsink->fd, mem->creq.handle);
+     goto fail_destroy;
+   }
+-
+ #ifndef LAZY_ALLOCATION
+   gst_memory_init (GST_MEMORY_CAST (mem), GST_MEMORY_FLAG_NO_SHARE |
+       GST_MEMORY_FLAG_VIDEO_MEMORY,
+-- 
+2.7.4
+

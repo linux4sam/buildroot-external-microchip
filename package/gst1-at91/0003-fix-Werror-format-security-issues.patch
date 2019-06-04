@@ -1,0 +1,260 @@
+From 171416c636f998818b645ec150280e2cc790942d Mon Sep 17 00:00:00 2001
+From: Razvan Stefanescu <razvan.stefanescu@microchip.com>
+Date: Mon, 3 Jun 2019 09:39:41 +0300
+Subject: [gst1-hantro-g1][patch  3/5] fix -Werror=format-security issues
+
+Format specifiers need to e used in GCC8.2+.
+
+Signed-off-by: Razvan Stefanescu <razvan.stefanescu@microchip.com>
+---
+ ext/g1/gstg1basedec.c            | 10 +++++-----
+ ext/g1/gstg1h264dec.c            |  8 ++++----
+ ext/g1/gstg1jpegdec.c            |  8 ++++----
+ ext/g1/gstg1mp4dec.c             |  6 +++---
+ ext/g1/gstg1vp8dec.c             |  6 +++---
+ sys/drmsink/gstdrmsink.c         |  8 ++++----
+ sys/drmsink/gstframebuffersink.c |  2 +-
+ 7 files changed, 24 insertions(+), 24 deletions(-)
+
+diff --git a/ext/g1/gstg1basedec.c b/ext/g1/gstg1basedec.c
+index 3141fc8..84fb53f 100644
+--- a/ext/g1/gstg1basedec.c
++++ b/ext/g1/gstg1basedec.c
+@@ -488,7 +488,7 @@ dsterror:
+   }
+ srcerror:
+   {
+-    GST_ERROR_OBJECT (dec, errormsg);
++    GST_ERROR_OBJECT (dec, "%s", errormsg);
+     gst_allocator_free (dec->allocator, *dst);
+     *dst = NULL;
+     return FALSE;
+@@ -533,7 +533,7 @@ gst_g1_base_dec_stream_header (GstVideoDecoder * decoder)
+     mem = gst_buffer_get_all_memory (streamheader);
+     if (!GST_IS_G1_ALLOCATOR (mem->allocator)) {
+       if (!gst_g1_base_dec_copy_memory (g1dec, &g1mem, mem)) {
+-        GST_ERROR_OBJECT (g1dec,
++        GST_ERROR_OBJECT (g1dec, "%s",
+             "unable to copy stream header to contiguous memory");
+         ret = GST_FLOW_NOT_SUPPORTED;
+         goto exit;
+@@ -576,7 +576,7 @@ gst_g1_base_dec_handle_frame (GstVideoDecoder * decoder,
+   GST_LOG_OBJECT (g1dec, "Testing contiguousness");
+   if (!GST_IS_G1_ALLOCATOR (mem->allocator)) {
+     if (!gst_g1_base_dec_copy_memory (g1dec, &g1mem, mem)) {
+-      GST_ERROR_OBJECT (g1dec,
++      GST_ERROR_OBJECT (g1dec, "%s",
+           "unable to copy input buffer to contiguous memory");
+       ret = GST_FLOW_NOT_SUPPORTED;
+       goto exit;
+@@ -771,7 +771,7 @@ gst_g1_base_dec_allocate_output (GstG1BaseDec * dec, GstVideoCodecFrame * frame)
+ 
+   ppret = PPSetConfig (dec->pp, &dec->ppconfig);
+   if (GST_G1_PP_FAILED (ppret)) {
+-    GST_ERROR_OBJECT (dec, gst_g1_result_pp (ppret));
++    GST_ERROR_OBJECT (dec, "%s", gst_g1_result_pp (ppret));
+     ret = GST_FLOW_ERROR;
+     GST_ERROR_OBJECT (dec, "ppsetconfig failed =%s\n",
+         gst_g1_result_pp (ppret));
+@@ -810,7 +810,7 @@ gst_g1_base_dec_push_data (GstG1BaseDec * dec, GstVideoCodecFrame * frame)
+ 
+   ppret = PPGetResult (dec->pp);
+   if (GST_G1_PP_FAILED (ppret)) {
+-    GST_ERROR_OBJECT (dec, gst_g1_result_pp (ppret));
++    GST_ERROR_OBJECT (dec, "%s", gst_g1_result_pp (ppret));
+     ret = GST_FLOW_ERROR;
+     goto exit;
+   }
+diff --git a/ext/g1/gstg1h264dec.c b/ext/g1/gstg1h264dec.c
+index 37f0065..16e027f 100644
+--- a/ext/g1/gstg1h264dec.c
++++ b/ext/g1/gstg1h264dec.c
+@@ -177,7 +177,7 @@ gst_g1_h264_dec_open (GstG1BaseDec * g1dec)
+       dec->disable_output_reordering, dec->intra_freeze_concealment,
+       dec->use_display_smoothing, flags);
+   if (GST_G1_H264_FAILED (decret)) {
+-    GST_ERROR_OBJECT (dec, gst_g1_result_h264 (decret));
++    GST_ERROR_OBJECT (dec, "%s", gst_g1_result_h264 (decret));
+     ret = FALSE;
+     goto exit;
+   }
+@@ -256,7 +256,7 @@ gst_g1_h264_dec_parse_header (GstG1H264Dec * dec)
+ 
+   decret = H264DecGetInfo (g1dec->codec, &header);
+   if (GST_G1_H264_FAILED (decret)) {
+-    GST_ERROR_OBJECT (g1dec, gst_g1_result_h264 (decret));
++    GST_ERROR_OBJECT (g1dec, "%s", gst_g1_result_h264 (decret));
+     ret = GST_FLOW_ERROR;
+     goto exit;
+   }
+@@ -419,7 +419,7 @@ gst_g1_h264_dec_decode (GstG1BaseDec * g1dec, GstVideoCodecFrame * frame)
+       case H264DEC_STREAM_NOT_SUPPORTED:
+       case H264DEC_STRM_ERROR:
+         GST_VIDEO_DECODER_ERROR (dec, 0, STREAM, DECODE, ("stream error"),
+-            (gst_g1_result_h264 (decret)), ret);
++            ("%s", gst_g1_result_h264 (decret)), ret);
+         break;
+ 
+       case H264DEC_HW_TIMEOUT:
+@@ -427,7 +427,7 @@ gst_g1_h264_dec_decode (GstG1BaseDec * g1dec, GstVideoCodecFrame * frame)
+       case H264DEC_SYSTEM_ERROR:
+       case H264DEC_DWL_ERROR:
+         GST_ELEMENT_ERROR (dec, RESOURCE, FAILED, ("G1 system error"),
+-            (gst_g1_result_h264 (decret)));
++            ("%s", gst_g1_result_h264 (decret)));
+         ret = GST_FLOW_ERROR;
+         error = TRUE;
+         break;
+diff --git a/ext/g1/gstg1jpegdec.c b/ext/g1/gstg1jpegdec.c
+index 913b89f..0bb5f78 100644
+--- a/ext/g1/gstg1jpegdec.c
++++ b/ext/g1/gstg1jpegdec.c
+@@ -214,7 +214,7 @@ gst_g1_jpeg_dec_open (GstG1BaseDec * g1dec)
+ 
+   decret = JpegDecInit ((JpegDecInst *) & g1dec->codec);
+   if (GST_G1_JPEG_FAILED (decret)) {
+-    GST_ERROR_OBJECT (dec, gst_g1_result_jpeg (decret));
++    GST_ERROR_OBJECT (dec, "%s", gst_g1_result_jpeg (decret));
+     ret = FALSE;
+     goto exit;
+   }
+@@ -291,7 +291,7 @@ gst_g1_jpeg_dec_decode (GstG1BaseDec * g1dec, GstVideoCodecFrame * frame)
+ 
+   decret = JpegDecGetImageInfo (g1dec->codec, &jpeginput, &imageInfo);
+   if (GST_G1_JPEG_FAILED (decret)) {
+-    GST_ERROR_OBJECT (dec, gst_g1_result_jpeg (decret));
++    GST_ERROR_OBJECT (dec, "%s", gst_g1_result_jpeg (decret));
+     return ret;
+   } else {
+     GST_LOG_OBJECT (dec, "imageInfo: \n"
+@@ -406,7 +406,7 @@ gst_g1_jpeg_dec_decode (GstG1BaseDec * g1dec, GstVideoCodecFrame * frame)
+       case JPEGDEC_INCREASE_INPUT_BUFFER:
+       case JPEGDEC_SLICE_MODE_UNSUPPORTED:
+         GST_VIDEO_DECODER_ERROR (dec, 0, STREAM, DECODE,
+-            ("G1 JpegDec error"), (gst_g1_result_jpeg (decret)), ret);
++            ("G1 JpegDec error"), ("%s", gst_g1_result_jpeg (decret)), ret);
+         ret = GST_FLOW_ERROR;
+         error = TRUE;
+         break;
+@@ -415,7 +415,7 @@ gst_g1_jpeg_dec_decode (GstG1BaseDec * g1dec, GstVideoCodecFrame * frame)
+       case JPEGDEC_HW_BUS_ERROR:
+       case JPEGDEC_SYSTEM_ERROR:
+         GST_ELEMENT_ERROR (dec, RESOURCE, FAILED,
+-            ("G1 stream error"), (gst_g1_result_jpeg (decret)));
++            ("G1 stream error"), ("%s", gst_g1_result_jpeg (decret)));
+         ret = GST_FLOW_ERROR;
+         error = TRUE;
+         break;
+diff --git a/ext/g1/gstg1mp4dec.c b/ext/g1/gstg1mp4dec.c
+index 61d2888..1aa0a2d 100644
+--- a/ext/g1/gstg1mp4dec.c
++++ b/ext/g1/gstg1mp4dec.c
+@@ -195,7 +195,7 @@ gst_g1_mp4_dec_open (GstG1BaseDec * g1dec)
+       dec->numFrameBuffers, DEC_REF_FRM_RASTER_SCAN);
+ 
+   if (GST_G1_MP4_FAILED (decret)) {
+-    GST_ERROR_OBJECT (dec, gst_g1_result_mp4 (decret));
++    GST_ERROR_OBJECT (dec, "%s", gst_g1_result_mp4 (decret));
+     ret = FALSE;
+     goto exit;
+   }
+@@ -462,7 +462,7 @@ gst_g1_mp4_dec_decode (GstG1BaseDec * g1dec, GstVideoCodecFrame * frame)
+       case MP4DEC_STRM_NOT_SUPPORTED:
+       case MP4DEC_STRM_ERROR:
+         GST_VIDEO_DECODER_ERROR (dec, 0, STREAM, DECODE,
+-            ("stream error"), (gst_g1_result_mp4 (decret)), ret);
++            ("stream error"), ("%s", gst_g1_result_mp4 (decret)), ret);
+         error = TRUE;
+         break;
+       case MP4DEC_HW_TIMEOUT:
+@@ -470,7 +470,7 @@ gst_g1_mp4_dec_decode (GstG1BaseDec * g1dec, GstVideoCodecFrame * frame)
+       case MP4DEC_SYSTEM_ERROR:
+       case MP4DEC_DWL_ERROR:
+         GST_ELEMENT_ERROR (dec, RESOURCE, FAILED,
+-            ("G1 system error"), (gst_g1_result_mp4 (decret)));
++            ("G1 system error"), ("%s", gst_g1_result_mp4 (decret)));
+         ret = GST_FLOW_ERROR;
+         error = TRUE;
+         break;
+diff --git a/ext/g1/gstg1vp8dec.c b/ext/g1/gstg1vp8dec.c
+index 3b8a7f0..1b38345 100644
+--- a/ext/g1/gstg1vp8dec.c
++++ b/ext/g1/gstg1vp8dec.c
+@@ -159,7 +159,7 @@ gst_g1_vp8_dec_open (GstG1BaseDec * g1dec)
+   decret = VP8DecInit ((VP8DecInst *) & g1dec->codec, VP8DEC_VP8,
+       dec->error_concealment, dec->numFrameBuffers, DEC_REF_FRM_RASTER_SCAN);
+   if (GST_G1_VP8_FAILED (decret)) {
+-    GST_ERROR_OBJECT (dec, gst_g1_result_vp8 (decret));
++    GST_ERROR_OBJECT (dec, "%s", gst_g1_result_vp8 (decret));
+     ret = FALSE;
+     goto exit;
+   }
+@@ -403,7 +403,7 @@ gst_g1_vp8_dec_decode (GstG1BaseDec * g1dec, GstVideoCodecFrame * frame)
+         break;
+       case VP8DEC_STRM_ERROR:
+         GST_VIDEO_DECODER_ERROR (dec, 0, STREAM, DECODE,
+-            ("stream error"), (gst_g1_result_vp8 (decret)), ret);
++            ("stream error"), ("%s", gst_g1_result_vp8 (decret)), ret);
+         error = TRUE;
+         break;
+       case VP8DEC_HW_TIMEOUT:
+@@ -411,7 +411,7 @@ gst_g1_vp8_dec_decode (GstG1BaseDec * g1dec, GstVideoCodecFrame * frame)
+       case VP8DEC_SYSTEM_ERROR:
+       case VP8DEC_DWL_ERROR:
+         GST_ELEMENT_ERROR (dec, RESOURCE, FAILED,
+-            ("G1 system error"), (gst_g1_result_vp8 (decret)));
++            ("G1 system error"), ("%s", gst_g1_result_vp8 (decret)));
+         ret = GST_FLOW_ERROR;
+         error = TRUE;
+         break;
+diff --git a/sys/drmsink/gstdrmsink.c b/sys/drmsink/gstdrmsink.c
+index 08b4e80..7e21ebb 100644
+--- a/sys/drmsink/gstdrmsink.c
++++ b/sys/drmsink/gstdrmsink.c
+@@ -101,7 +101,7 @@ GST_DRMSINK_MESSAGE_OBJECT (GstDrmsink * drmsink, const gchar * message)
+ {
+   if (!drmsink->framebuffersink.silent)
+     g_print ("%s.\n", message);
+-  GST_INFO_OBJECT (drmsink, message);
++    GST_INFO_OBJECT (drmsink, "%s", message);
+ }
+ 
+ #define DEFAULT_DRM_DEVICE "/dev/dri/card0"
+@@ -371,10 +371,10 @@ gst_drmsink_find_mode_and_plane (GstDrmsink * drmsink, GstVideoRectangle * dim)
+     goto error_no_mode;
+ 
+   g_sprintf (s, "Connected encoder: id = %u", connector->encoder_id);
+-  GST_INFO_OBJECT (drmsink, s);
++  GST_INFO_OBJECT (drmsink, "%s", s);
+   for (i = 0; i < connector->count_encoders; i++) {
+     g_sprintf (s, "Available encoder: id = %u", connector->encoders[i]);
+-    GST_INFO_OBJECT (drmsink, s);
++    GST_INFO_OBJECT (drmsink, "%s", s);
+   }
+ 
+   /* Now get the encoder */
+@@ -1025,7 +1025,7 @@ gst_drmsink_video_memory_allocator_new (GstFramebufferSink * framebuffersink,
+   str = g_strdup_printf ("Created video memory allocator %s, %dx%d, format %s",
+       s, drmsink_video_memory_allocator->w, drmsink_video_memory_allocator->h,
+       gst_video_format_to_string (GST_VIDEO_INFO_FORMAT (info)));
+-  GST_INFO_OBJECT (drmsink, str);
++  GST_INFO_OBJECT (drmsink, "%s", str);
+   g_free (str);
+   return GST_ALLOCATOR_CAST (drmsink_video_memory_allocator);
+ }
+diff --git a/sys/drmsink/gstframebuffersink.c b/sys/drmsink/gstframebuffersink.c
+index 8b41636..9451f6f 100644
+--- a/sys/drmsink/gstframebuffersink.c
++++ b/sys/drmsink/gstframebuffersink.c
+@@ -99,7 +99,7 @@ GST_FRAMEBUFFERSINK_MESSAGE_OBJECT (GstFramebufferSink * framebuffersink,
+ {
+   if (!framebuffersink->silent)
+     g_print ("%s.\n", message);
+-  GST_INFO_OBJECT (framebuffersink, message);
++    GST_INFO_OBJECT (framebuffersink, "%s", message);
+ }
+ 
+ #define ALIGNMENT_GET_ALIGN_BYTES(offset, align) \
+-- 
+2.7.4
+
