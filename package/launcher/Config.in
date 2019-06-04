@@ -1,6 +1,5 @@
 config BR2_PACKAGE_LAUNCHER
 	bool "Application Launcher"
 	depends on BR2_PACKAGE_QT5
-	depends on BR2_PACKAGE_QT5QUICK1D
 	help
 	  Demo launcher application.

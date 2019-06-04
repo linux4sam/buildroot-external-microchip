@@ -4,11 +4,11 @@
 #
 ################################################################################
 
-LAUNCHER_VERSION = v1.10
+LAUNCHER_VERSION = 38fe8b5476a331b8ddc4aff6872afcbaff8942e2
 LAUNCHER_SITE = $(call github,linux4sam,application-launcher,$(LAUNCHER_VERSION))
 LAUNCHER_LICENSE = Atmel LIMITED License Agreement
 LAUNCHER_LICENSE_FILES = COPYING
-LAUNCHER_DEPENDENCIES = qt5base qt5quick1d
+LAUNCHER_DEPENDENCIES = qt5base
 
 define LAUNCHER_CONFIGURE_CMDS
 	cd $(@D) && $(TARGET_MAKE_ENV) $(QT5_QMAKE)
