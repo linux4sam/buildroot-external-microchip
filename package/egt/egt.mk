@@ -24,7 +24,7 @@ libpng \
 gstreamer1 \
 file
 
-EGT_CONF_OPTS =
+EGT_CONF_OPTS = --disable-debug
 
 ifeq ($(BR2_PACKAGE_EGT_INSTALL_EXAMPLES),y)
 EGT_CONF_OPTS += --enable-examples
