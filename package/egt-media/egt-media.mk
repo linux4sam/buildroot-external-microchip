@@ -5,8 +5,8 @@
 ################################################################################
 
 EGT_MEDIA_VERSION = 1.0
-EGT_MEDIA_SITE = https://microchiptechnology-my.sharepoint.com/:u:/g/personal/prasanthi_chellakumar_microchip_com
-EGT_MEDIA_SOURCE = EZ9qNp_YhtZLocY-AzDLk2wBZ4fcT8FqY4zEpk6FjFSvRA?download=1
+EGT_MEDIA_SITE = https://microchiptechnology-my.sharepoint.com/:u:/g/personal/sandeepsheriker_mallikarjun_microchip_com
+EGT_MEDIA_SOURCE = EYh2YH8-dNpDgZhXjmkSvHYBM4KXhHSTzHzeYqr77MYzBw?download=1
 EGT_MEDIA_SITE_METHOD = wget
 EGT_MEDIA_FILENAME = $(PKG)-$(EGT_MEDIA_VERSION).tar.gz
 
