@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-WILDWEST_VERSION = 3e05aea85ec378fecb76f0d480f75e65cb8656a3
+WILDWEST_VERSION = 69114abeb72380cdec8b7f7e80b94ac0dd77036e
 WILDWEST_SITE = $(call github,linux4sam,wildwest,$(WILDWEST_VERSION))
 WILDWEST_LICENSE = Apache-2.0
 WILDWEST_LICENSE_FILES = COPYING

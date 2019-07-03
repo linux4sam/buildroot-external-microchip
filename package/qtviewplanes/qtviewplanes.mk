@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-QTVIEWPLANES_VERSION = 77e2b99a34636822eb85d848a461a0e5b1733b4e
+QTVIEWPLANES_VERSION = 9c2bdb62018f38f1e5a0d12018c89a2634ae4e3a
 QTVIEWPLANES_SITE = $(call github,linux4sam,qtviewplanes,$(QTVIEWPLANES_VERSION))
 QTVIEWPLANES_LICENSE = Apache-2.0
 QTVIEWPLANES_LICENSE_FILES = COPYING

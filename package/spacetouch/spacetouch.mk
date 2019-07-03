@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-SPACETOUCH_VERSION = bcf28dda724e8ea6031826dd46c917b917531eb8
+SPACETOUCH_VERSION = 545a7644a06d86ac1d19ebb70db0fb079e6b8524
 SPACETOUCH_SITE = $(call github,linux4sam,spacetouch,$(SPACETOUCH_VERSION))
 SPACETOUCH_LICENSE = Apache-2.0
 SPACETOUCH_LICENSE_FILES = COPYING
