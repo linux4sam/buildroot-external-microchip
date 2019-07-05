@@ -1,6 +1,7 @@
 # Locally computed:
 sha256 43abba797ce28bc7571300d230eb987ec6b541ac830f6855e878db10ffba7cab  dt-overlay-at91-17a984bc196f124e7fb3a98eb2a6c96368181340.tar.gz
 sha256 e940d6c530a4c0a84ff5df9f2eec0f6201955b6eafe2e81ce4c84d0498f9e05a  dt-overlay-at91-linux4sam_6.1-rc1.tar.gz
+sha256 2e7b78ba12b4747d41e959c370ffcd884ccdbb639c27be52c89dc10043c1d552  dt-overlay-at91-linux4sam_6.1-rc2.tar.gz
 
 # Hash for license files:
 sha256 fbdbfc6e5eb6fb789b6f754d4951df6cd9684a59818dbe391cdb56812314e500  COPYING
