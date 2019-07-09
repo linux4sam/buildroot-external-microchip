@@ -4,10 +4,10 @@
 #
 ################################################################################
 
-HOMEAUTOMATION_VERSION = db5150828852e33282dd0d4fb5b9b24a9e418fcb
+HOMEAUTOMATION_VERSION = 6125801ac993091afe17c81f50685d4e31d4b2f8
 HOMEAUTOMATION_SITE = $(call github,linux4sam,home-automation,$(HOMEAUTOMATION_VERSION))
 HOMEAUTOMATION_LICENSE = Atmel LIMITED License Agreement
-HOMEAUTOMATION_DEPENDENCIES = qt5base qt5webkit qt5quick1d libv4l
+HOMEAUTOMATION_DEPENDENCIES = qt5base libv4l
 
 define HOMEAUTOMATION_CONFIGURE_CMDS
 	cd $(@D) && $(TARGET_MAKE_ENV) $(QT5_QMAKE)
