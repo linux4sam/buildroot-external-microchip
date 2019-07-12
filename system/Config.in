@@ -14,6 +14,12 @@ config BR2_PACKAGE_PLANES_INIT
 	help
 	  Use the planes init script.
 
+config BR2_PACKAGE_EGT_LAUNCHER_INIT
+	bool "EGT Application Launcher"
+	depends on BR2_PACKAGE_EGT_LAUNCHER
+	help
+	  Use the EGT application launcher init script.
+
 config BR2_PACKAGE_INIT_NONE
 	bool "none"
 

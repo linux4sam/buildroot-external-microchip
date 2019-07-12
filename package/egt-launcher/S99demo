@@ -1,0 +1,45 @@
+#!/bin/sh
+
+. /etc/profile
+
+start()
+{
+    LAUNCHER_ARGS=""
+
+    printf "Starting EGT Application Launcher: "
+
+    # wait for the card to initialize
+    for i in `seq 1 3`;
+    do
+	res=$(cat /sys/class/drm/card0/*/modes 2>/dev/null | tr -d '\n')
+	[ -z "$res" ] || break
+	sleep 1
+    done
+
+    start-stop-daemon -S -q -b -m -p /var/run/egt-launcher.pid \
+		      --exec egt-launcher -- $LAUNCHER_ARGS
+
+    [ $? = 0 ] && echo "OK" || echo "FAIL"
+}
+
+stop()
+{
+    printf "Stopping EGT Application Launcher: "
+    start-stop-daemon -K -q -p /var/run/egt-launcher.pid
+    [ $? = 0 ] && echo "OK" || echo "FAIL"
+}
+
+case "$1" in
+    start)
+	start
+	;;
+    stop)
+	stop
+	;;
+    restart)
+	stop
+	start
+	;;
+    *)
+	;;
+esac
