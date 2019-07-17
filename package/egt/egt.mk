@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-EGT_VERSION = 8cbfd833c5e31ac6d629e1cda75e17eaa487fd38
+EGT_VERSION = 5852d9e0a55593483b7c7d5099196a8c020db001
 EGT_SITE = https://bitbucket.microchip.com/scm/linux4sam/egt.git
 EGT_SITE_METHOD = git
 EGT_GIT_SUBMODULES = YES
