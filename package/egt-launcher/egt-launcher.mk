@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-EGT_LAUNCHER_VERSION = 891fdb1fc5030e0202ecf24a4523c97b2d1a85fe
-EGT_LAUNCHER_SITE = https://bitbucket.microchip.com/scm/linux4sam/egt-launcher.git
+EGT_LAUNCHER_VERSION = 387cbdf98aae972365d92b4912c006a90f414d03
+EGT_LAUNCHER_SITE = https://github.com/linux4sam/egt-launcher.git
 EGT_LAUNCHER_SITE_METHOD = git
 EGT_LAUNCHER_GIT_SUBMODULES = YES
 EGT_LAUNCHER_LICENSE = Apache-2.0

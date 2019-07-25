@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-EGT_SAMPLES_VERSION = beda0b38d31d125ac9999a3c8d6c363d147123b8
-EGT_SAMPLES_SITE = https://bitbucket.microchip.com/scm/linux4sam/egt-samples.git
+EGT_SAMPLES_VERSION = 9aad9fe60434b8859e77d143713615ab8d5f30cf
+EGT_SAMPLES_SITE = https://github.com/linux4sam/egt-samples.git
 EGT_SAMPLES_SITE_METHOD = git
 EGT_SAMPLES_GIT_SUBMODULES = YES
 EGT_SAMPLES_LICENSE = Apache-2.0

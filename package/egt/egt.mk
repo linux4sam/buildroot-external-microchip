@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-EGT_VERSION = 5852d9e0a55593483b7c7d5099196a8c020db001
-EGT_SITE = https://bitbucket.microchip.com/scm/linux4sam/egt.git
+EGT_VERSION = 97b7ce44270779227d493b3715309306841d5998
+EGT_SITE = https://github.com/linux4sam/egt.git
 EGT_SITE_METHOD = git
 EGT_GIT_SUBMODULES = YES
 EGT_LICENSE = Apache-2.0
