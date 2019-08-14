@@ -3,9 +3,10 @@
 # Microchip SAMA5 Buildroot External
 
 This [buildroot external][1] includes Microchip packages, patches, setup, and
-configuration to create the SAMA5 demo. This project provides an extension to
-buildroot to support these customizations outside of the standard buildroot
-tree.
+configuration to work with Microchip provided software that is not included in
+mainline buildroot.  This includes creating demo root filesystems. This project
+provides an extension to buildroot to support these customizations outside of
+the standard buildroot tree.
 
 
 ## Install System Dependencies
