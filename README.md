@@ -81,14 +81,11 @@ bootable SD card, see [SDCardBootNotice][4].
 
 ## Configuring the LCD Display
 
-You may have to manually set the DTB file to be inline with the actual display
-you are using.  To do this, as the board is booting hold down the enter key in
-the debug serial console until you get to the u-boot command prompt.  Use the
-following commands to set and save the `dtb_name` variable.
-
-    => setenv dtb_name at91-sama5d2_xplained_pda7.dtb
-    => saveenv
-    => boot
+For information on how to configure the display connected to a development
+board, see the [Linux4SAM](http://www.at91.com/linux4sam/bin/view/Linux4SAM)
+page about your board.  If your display is not detected automatically, you may
+have to [manually configure](http://www.at91.com/linux4sam/bin/view/Linux4SAM/SelectingPDAatBoot)
+the display.
 
 
 ## Documentation
