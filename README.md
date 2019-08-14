@@ -23,13 +23,6 @@ In some cases, buildroot will notify that additional host dependencies are
 required.  It will let you know what those are.
 
 
-## Buildroot Dependencies
-
-Many of the demo applications included in this external depend on Qt 5.9 or
-later.  This buildroot external requires a new version of buildroot equal to or
-greater than 2018.02-at91.
-
-
 ## Build
 
 Clone, configure, and build.  When building, use the appropriate defconfig in
