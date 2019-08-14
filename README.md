@@ -35,10 +35,10 @@ greater than 2018.02-at91.
 Clone, configure, and build.  When building, use the appropriate defconfig in
 the `buildroot-external-microchip/configs` directory for your board.
 
-    git clone https://github.com/linux4sam/buildroot-external-microchip.git
-    git clone https://github.com/linux4sam/buildroot-at91.git -b 2018.02-at91
-    cd buildroot-at91
-    BR2_EXTERNAL=../buildroot-external-microchip/ make sama5d4_xplained_demo_defconfig
+    git clone https://github.com/linux4sam/buildroot-external-microchip.git -b egt_devel
+    git clone https://git.buildroot.net/buildroot -b 2019.05.1
+    cd buildroot
+    BR2_EXTERNAL=../buildroot-external-microchip/ make sam9x60ek_egt_defconfig
     make
 
 The resulting bootloader, kernel, and root filesystem will be put in the
