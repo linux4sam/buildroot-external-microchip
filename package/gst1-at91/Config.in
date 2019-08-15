@@ -2,7 +2,6 @@ config BR2_PACKAGE_GST1_AT91
 	bool "gst1-at91"
 	depends on BR2_arm
 	depends on !BR2_STATIC_LIBS
-	depends on BR2_TOOLCHAIN_USES_GLIBC
 	select BR2_PACKAGE_GSTREAMER1
 	select BR2_PACKAGE_GST1_PLUGINS_BASE
 	select BR2_PACKAGE_G1_DECODER
