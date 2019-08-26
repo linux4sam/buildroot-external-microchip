@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBPLANES_VERSION = b5d6f8590da09c0c25099335967c13926a130100
+LIBPLANES_VERSION = f10f2bd3219b96dd1dcdbfe76349ff23e52855d2
 LIBPLANES_SITE = https://github.com/linux4sam/libplanes
 LIBPLANES_SITE_METHOD = git
 LIBPLANES_GIT_SUBMODULES = YES
