@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-GST1_AT91_VERSION = 2f2561e479265ef4ecf881971649407f008587a1
+GST1_AT91_VERSION = 40d9506e7c4b7df427b3de8fcb17c60f0e72f55a
 GST1_AT91_SITE = https://github.com/linux4sam/gst1-hantro-g1
 GST1_AT91_SITE_METHOD = git
 GST1_AT91_LICENSE = LGPLv2+
