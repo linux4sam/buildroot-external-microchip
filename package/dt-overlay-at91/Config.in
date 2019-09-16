@@ -8,9 +8,9 @@ if BR2_PACKAGE_DT_OVERLAY_AT91
 config BR2_PACKAGE_DT_OVERLAY_AT91_PLATFORM
 	string "platform name"
 	help
-	  Name of the platform: at91sam9x5ek, sama5d27_som1_ek,
-	  sama5d2_ptc_ek, sama5d2_xplained, sama5d3_xplained, or
-	  sama5d4_xplained.
+	  Available platforms: at91sam9x5ek, sama5d27_som1_ek,
+	  sama5d2_ptc_ek, sama5d2_xplained, sama5d3_xplained,
+	  sama5d4_xplained, sam9x60ek.
 
 choice
 	prompt "output"
