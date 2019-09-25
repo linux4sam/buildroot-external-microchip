@@ -1,0 +1,5 @@
+config BR2_PACKAGE_EGT_SAMPLES
+	bool "egt sample applications"
+	select BR2_PACKAGE_EGT
+	help
+	  Various sample EGT applications.
