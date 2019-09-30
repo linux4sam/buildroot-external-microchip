@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-EGT_LAUNCHER_VERSION = 577b5f035e5193089ce06f15126bb99a0ce29d15
+EGT_LAUNCHER_VERSION = 49e0dfb46a8272c6c21f26572a7d2f2c492f1a8e
 EGT_LAUNCHER_SITE = https://github.com/linux4sam/egt-launcher.git
 EGT_LAUNCHER_SITE_METHOD = git
 EGT_LAUNCHER_GIT_SUBMODULES = YES

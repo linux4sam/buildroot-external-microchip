@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-EGT_SAMPLES_VERSION = 1a6d31e963635c880f96e0a06f0914c7ea9312fb
+EGT_SAMPLES_VERSION = 84a26171fbd3014ac05a1d7085a28e835949a06c
 EGT_SAMPLES_SITE = https://github.com/linux4sam/egt-samples.git
 EGT_SAMPLES_SITE_METHOD = git
 EGT_SAMPLES_GIT_SUBMODULES = YES
