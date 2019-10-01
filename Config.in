@@ -13,7 +13,6 @@ source "$BR2_EXTERNAL_MCHP_PATH/package/9bit/Config.in"
 
 menu "Qt Applications"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/browser/Config.in"
-	source "$BR2_EXTERNAL_MCHP_PATH/package/launcher/Config.in"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/homeautomation/Config.in"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/minehunt/Config.in"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/python-iocontrol/Config.in"
