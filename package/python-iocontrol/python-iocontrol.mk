@@ -13,9 +13,9 @@ PYTHON_IOCONTROL_DEPENDENCIES = python-pyqt5 python-mpio
 
 define PYTHON_IOCONTROL_INSTALL_MENU
         $(INSTALL) -m 0644 -D $(@D)/res/iocontrol.png \
-                $(TARGET_DIR)/opt/ApplicationLauncher/applications/resources/iocontrol.png
-        $(INSTALL) -m 0644 -D $(@D)/res/08-iocontrol.xml \
-                $(TARGET_DIR)/opt/ApplicationLauncher/applications/xml/08-iocontrol.xml
+                $(TARGET_DIR)/opt/applications/resources/iocontrol.png
+	 $(INSTALL) -m 0755 -D $(@D)/res/08-iocontrol.xml \
+		$(TARGET_DIR)/opt/applications/resources/08-iocontrol.xml
         $(INSTALL) -m 0755 -D $(@D)/res/iocontrol.sh \
                 $(TARGET_DIR)/opt/iocontrol/iocontrol.sh
 endef
