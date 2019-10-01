@@ -43,9 +43,7 @@ endif
 
 define LIBPLANES_INSTALL_MENU
         $(INSTALL) -m 0644 -D $(@D)/scripts/planes.png \
-                $(TARGET_DIR)/opt/ApplicationLauncher/applications/resources/planes.png
-        $(INSTALL) -m 0644 -D $(@D)/scripts/09-planes.xml \
-                $(TARGET_DIR)/opt/ApplicationLauncher/applications/xml/09-planes.xml
+                $(TARGET_DIR)/opt/applications/resources/planes.png
         $(INSTALL) -m 0755 -D $(@D)/scripts/planes-loop.sh \
                 $(TARGET_DIR)/opt/planes/planes-loop.sh
         $(INSTALL) -m 0755 -D $(@D)/scripts/planes-loop.py \
@@ -54,6 +52,8 @@ define LIBPLANES_INSTALL_MENU
                 $(TARGET_DIR)/usr/share/planes/splash.py
         $(INSTALL) -m 0755 -D $(@D)/python/examples/example.py \
                 $(TARGET_DIR)/usr/share/planes/example.py
+	 $(INSTALL) -m 0755 -D $(@D)/scripts/09-planes.xml \
+		$(TARGET_DIR)/opt/applications/resources/09-planes.xml
 endef
 
 LIBPLANES_POST_INSTALL_TARGET_HOOKS += LIBPLANES_INSTALL_MENU
