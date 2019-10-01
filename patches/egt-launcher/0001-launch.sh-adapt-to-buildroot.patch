@@ -1,0 +1,29 @@
+From eb2c0d5dc067c11fe00563dc448fa3f834bda090 Mon Sep 17 00:00:00 2001
+From: Eugen Hristev <eugen.hristev@microchip.com>
+Date: Tue, 1 Oct 2019 14:23:28 +0300
+Subject: [PATCH] launch.sh: adapt to buildroot
+
+We need to use the proper start script, otherwise egt-launcher will not
+look for all xml files.
+
+Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+---
+ launch.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/launch.sh b/launch.sh
+index 0e6b5eb..602dbb2 100755
+--- a/launch.sh
++++ b/launch.sh
+@@ -29,7 +29,7 @@ handle_exit_key()
+ run()
+ {
+     handle_exit_key $@
+-    egt-launcher
++    /etc/init.d/S99demo start
+ }
+ 
+ # close stdout, stderr, stdin and double fork - it's magic
+-- 
+2.7.4
+

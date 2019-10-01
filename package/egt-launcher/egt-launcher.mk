@@ -20,6 +20,8 @@ EGT_LAUNCHER_POST_PATCH_HOOKS += EGT_LAUNCHER_RUN_AUTOGEN
 define EGT_LAUNCHER_INSTALL_INIT
         $(INSTALL) -m 0755 -D $(EGT_LAUNCHER_PKGDIR)/S99demo \
                 $(TARGET_DIR)/etc/init.d/S99demo
+        $(INSTALL) -m 0644 -D $(EGT_LAUNCHER_PKGDIR)/setup.sh \
+                $(TARGET_DIR)/etc/profile.d/setup.sh
 endef
 
 ifeq ($(BR2_PACKAGE_EGT_LAUNCHER_INIT),y)
