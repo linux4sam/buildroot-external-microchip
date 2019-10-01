@@ -20,6 +20,11 @@ endef
 
 define WILDWEST_INSTALL_TARGET_CMDS
 	$(MAKE) INSTALL_ROOT=$(TARGET_DIR) -C $(@D) install
+	$(INSTALL) -D -m 0664 $(@D)/resources/wildwest.png \
+		$(TARGET_DIR)/opt/applications/resources/wildwest.png
+        $(INSTALL) -m 0755 -D $(@D)/resources/10-wildwest.xml \
+                $(TARGET_DIR)/opt/applications/resources/10-wildwest.xml
+
 endef
 
 $(eval $(generic-package))
