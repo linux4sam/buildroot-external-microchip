@@ -1,0 +1,5 @@
+config BR2_PACKAGE_EGT_MEDIA_EXTRA
+	depends on BR2_PACKAGE_EGT
+	bool "Download EGT Media extra files contains different decoder formats for video example applications"
+	help
+	  EGT media files for microchip sam9x and sama5 mpu's.
