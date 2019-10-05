@@ -1,0 +1,6 @@
+config BR2_PACKAGE_PLPLOT
+	bool "plplot"
+	help
+	  PLplot is a cross-platform software package for creating scientific plots.
+
+	  http://plplot.sourceforge.net/

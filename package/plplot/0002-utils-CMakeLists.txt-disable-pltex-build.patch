@@ -1,0 +1,55 @@
+From dd8d4531a4710961adaa95226bd7a930daa30c50 Mon Sep 17 00:00:00 2001
+From: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+Date: Fri, 4 Oct 2019 12:02:08 -0700
+Subject: [PATCH] utils/CMakeLists.txt: disable pltex build
+
+Signed-off-by: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+---
+ utils/CMakeLists.txt | 28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+diff --git a/utils/CMakeLists.txt b/utils/CMakeLists.txt
+index 59cfe20..ad1fcab 100644
+--- a/utils/CMakeLists.txt
++++ b/utils/CMakeLists.txt
+@@ -50,23 +50,23 @@ if(PLD_plmeta)
+   install(TARGETS plrender DESTINATION ${BIN_DIR})
+ endif(PLD_plmeta)
+ 
+-add_executable(pltek pltek.c)
+-if(BUILD_SHARED_LIBS)
+-  set_target_properties(pltek PROPERTIES
+-    COMPILE_DEFINITIONS "USINGDLL"
+-    )
+-endif(BUILD_SHARED_LIBS)
++#add_executable(pltek pltek.c)
++#if(BUILD_SHARED_LIBS)
++#  set_target_properties(pltek PROPERTIES
++#    COMPILE_DEFINITIONS "USINGDLL"
++#    )
++#endif(BUILD_SHARED_LIBS)
+ 
+-target_link_libraries(pltek plplot)
++#target_link_libraries(pltek plplot)
+ 
+-if(USE_RPATH)
+-  set_target_properties(pltek
+-    PROPERTIES
+-    INSTALL_RPATH "${LIB_INSTALL_RPATH}"
+-    )
+-endif(USE_RPATH)
++#if(USE_RPATH)
++#  set_target_properties(pltek
++#    PROPERTIES
++#    INSTALL_RPATH "${LIB_INSTALL_RPATH}"
++#    )
++#endif(USE_RPATH)
+ 
+-install(TARGETS pltek DESTINATION ${BIN_DIR})
++#install(TARGETS pltek DESTINATION ${BIN_DIR})
+ 
+ # Build simple executable to check parity bits of all characters read
+ # by stdin.
+-- 
+2.7.4
+
