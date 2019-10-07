@@ -3,9 +3,10 @@
 # Microchip SAMA5 Buildroot External
 
 This [buildroot external][1] includes Microchip packages, patches, setup, and
-configuration to create the SAMA5 demo. This project provides an extension to
-buildroot to support these customizations outside of the standard buildroot
-tree.
+configuration to work with Microchip provided software that is not included in
+mainline buildroot.  This includes creating demo root filesystems. This project
+provides an extension to buildroot to support these customizations outside of
+the standard buildroot tree.
 
 
 ## Install System Dependencies
@@ -15,7 +16,8 @@ dependencies are required.
 
     sudo apt-get install subversion build-essential bison flex gettext \
     libncurses5-dev texinfo autoconf automake libtool mercurial git-core \
-    gperf gawk expat curl cvs libexpat-dev bzr unzip bc python-dev
+    gperf gawk expat curl cvs libexpat-dev bzr unzip bc python-dev \
+    wget cpio rsync xxd
 
 In some cases, buildroot will notify that additional host dependencies are
 required.  It will let you know what those are.
@@ -23,9 +25,9 @@ required.  It will let you know what those are.
 
 ## Buildroot Dependencies
 
-Many of the demo applications included in this external depend on Qt 5.9 or
+Some of the demo applications included in this external depend on Qt 5.12.2 or
 later.  This buildroot external requires a new version of buildroot equal to or
-greater than 2018.02-at91.
+greater than 2018.05-at91.
 
 
 ## Build
@@ -34,9 +36,9 @@ Clone, configure, and build.  When building, use the appropriate defconfig in
 the `buildroot-external-microchip/configs` directory for your board.
 
     git clone https://github.com/linux4sam/buildroot-external-microchip.git
-    git clone https://github.com/linux4sam/buildroot-at91.git -b 2018.02-at91
+    git clone https://github.com/linux4sam/buildroot-at91.git -b 2019.05-at91
     cd buildroot-at91
-    BR2_EXTERNAL=../buildroot-external-microchip/ make sama5d4_xplained_demo_defconfig
+    BR2_EXTERNAL=../buildroot-external-microchip/ make sama5d4_xplained_graphics_defconfig
     make
 
 The resulting bootloader, kernel, and root filesystem will be put in the
@@ -91,6 +93,13 @@ corresponding DT-overlay for your screen.
 For more information, adjustments of this behavior, check the information
 on [at91Wiki][6].
 
+## Kernel and Device Tree Blob packaging
+
+Linux Kernel and the Device Tree Blob will be included in a single file
+named FIT Image (*.itb files). U-boot needs to boot a FIT Image, unlike before,
+when it was loading two separate files (zImage and dtb).
+For more information, check the information on [at91Wiki][7].
+
 ## Documentation
 
 For more information on using and updating buildroot, see the [buildroot
@@ -111,3 +120,4 @@ information.
 [4]: http://www.at91.com/linux4sam/bin/view/Linux4SAM/SDCardBootNotice
 [5]: https://etcher.io/
 [6]: http://www.at91.com/linux4sam/bin/view/Linux4SAM/PDADetectionAtBoot
+[7]: http://www.at91.com/linux4sam/bin/view/Linux4SAM/UsingFITwithOverlays
