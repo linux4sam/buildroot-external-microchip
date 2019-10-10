@@ -10,6 +10,10 @@ PTC_EXAMPLES_LICENSE = Apache-2.0 (programs), Microchip (firmware and config fil
 PTC_EXAMPLES_LICENSE_FILES = src/COPYING cfg/LICENCE.ptc_cfg fw/LICENCE.ptc_fw
 PTC_EXAMPLES_DEPENDENCIES = libgpiod libevdev
 
+ifeq ($(BR2_PACKAGE_PTC_EXAMPLES_PLATFORM),"SAMA5D27_WLSOM1_EK")
+TARGET_CFLAGS += -DSAMA5D27_WLSOM1_EK
+endif
+
 define PTC_EXAMPLES_BUILD_CMDS
 	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D) all
 endef
