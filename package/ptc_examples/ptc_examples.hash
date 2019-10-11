@@ -3,6 +3,7 @@ sha256 333171ce778752933a123dea505dad43add4aeeb86b6c44e7149ccd30dea840c  ptc_exa
 # Computed on local machine
 sha256 b3b381ecdd6c92f6452afeadaf63a30015a21974515a388394b7010121e2a34e  ptc_examples-v1.2.tar.gz
 sha256 2b3b327dd50cebd26e689042db22222a1014f37f3aeb0b3b53e1cea03bf5e9c6  ptc_examples-v1.2.1.tar.gz
+sha256 7a7c9baf30b5a3d936273616a2d1418f04d8cc3413c56e710a4d21984d7a0fe8  ptc_examples-v1.3.tar.gz
 
 # Hash for license files
 sha256 a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9  src/COPYING
