@@ -1,0 +1,5 @@
+config BR2_PACKAGE_EGT_BENCHMARK
+	bool "egt benchmark"
+	select BR2_PACKAGE_EGT
+	help
+	  EGT benchmark suite.
