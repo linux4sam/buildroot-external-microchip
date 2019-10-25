@@ -30,6 +30,7 @@ endmenu
 
 menu "EGT Applications"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/egt/Config.in"
+	source "$BR2_EXTERNAL_MCHP_PATH/package/egt-benchmark/Config.in"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/egt-launcher/Config.in"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/egt-thermostat/Config.in"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/egt-samples/Config.in"
