@@ -1,0 +1,5 @@
+config BR2_PACKAGE_EGT_THERMOSTAT
+	bool "egt thermostat demo"
+	select BR2_PACKAGE_EGT
+	help
+	  EGT thermostat demo application.
