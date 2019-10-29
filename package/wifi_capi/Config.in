@@ -1,0 +1,8 @@
+config BR2_PACKAGE_WIFI_CAPI
+        bool "WiFi CAPI Agent"
+        help
+          Control agents are a proxy in which a CAPI control command is converted for the device into the device’s native control interface. 
+	  APs, DUTs, sniffers, and STAs may require control agents. 
+	  Sample control agent code can be downloaded through the open source repository ( Windows or Linux ) or by members in the most recent Wi-Fi Test Suite package .
+	  https://github.com/Wi-FiTestSuite/Wi-FiTestSuite-Linux-DUT
+
