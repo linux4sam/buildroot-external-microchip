@@ -12,18 +12,20 @@ PLPLOT_INSTALL_STAGING = YES
 PLPLOT_SUPPORTS_IN_SOURCE_BUILD = NO
 
 PLPLOT_DEPENDENCIES += \
-        host-pkgconf \
+    host-pkgconf \
 	freetype \
 	fontconfig \
 	cairo \
-	pango \
-	qhull \
-	shapelib 
+	pango
 
-PLPLOT_CONF_OPTS += -DDEFAULT_NO_BINDINGS=ON -DDEFAULT_NO_CAIRO_DEVICES=OFF -DENABLE_cxx=ON -DNaNAwareCCompiler=ON -DPL_DOUBLE=OFF -DCMAKE_NATIVE_BINARY_DIR=${@D}/buildroot-build -DCMAKE_VERBOSE_MAKEFILE=ON
-
-#        libglib2 \
-#-DCMAKE_VERBOSE_MAKEFILE=ON -DBUILD_EXAMPLE=ON -DBUILD_EXAMPLES=ON -DCMAKE_INSTALL_RPATH="${@D}/buildroot-build/lib"
+PLPLOT_CONF_OPTS += \
+	-DDEFAULT_NO_BINDINGS=ON \
+	-DDEFAULT_NO_CAIRO_DEVICES=OFF \
+	-DENABLE_cxx=ON \
+	-DNaNAwareCCompiler=ON \
+	-DPL_DOUBLE=OFF \
+	-DCMAKE_NATIVE_BINARY_DIR=${@D}/buildroot-build \
+	-DCMAKE_VERBOSE_MAKEFILE=ON
 
 # This fix is avoid configure error of missing genereated files hence manually copying
 # these generated files from host
@@ -38,4 +40,3 @@ endef
 PLPLOT_PRE_CONFIGURE_HOOKS += PLPLOT_COPY_GEN_FILES
 
 $(eval $(cmake-package))
-#$(eval $(host-cmake-package))
