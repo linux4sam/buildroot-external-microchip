@@ -117,7 +117,7 @@ information.
 [1]: https://buildroot.org/downloads/manual/manual.html#outside-br-custom
 [2]: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 [3]: https://buildroot.org/docs.html
-[4]: http://www.at91.com/linux4sam/bin/view/Linux4SAM/SDCardBootNotice
+[4]: https://www.linux4sam.org/bin/view/Linux4SAM/SDCardBootNotice
 [5]: https://etcher.io/
-[6]: http://www.at91.com/linux4sam/bin/view/Linux4SAM/PDADetectionAtBoot
-[7]: http://www.at91.com/linux4sam/bin/view/Linux4SAM/UsingFITwithOverlays
+[6]: https://www.linux4sam.org/bin/view/Linux4SAM/PDADetectionAtBoot
+[7]: https://www.linux4sam.org/bin/view/Linux4SAM/UsingFITwithOverlays

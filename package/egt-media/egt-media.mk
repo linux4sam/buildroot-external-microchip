@@ -5,7 +5,7 @@
 ################################################################################
 
 EGT_MEDIA_VERSION = 1.2
-EGT_MEDIA_SITE = ftp://www.at91.com/pub/demo/media
+EGT_MEDIA_SITE = https://files.linux4sam.org/pub/demo/media
 EGT_MEDIA_SOURCE = egt-media-${EGT_MEDIA_VERSION}.tar.gz
 EGT_MEDIA_LICENSE = Apache-2.0
 EGT_MEDIA_INSTALL_TARGET = YES

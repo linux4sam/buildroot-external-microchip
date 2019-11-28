@@ -6,7 +6,7 @@
 
 LIBM2D_VERSION = sam9x60_2.0
 LIBM2D_SOURCE = libm2d-$(LIBM2D_VERSION).tar.gz
-LIBM2D_SITE = ftp://at91.com/pub/src
+LIBM2D_SITE = https://files.linux4sam.org/pub/src
 LIBM2D_STRIP_COMPONENTS = 0
 LIBM2D_LICENSE = MIT
 LIBM2D_LICENSE_FILES = COPYING
