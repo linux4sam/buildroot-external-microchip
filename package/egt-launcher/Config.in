@@ -1,5 +1,6 @@
 config BR2_PACKAGE_EGT_LAUNCHER
 	bool "egt launcher"
 	select BR2_PACKAGE_EGT
+	select BR2_PACKAGE_EVTEST
 	help
 	  This is a simple application launcher and sort of home menu.
