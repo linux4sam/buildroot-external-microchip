@@ -14,7 +14,6 @@ EGT_INSTALL_STAGING = YES
 EGT_DEPENDENCIES = \
 libevdev \
 libgpiod \
-g1-decoder \
 libdrm \
 libplanes \
 cairo \

@@ -2,7 +2,6 @@ config BR2_PACKAGE_EGT
 	bool "egt graphics library"
 	select BR2_PACKAGE_LIBEVDEV
 	select BR2_PACKAGE_LIBGPIOD
-        select BR2_PACKAGE_G1_DECODER
         select BR2_PACKAGE_LIBDRM
         select BR2_PACKAGE_LIBPLANES
         select BR2_PACKAGE_CAIRO
