@@ -4,10 +4,9 @@
 #
 ################################################################################
 
-LIBM2D_VERSION = sam9x60_2.0
-LIBM2D_SOURCE = libm2d-$(LIBM2D_VERSION).tar.gz
-LIBM2D_SITE = ftp://at91.com/pub/src
-LIBM2D_STRIP_COMPONENTS = 0
+LIBM2D_VERSION = 8b73a4dfaa8e60808348b952a8794d9b001c8bce
+LIBM2D_SITE = https://bitbucket.microchip.com/scm/linux4sam/libm2d.git
+LIBM2D_SITE_METHOD = git
 LIBM2D_LICENSE = MIT
 LIBM2D_LICENSE_FILES = COPYING
 LIBM2D_AUTORECONF = YES
