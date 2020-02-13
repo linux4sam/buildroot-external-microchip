@@ -1,12 +1,17 @@
-comment "libplanes depends on libdrm, cairo, lua, and cjson"
-	depends on !BR2_PACKAGE_CAIRO || !BR2_PACKAGE_CJSON || !BR2_PACKAGE_LIBDRM || !BR2_PACKAGE_LUA
-
 config BR2_PACKAGE_LIBPLANES
 	bool "libplanes"
-	depends on BR2_PACKAGE_CAIRO
-	depends on BR2_PACKAGE_CJSON
-	depends on BR2_PACKAGE_LIBDRM
-	depends on BR2_PACKAGE_LUA
+	select BR2_PACKAGE_CAIRO
+	select BR2_PACKAGE_CJSON
+	select BR2_PACKAGE_LIBDRM
+	select BR2_PACKAGE_LUA
 	help
 	  libplanes is a library that provides support for working with LCD
 	  controller hardware planes found on SAMA5 hardware.
+
+if BR2_PACKAGE_LIBPLANES
+config BR2_PACKAGE_LIBPLANES_INSTALL_EXAMPLES
+	bool "Install examples"
+	default y
+	help
+	  If unsure, say Y.
+endif

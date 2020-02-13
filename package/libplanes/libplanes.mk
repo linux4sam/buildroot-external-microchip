@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBPLANES_VERSION = 8e508289202dae0840d84ec486815b96bb5b3a8c
+LIBPLANES_VERSION = 00ef809348da7e315683ec73e97102cbb328fe52
 LIBPLANES_SITE = $(call github,linux4sam,libplanes,$(LIBPLANES_VERSION))
 LIBPLANES_LICENSE = MIT
 LIBPLANES_LICENSE_FILES = COPYING
@@ -12,6 +12,12 @@ LIBPLANES_AUTORECONF = YES
 LIBPLANES_AUTORECONF_OPTS += -I $(HOST_DIR)/usr/share/autoconf-archive
 LIBPLANES_DEPENDENCIES = libdrm cairo cjson lua \
 	host-pkgconf host-autoconf-archive
+
+ifeq ($(BR2_PACKAGE_LIBPLANES_INSTALL_EXAMPLES),y)
+LIBPLANES_CONF_OPTS += --enable-examples
+else
+LIBPLANES_CONF_OPTS += --disable-examples
+endif
 
 ifeq ($(BR2_PACKAGE_DIRECTFB),y)
 LIBPLANES_DEPENDENCIES += directfb
