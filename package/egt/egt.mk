@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-EGT_VERSION = 5ade54aa9933061e489cb9d6f5646dedef66c3d4
+EGT_VERSION = 0ad9234fb5bdce9603178f1671360e69db36e56a
 EGT_SITE = https://github.com/linux4sam/egt.git
 EGT_SITE_METHOD = git
 EGT_GIT_SUBMODULES = YES

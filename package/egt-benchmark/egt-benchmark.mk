@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-EGT_BENCHMARK_VERSION = 113ceef6f7fdbe43e96e4696f511eafaf4451646
+EGT_BENCHMARK_VERSION = 3cee4f759fb27e3d09dca8b1f4d93c76a9f6f069
 EGT_BENCHMARK_SITE = https://bitbucket.microchip.com/scm/linux4sam/egt-benchmark.git
 EGT_BENCHMARK_SITE_METHOD = git
 EGT_BENCHMARK_GIT_SUBMODULES = YES

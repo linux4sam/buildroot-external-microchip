@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-EGT_THERMOSTAT_VERSION = dc144c5d2325cb5056fda0f07fb74fb4fef8fb0d
+EGT_THERMOSTAT_VERSION = 4cc82c1f2b738a669eb036d38c8bef2d900ce946
 EGT_THERMOSTAT_SITE = https://github.com/linux4sam/egt-thermostat.git
 EGT_THERMOSTAT_SITE_METHOD = git
 EGT_THERMOSTAT_GIT_SUBMODULES = YES
