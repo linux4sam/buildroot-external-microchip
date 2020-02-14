@@ -1,0 +1,5 @@
+board=sama7g5ek
+board_name=sama7g5ek
+bootargs=console=ttyS0,115200 earlycon earlyprintk=serial,ttyS0, ignore_loglevel root=/dev/mmcblk1p2 memtest=0 rootfstype=ext4 rw rootwait cma=256m
+bootcmd=fatload mmc 0:1 0x61000000 at91-sama7g5ek.dtb; fatload mmc 0:1 0x62000000 zImage; bootz 0x62000000 - 0x61000000
+bootdelay=1
