@@ -1,6 +1,6 @@
 ![Microchip](docs/microchip_logo.png)
 
-# Microchip SAMA5 Buildroot External
+# Microchip AT91 Buildroot External
 
 This [buildroot external][1] includes Microchip packages, patches, setup, and
 configuration to work with Microchip provided software that is not included in
@@ -11,7 +11,7 @@ the standard buildroot tree.
 
 ## Install System Dependencies
 
-The external is tested on Ubuntu 16.04 LTS.  The following system build
+The external is tested on Ubuntu 18.04 LTS.  The following system build
 dependencies are required.
 
     sudo apt-get install subversion build-essential bison flex gettext \
@@ -25,9 +25,8 @@ required.  It will let you know what those are.
 
 ## Buildroot Dependencies
 
-Some of the demo applications included in this external depend on Qt 5.12.2 or
-later.  This buildroot external requires a new version of buildroot equal to or
-greater than 2018.05-at91.
+This buildroot external requires the specific buildroot-at91 version
+2020.02-at91. It is not designed to work with another version of buildroot-at91.
 
 
 ## Build
@@ -35,8 +34,8 @@ greater than 2018.05-at91.
 Clone, configure, and build.  When building, use the appropriate defconfig in
 the `buildroot-external-microchip/configs` directory for your board.
 
-    git clone https://github.com/linux4sam/buildroot-external-microchip.git
-    git clone https://github.com/linux4sam/buildroot-at91.git -b 2019.05-at91
+    git clone https://github.com/linux4sam/buildroot-external-microchip.git -b 2020.02-at91
+    git clone https://github.com/linux4sam/buildroot-at91.git -b 2020.02-at91
     cd buildroot-at91
     BR2_EXTERNAL=../buildroot-external-microchip/ make sama5d4_xplained_graphics_defconfig
     make
@@ -70,8 +69,8 @@ Create a list of software licenses used:
 
 A SD card image is generated in the file `sdcard.img`.  The first partition of
 this image contains a FAT filesystem with at91bootstrap, u-boot, a u-boot env,
-DTB files, and kernel. The second partition contains the root filesystem. This
-image can be written directly to an SD card.
+ITB file, which contains kernel and device tree. The second partition contains
+the root filesystem. This image can be written directly to an SD card.
 
 You need at least a 1GB SD card. All the data on the SD card will be
 lost. Find the device node name for your card.  To copy the image on the SD
