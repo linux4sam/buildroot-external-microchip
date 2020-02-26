@@ -11,6 +11,7 @@ config BR2_PACKAGE_LAUNCHER_INIT
 config BR2_PACKAGE_PLANES_INIT
 	bool "planes"
 	depends on BR2_PACKAGE_LIBPLANES
+	depends on BR2_PACKAGE_LIBPLANES_INSTALL_EXAMPLES
 	help
 	  Use the planes init script.
 
