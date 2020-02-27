@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBM2D_VERSION = 8b73a4dfaa8e60808348b952a8794d9b001c8bce
+LIBM2D_VERSION = e077978f445c151326da8790e665626304076f34
 LIBM2D_SITE = https://bitbucket.microchip.com/scm/linux4sam/libm2d.git
 LIBM2D_SITE_METHOD = git
 LIBM2D_LICENSE = MIT
