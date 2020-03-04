@@ -4,10 +4,8 @@
 #
 ################################################################################
 
-LIBM2D_VERSION = sam9x60_2.0
-LIBM2D_SOURCE = libm2d-$(LIBM2D_VERSION).tar.gz
-LIBM2D_SITE = https://files.linux4sam.org/pub/src
-LIBM2D_STRIP_COMPONENTS = 0
+LIBM2D_VERSION = e077978f445c151326da8790e665626304076f34
+LIBM2D_SITE = $(call github,linux4sam,libm2d,$(LIBM2D_VERSION))
 LIBM2D_LICENSE = MIT
 LIBM2D_LICENSE_FILES = COPYING
 LIBM2D_AUTORECONF = YES
