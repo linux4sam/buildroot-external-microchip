@@ -5,8 +5,7 @@
 ################################################################################
 
 EGT_BENCHMARK_VERSION = b585c1f12271b4fd1f17cec2b75661846ddff0f4
-EGT_BENCHMARK_SITE = https://bitbucket.microchip.com/scm/linux4sam/egt-benchmark.git
-EGT_BENCHMARK_SITE_METHOD = git
+EGT_BENCHMARK_SITE = $(call github,linux4sam,egt-benchmark,$(EGT_BENCHMARK_VERSION))
 EGT_BENCHMARK_GIT_SUBMODULES = YES
 EGT_BENCHMARK_LICENSE = Apache-2.0
 EGT_BENCHMARK_INSTALL_TARGET = YES
