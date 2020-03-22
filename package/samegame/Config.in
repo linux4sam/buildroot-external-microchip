@@ -1,7 +1,0 @@
-config BR2_PACKAGE_SAMEGAME
-	bool "Same Game"
-	depends on BR2_PACKAGE_QT5
-	depends on BR2_PACKAGE_QT5QUICK1D
-	depends on BR2_PACKAGE_QT5DECLARATIVE
-	help
-	  Same Game demo.

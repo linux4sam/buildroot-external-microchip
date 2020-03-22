@@ -1,6 +1,0 @@
-config BR2_PACKAGE_SPACETOUCH
-	bool "Spacetouch Qt Parallax App"
-	depends on BR2_PACKAGE_QT5
-	depends on BR2_PACKAGE_LIBPLANES
-	help
-	  Spacetouch Qt 3D Parallax effect demo application.

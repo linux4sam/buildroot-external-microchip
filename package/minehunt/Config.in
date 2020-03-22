@@ -1,6 +1,0 @@
-config BR2_PACKAGE_MINEHUNT
-	bool "Mine Hunt Game"
-	depends on BR2_PACKAGE_QT5
-	depends on BR2_PACKAGE_QT5QUICK1D
-	help
-	  Mine Hunt game.

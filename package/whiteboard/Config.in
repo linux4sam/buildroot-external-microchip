@@ -1,5 +1,0 @@
-config BR2_PACKAGE_WHITEBOARD
-	bool "Whiteboard App"
-	depends on BR2_PACKAGE_QT5
-	help
-	  Whiteboard touchscreen demo application.

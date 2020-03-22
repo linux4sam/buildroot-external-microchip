@@ -1,6 +1,0 @@
-config BR2_PACKAGE_QTVIEWPLANES
-	bool "Plane View"
-	depends on BR2_PACKAGE_QT5
-	depends on BR2_PACKAGE_LIBPLANES
-	help
-	  Qt View Planes demo application.

@@ -1,6 +1,0 @@
-config BR2_PACKAGE_HOMEAUTOMATION
-	bool "Home Automation"
-	depends on BR2_PACKAGE_QT5
-	depends on BR2_PACKAGE_LIBV4L
-	help
-	  Home automation demo.
