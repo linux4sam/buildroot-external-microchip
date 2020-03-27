@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-DT_OVERLAY_AT91_VERSION = linux4sam_6.2-icp
+DT_OVERLAY_AT91_VERSION = 11496aeff8660b147e7e33c8beee45eda69e225f
 DT_OVERLAY_AT91_SITE = $(call github,linux4sam,dt-overlay-at91,$(DT_OVERLAY_AT91_VERSION))
 DT_OVERLAY_AT91_LICENSE = GPL-2.0 MIT 
 DT_OVERLAY_AT91_LICENSE_FILES = COPYING LICENSES/GPL-2.0 LICENSES/MIT
