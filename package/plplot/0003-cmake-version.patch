@@ -1,0 +1,12 @@
+diff -Naur plplot-plplot-5.15.0/CMakeLists.txt plplot-plplot-5.15.0-new/CMakeLists.txt
+--- plplot-plplot-5.15.0/CMakeLists.txt	2020-03-31 18:35:57.487155628 -0700
++++ plplot-plplot-5.15.0-new/CMakeLists.txt	2020-03-31 18:35:50.491215527 -0700
+@@ -50,7 +50,7 @@
+ # Adapted method suggested by Brad King for using
+ # potentially different minimum versions for different platforms.
+
+-set(MINIMUM_LINUX_CMAKE_VERSION 3.13.2)
++set(MINIMUM_LINUX_CMAKE_VERSION 3.6.2)
+ # Latest CMake version for all platforms other than Linux.
+ # Must be greater than or equal to MINIMUM_LINUX_CMAKE_VERSION
+ set(MINIMUM_NON_LINUX_CMAKE_VERSION 3.13.2)
