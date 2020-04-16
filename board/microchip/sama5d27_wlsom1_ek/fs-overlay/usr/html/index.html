@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Log In</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<div id="log-in-form-container">
+<div id="logo-container">
+<br /><br />
+<p>Connect to Network</p>
+</div>
+
+<div id="scroll">
+<div id="form-container">
+<div id="form-holder">
+<p>Network Name<p>
+<input type="text" id="login" maxlength="32">
+<p>Pass phrase</p>
+<input type="password" id="pass" maxlength="64">
+<p>Device Name<p>
+<input type="text" id="devname" maxlength="48">
+<input type="button" id="connect" value="Connect" />
+</div>
+</div>
+
+</div>
+</div>
+
+<script>
+(function() {
+var d = document;
+var elemId = d.getElementById.bind(d);
+var create = d.createElement.bind(d);
+var exampleSocket = null;
+
+elemId('connect').onclick = function(){
+        var webSocketURL = null;
+        var login = encodeURIComponent(elemId('login').value);
+        var pass = encodeURIComponent(elemId('pass').value);
+        var devName = encodeURIComponent(elemId('devname').value);
+        var params = 'connect=connect&login=' + login + '&password=' + pass + '&device-name=' + devName;
+        webSocketURL = "ws://" + document.location.host +":8088/echo";
+        try {
+                exampleSocket = new WebSocket(webSocketURL);
+
+                exampleSocket.onopen = function(openEvent) {
+                        console.log("on open MESSAGE: " + openEvent);
+                        exampleSocket.send(params);
+                };
+                exampleSocket.onclose = function (closeEvent) {
+                        console.log("on close MESSAGE: " + closeEvent);
+                };
+                exampleSocket.onerror = function (errorEvent) {
+                        console.log("on error MESSAGE: " + errorEvent);
+                };
+                exampleSocket.onmessage = function (messageEvent) {
+                        var wsMsg = messageEvent.data;
+                        console.log("WebSocket MESSAGE: " + wsMsg);
+                };
+
+
+        }catch (exception) {
+                console.error(exception);
+        }
+
+};
+})();
+</script>
+</body>
+</html>
