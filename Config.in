@@ -10,6 +10,12 @@ source "$BR2_EXTERNAL_MCHP_PATH/package/wilc_firmware/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/9bit/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/plplot/Config.in"
 
+menu "WILC BT and WiFi Applications"
+	source "$BR2_EXTERNAL_MCHP_PATH/package/websocket/Config.in"
+	source "$BR2_EXTERNAL_MCHP_PATH/package/wilcbtapps/Config.in"
+endmenu
+
+
 menu "Microchip CryptoAuth"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/cryptoauthlib/Config.in"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/python-cryptoauthlib/Config.in"

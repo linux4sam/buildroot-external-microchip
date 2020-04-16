@@ -1,0 +1,5 @@
+config BR2_PACKAGE_WILCBTAPPS
+	bool "BLE Transparent and WiFiProv GATT Service"
+	select BR2_PACKAGE_BLUEZ5_UTILS
+	help
+	   It will compile and install the transparant service and wifi bt provisioning gatt services
