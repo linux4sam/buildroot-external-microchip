@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBM2D_VERSION = e077978f445c151326da8790e665626304076f34
+LIBM2D_VERSION = v1.0.0
 LIBM2D_SITE = $(call github,linux4sam,libm2d,$(LIBM2D_VERSION))
 LIBM2D_LICENSE = MIT
 LIBM2D_LICENSE_FILES = COPYING
