@@ -11,12 +11,24 @@ PLPLOT_LICENSE_FILES = Copyright
 PLPLOT_INSTALL_STAGING = YES
 PLPLOT_SUPPORTS_IN_SOURCE_BUILD = NO
 
-PLPLOT_DEPENDENCIES += \
-    host-pkgconf \
-	freetype \
-	fontconfig \
-	cairo \
-	pango
+PLPLOT_DEPENDENCIES = \
+    host-pkgconf
+
+ifeq ($(BR2_PACKAGE_CAIRO),y)
+PLPLOT_DEPENDENCIES += cairo
+endif
+
+ifeq ($(BR2_PACKAGE_PANGO),y)
+PLPLOT_DEPENDENCIES += pango
+endif
+
+ifeq ($(BR2_PACKAGE_FONTCONFIG),y)
+PLPLOT_DEPENDENCIES += fontconfig
+endif
+
+ifeq ($(BR2_PACKAGE_FREETYPE),y)
+PLPLOT_DEPENDENCIES += freetype
+endif
 
 PLPLOT_CONF_OPTS += \
 	-DDEFAULT_NO_BINDINGS=ON \
