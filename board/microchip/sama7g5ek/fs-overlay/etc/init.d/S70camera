@@ -1,0 +1,33 @@
+#!/bin/sh
+
+. /etc/profile
+
+start()
+{
+	/etc/init.d/S50nginx stop
+	nginx -c /etc/nginx/nginx-cam.conf
+	echo 'Starting Camera Booth. Press user button to take a photo.'
+	echo 'Configure Ethernet and connect via web browser on the board IP.'
+	echo 'All taken photos are available in captures directory.'
+	cd /usr/html/captures/ && ./camera.sh &
+}
+
+stop()
+{
+	killall camera.sh
+}
+
+case "$1" in
+    start)
+	start
+	;;
+    stop)
+	stop
+	;;
+    restart)
+	stop
+	start
+	;;
+    *)
+	;;
+esac
