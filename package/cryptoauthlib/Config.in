@@ -7,3 +7,25 @@ config BR2_PACKAGE_CRYPTOAUTHLIB
       Use cryptoauthlib as a pkcs11 provider.
 
       https://github.com/MicrochipTech/cryptoauthlib/blob/pkcs11/app/pkcs11/README.md
+
+if BR2_PACKAGE_CRYPTOAUTHLIB
+choice
+	prompt "Select the board on which ECCX08 will reside"
+
+config BR2_PACKAGE_CRYPTOAUTHLIB_SAMA5D27_SOM1_EK
+	bool "sama5d27_som1_ek"
+
+config BR2_PACKAGE_CRYPTOAUTHLIB_SAMA5D27_WLSOM1_EK
+	bool "sama5d27_wlsom1_ek"
+
+config BR2_PACKAGE_CRYPTOAUTHLIB_SAMA5D2_ICP
+	bool "sama5d2_icp"
+
+config BR2_PACKAGE_CRYPTOAUTHLIB_SAMA5D2_PTC_EK
+	bool "sama5d2_ptc_ek"
+
+config BR2_PACKAGE_CRYPTOAUTHLIB_SAMA5D2_XPLAINED
+	bool "sama5d2_xplained"
+
+endchoice
+endif
