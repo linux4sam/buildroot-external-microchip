@@ -10,4 +10,13 @@ echo 1 > /sys/fs/cgroup/memory.use_hierarchy
 sysctl -w fs.protected_hardlinks=1
 sysctl -w fs.protected_symlinks=1
 
-/greengrass/ggc/core/greengrassd start
+GG_LAUNCHER=/greengrass/ggc/core/greengrassd
+case "${1}" in
+	start | stop | restart)
+		${GG_LAUNCHER} ${1}
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart}"
+		exit 1
+		;;
+esac
