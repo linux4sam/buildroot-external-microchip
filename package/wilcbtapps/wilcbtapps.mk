@@ -11,13 +11,17 @@ WILCBTAPPS_SITE_METHOD = git
 WILCBTAPPS_DEPENDENCIES += bluez5_utils
 
 define WILCBTAPPS_BUILD_CMDS
+	$(TARGET_CC) $(TARGET_CFLAGS) -Wall -std=gnu11 -g -D_REENTRANT -I$(BLUEZ5_UTILS_DIR)/ \
+		-L$(BLUEZ5_UTILS_DIR)/lib/.libs/ -L$(BLUEZ5_UTILS_DIR)/gdbus/.libs/ \
+		-L$(BLUEZ5_UTILS_DIR)/src/.libs/ $(@D)/transparent_service.c \
+		-o $(@D)/transparent_service \
+		-lshared-mainloop -lbluetooth-internal -lgdbus-internal -lc
 
-	$(TARGET_CC) $(TARGET_CFLAGS) -Wall -std=gnu11 -g -D_REENTRANT -I$(BLUEZ5_UTILS_DIR)/ -c $(@D)/transparent_service.c -o $(@D)/transparent_service.o
-	$(TARGET_CC) $(TARGET_CFLAGS) -Wall -std=gnu11 -g -D_REENTRANT -I$(BLUEZ5_UTILS_DIR)/ -c $(@D)/wifi_prov_service.c -o $(@D)/wifi_prov_service.o
-
-	$(TARGET_LD) $(TARGET_LDFLAGS) -L$(BLUEZ5_UTILS_DIR)/lib/.libs/ -L$(BLUEZ5_UTILS_DIR)/gdbus/.libs/ -L$(BLUEZ5_UTILS_DIR)/src/.libs/ $(@D)/transparent_service.o -o $(@D)/transparent_service -lc -lshared-mainloop -lbluetooth-internal -lgdbus-internal
-	$(TARGET_LD) $(TARGET_LDFLAGS) -L$(BLUEZ5_UTILS_DIR)/lib/.libs/ -L$(BLUEZ5_UTILS_DIR)/gdbus/.libs/ -L$(BLUEZ5_UTILS_DIR)/src/.libs/ $(@D)/wifi_prov_service.o -o $(@D)/wifi_prov_service -lc -lshared-mainloop -lbluetooth-internal -lgdbus-internal
-
+	$(TARGET_CC) $(TARGET_CFLAGS) -Wall -std=gnu11 -g -D_REENTRANT -I$(BLUEZ5_UTILS_DIR)/ \
+		-L$(BLUEZ5_UTILS_DIR)/lib/.libs/ -L$(BLUEZ5_UTILS_DIR)/gdbus/.libs/ \
+		-L$(BLUEZ5_UTILS_DIR)/src/.libs/ $(@D)/wifi_prov_service.c \
+		-o $(@D)/wifi_prov_service \
+		-lshared-mainloop -lbluetooth-internal -lgdbus-internal -lc
 endef
 
 define WILCBTAPPS_INSTALL_TARGET_CMDS
