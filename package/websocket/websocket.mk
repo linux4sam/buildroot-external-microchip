@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-WEBSOCKET_VERSION = linux4sam-2020.04-rc1
+WEBSOCKET_VERSION = linux4sam-2020.04
 WEBSOCKET_SITE = https://github.com/MicrochipTech/websocket-buildroot-external-microchip.git
 WEBSOCKET_SITE_METHOD = git
 
