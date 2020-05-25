@@ -4,7 +4,7 @@
 #
 ###########################################################
 
-WILCBTAPPS_VERSION = linux4sam-2020.04-rc1
+WILCBTAPPS_VERSION = linux4sam-2020.04
 WILCBTAPPS_SITE = https://github.com/MicrochipTech/wilcbtapps-buildroot-external-microchip.git
 WILCBTAPPS_SITE_METHOD = git
 
