@@ -23,7 +23,7 @@ elif grep -Eq "^BR2_PACKAGE_CRYPTOAUTHLIB_SAMA5D27_WLSOM1_EK=y$" ${BR2_CONFIG}; 
 	sed -i "s/interface = i2c.*/interface = i2c,0x6A,0/" ${TARGET_DIR}/var/lib/cryptoauthlib/0.conf
 fi
 
-if grep -Eq "^BR2_PACKAGE_AWS_IOT_GREENGRASS_CORE=y$" ${BR2_CONFIG}; then
+if grep -Eq "^BR2_PACKAGE_GREENGRASS_CORE=y$" ${BR2_CONFIG}; then
 	# Configure whether to use systemd or not
 	GG_USESYSTEMD="no"
 	if grep -Eq "^BR2_INIT_SYSTEMD=y$" ${BR2_CONFIG}; then

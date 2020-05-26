@@ -1,4 +1,4 @@
-config BR2_PACKAGE_AWS_IOT_GREENGRASS_CORE
+config BR2_PACKAGE_GREENGRASS_CORE
 	bool "Download AWS IoT Greengrass Core Software"
 	help
 	  AWS IoT Greengrass seamlessly extends AWS to edge device so
