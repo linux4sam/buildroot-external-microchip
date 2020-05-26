@@ -1,9 +1,6 @@
 #!/bin/sh
 # SPDX-License-Identifier: GPL-2.0
 
-# Setup Cgroups
-echo 1 > /sys/fs/cgroup/memory.use_hierarchy
-
 /etc/init.d/S02sysctl start
 
 GG_LAUNCHER=/greengrass/ggc/core/greengrassd
