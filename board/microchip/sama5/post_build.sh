@@ -24,6 +24,13 @@ elif grep -Eq "^BR2_PACKAGE_CRYPTOAUTHLIB_SAMA5D27_WLSOM1_EK=y$" ${BR2_CONFIG}; 
 fi
 
 if grep -Eq "^BR2_PACKAGE_AWS_IOT_GREENGRASS_CORE=y$" ${BR2_CONFIG}; then
+	# Configure whether to use systemd or not
+	GG_USESYSTEMD="no"
+	if grep -Eq "^BR2_INIT_SYSTEMD=y$" ${BR2_CONFIG}; then
+		GG_USESYSTEMD="yes"
+	fi
+	sed -i -e "/useSystemd/{s,\[yes|no],${GG_USESYSTEMD},g}" ${TARGET_DIR}/greengrass/config/config.json
+
 	# Enable protection for hardlinks and symlinks
 	if ! grep -qs 'protected_.*links' ${TARGET_DIR}/etc/sysctl.conf | grep -v '^#'; then
 		cat >> ${TARGET_DIR}/etc/sysctl.conf <<-_EOF_
