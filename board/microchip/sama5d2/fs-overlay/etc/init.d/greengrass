@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: GPL-2.0
 
 # Setup Cgroups
-mount -t cgroup -o all cgroup /sys/fs/cgroup
 echo 1 > /sys/fs/cgroup/memory.use_hierarchy
 
 # Enable link protection
