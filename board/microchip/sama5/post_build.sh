@@ -24,6 +24,15 @@ elif grep -Eq "^BR2_PACKAGE_CRYPTOAUTHLIB_SAMA5D27_WLSOM1_EK=y$" ${BR2_CONFIG}; 
 fi
 
 if grep -Eq "^BR2_PACKAGE_AWS_IOT_GREENGRASS_CORE=y$" ${BR2_CONFIG}; then
+	# Enable protection for hardlinks and symlinks
+	if ! grep -qs 'protected_.*links' ${TARGET_DIR}/etc/sysctl.conf | grep -v '^#'; then
+		cat >> ${TARGET_DIR}/etc/sysctl.conf <<-_EOF_
+			# Greengrass: protect hardlinks/symlinks
+			fs.protected_hardlinks = 1
+			fs.protected_symlinks = 1
+		_EOF_
+	fi
+
 	# Mount a cgroup hierarchy with all available subsystems
 	if ! grep -qs '^cgroup' ${TARGET_DIR}/etc/fstab; then
 		cat >> ${TARGET_DIR}/etc/fstab <<-_EOF_

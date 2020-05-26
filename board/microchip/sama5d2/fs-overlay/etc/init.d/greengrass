@@ -4,10 +4,7 @@
 # Setup Cgroups
 echo 1 > /sys/fs/cgroup/memory.use_hierarchy
 
-# Enable link protection
 /etc/init.d/S02sysctl start
-sysctl -w fs.protected_hardlinks=1
-sysctl -w fs.protected_symlinks=1
 
 GG_LAUNCHER=/greengrass/ggc/core/greengrassd
 case "${1}" in
