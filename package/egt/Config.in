@@ -51,4 +51,11 @@ config BR2_PACKAGE_EGT_INSTALL_ICONS
 	default y
 	help
 	  If unsure, say Y.
+
+config BR2_PACKAGE_EGT_EXTRA_CONFIG_OPTIONS
+	string "Additional egt configure options"
+	default ""
+	help
+	Any additional egt configure options you may want to include.
+
 endif
