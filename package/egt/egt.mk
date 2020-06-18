@@ -11,13 +11,12 @@ EGT_GIT_SUBMODULES = YES
 EGT_LICENSE = Apache-2.0
 EGT_INSTALL_TARGET = YES
 EGT_INSTALL_STAGING = YES
-EGT_DEPENDENCIES = \
-libdrm \
-libplanes \
-cairo \
-file
+EGT_DEPENDENCIES = cairo
 
 EGT_CONF_OPTS = --program-prefix='egt_' --disable-debug
+
+EGT_CONF_ENV += AR=$(TARGET_CC)-ar RANLIB=true
+EGT_MAKE_ENV += AR=$(TARGET_CC)-ar RANLIB=true
 
 ifeq ($(BR2_PACKAGE_EGT_INSTALL_EXAMPLES),y)
 EGT_CONF_OPTS += --enable-examples
@@ -36,6 +35,20 @@ EGT_CONF_OPTS += --with-plplot
 EGT_DEPENDENCIES += plplot
 else
 EGT_CONF_OPTS += --without-plplot
+endif
+
+ifeq ($(BR2_PACKAGE_LIBDRM),y)
+EGT_CONF_OPTS += --with-libdrm
+EGT_DEPENDENCIES += libdrm
+else
+EGT_CONF_OPTS += --without-libdrm
+endif
+
+ifeq ($(BR2_PACKAGE_LIBPLANES),y)
+EGT_CONF_OPTS += --with-libplanes
+EGT_DEPENDENCIES += libplanes
+else
+EGT_CONF_OPTS += --without-libplanes
 endif
 
 ifeq ($(BR2_PACKAGE_LIBCURL),y)
@@ -124,6 +137,13 @@ EGT_CONF_OPTS += --with-x11
 EGT_DEPENDENCIES += xlib_libX11
 else
 EGT_CONF_OPTS += --without-x11
+endif
+
+ifeq ($(BR2_PACKAGE_FILE),y)
+EGT_CONF_OPTS += --with-libmagic
+EGT_DEPENDENCIES += file
+else
+EGT_CONF_OPTS += --without-libmagic
 endif
 
 define EGT_RUN_AUTOGEN

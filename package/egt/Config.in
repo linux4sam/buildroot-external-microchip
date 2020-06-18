@@ -1,12 +1,17 @@
 config BR2_PACKAGE_EGT
 	bool "egt graphics library"
-	select BR2_PACKAGE_LIBDRM
-	select BR2_PACKAGE_LIBPLANES
 	select BR2_PACKAGE_CAIRO
 	select BR2_PACKAGE_CAIRO_PNG
-	select BR2_PACKAGE_FILE
+	depends on BR2_INSTALL_LIBSTDCPP
+	depends on BR2_USE_WCHAR
+	depends on BR2_TOOLCHAIN_GCC_AT_LEAST_5 # c++14
 	help
 	  EGT graphics library for microchip sam9x and sama5 mpu's.
+
+comment "egt needs a toolchain w/ C++, gcc >= 5, wchar"
+        depends on !BR2_INSTALL_LIBSTDCPP || \
+                !BR2_TOOLCHAIN_GCC_AT_LEAST_5 || \
+                !BR2_USE_WCHAR
 
 if BR2_PACKAGE_EGT
 config BR2_PACKAGE_EGT_MEDIA_SUPPORT
