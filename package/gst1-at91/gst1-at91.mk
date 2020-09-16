@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-GST1_AT91_VERSION = gstreamer1.0-plugins-hantro_1.6
+GST1_AT91_VERSION = 6c016ff4d9173a427a8114290e92c8046389dd5d
 GST1_AT91_SITE = https://github.com/linux4sam/gst1-hantro-g1
 GST1_AT91_SITE_METHOD = git
 GST1_AT91_LICENSE = LGPLv2+
