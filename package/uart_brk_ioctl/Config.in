@@ -1,0 +1,7 @@
+config BR2_PACKAGE_UART_BRK_IOCTL
+	bool "UART Break IOCTL utility"
+	help
+	  WILC3000 BLE uart break ioctl utility for PS. UART flow control
+	  should be enabled to hold back HOST from sending new commmands to
+	  WILC3000 BLE controller when in sleep mode.
+
