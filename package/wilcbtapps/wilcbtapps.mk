@@ -4,7 +4,7 @@
 #
 ###########################################################
 
-WILCBTAPPS_VERSION = linux4sam-2020.04
+WILCBTAPPS_VERSION = linux4sam-2020.10
 WILCBTAPPS_SITE = https://github.com/MicrochipTech/wilcbtapps-buildroot-external-microchip.git
 WILCBTAPPS_SITE_METHOD = git
 
@@ -26,9 +26,9 @@ endef
 
 define WILCBTAPPS_INSTALL_TARGET_CMDS
         $(INSTALL) -D -m 0755 $(@D)/transparent_service \
-                $(TARGET_DIR)/usr/sbin
+                $(TARGET_DIR)/usr/bin
         $(INSTALL) -D -m 0755 $(@D)/wifi_prov_service \
-                $(TARGET_DIR)/usr/sbin
+                $(TARGET_DIR)/usr/bin
 endef
 
 
