@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-EGT_VERSION = 1.1-rc3
+EGT_VERSION = 1.1-rc4
 EGT_SITE = https://github.com/linux4sam/egt.git
 EGT_SITE_METHOD = git
 EGT_GIT_SUBMODULES = YES
@@ -152,5 +152,10 @@ define EGT_RUN_AUTOGEN
         cd $(@D) && PATH=$(BR_PATH) ./autogen.sh
 endef
 EGT_POST_PATCH_HOOKS += EGT_RUN_AUTOGEN
+
+define EGT_MAKE_CHECK
+	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D) check
+endef
+#EGT_POST_BUILD_HOOKS += EGT_MAKE_CHECK
 
 $(eval $(autotools-package))
