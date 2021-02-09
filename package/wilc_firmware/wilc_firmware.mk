@@ -5,8 +5,7 @@
 ################################################################################
 
 WILC_FIRMWARE_VERSION = wilc_linux_15_4_1
-WILC_FIRMWARE_SITE = https://github.com/linux4wilc/firmware.git
-WILC_FIRMWARE_SITE_METHOD = git
+WILC_FIRMWARE_SITE = $(call github,linux4wilc,firmware,$(WILC_FIRMWARE_VERSION))
 WILC_FIRMWARE_LICENSE = Microchip firmware
 WILC_FIRMWARE_LICENSE_FILES = LICENCE.wilc_fw
 
