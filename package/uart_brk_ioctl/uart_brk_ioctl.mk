@@ -5,8 +5,7 @@
 ################################################################################
 
 UART_BRK_IOCTL_VERSION = 1.0
-UART_BRK_IOCTL_SITE = https://github.com/linux4wilc/uart_brk_ioctl.git
-UART_BRK_IOCTL_SITE_METHOD = git
+UART_BRK_IOCTL_SITE = $(call github,linux4wilc,uart_brk_ioctl,$(UART_BRK_IOCTL_VERSION))
 UART_BRK_LICENSE = GPL-2.0
 UART_BRK_LICENSE_FILES = LICENSE
 
