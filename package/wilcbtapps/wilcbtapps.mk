@@ -5,8 +5,7 @@
 ###########################################################
 
 WILCBTAPPS_VERSION = linux4sam-2020.10
-WILCBTAPPS_SITE = https://github.com/MicrochipTech/wilcbtapps-buildroot-external-microchip.git
-WILCBTAPPS_SITE_METHOD = git
+WILCBTAPPS_SITE = $(call github,MicrochipTech,wilcbtapps-buildroot-external-microchip,$(WILCBTAPPS_VERSION))
 
 WILCBTAPPS_DEPENDENCIES += bluez5_utils
 
