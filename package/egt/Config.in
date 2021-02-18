@@ -36,6 +36,7 @@ config BR2_PACKAGE_EGT_CHART_SUPPORT
 	bool "Compile with chart support"
 	default y
 	select BR2_PACKAGE_PLPLOT
+	select BR2_PACKAGE_PLPLOT_EXTCAIRO_DEVICE
 	help
 	  If unsure, say Y.
 
