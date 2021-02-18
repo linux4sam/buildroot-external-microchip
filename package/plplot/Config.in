@@ -7,3 +7,13 @@ config BR2_PACKAGE_PLPLOT
 	  PLplot is a cross-platform software package for creating scientific plots.
 
 	  http://plplot.sourceforge.net/
+
+if BR2_PACKAGE_PLPLOT
+config BR2_PACKAGE_PLPLOT_EXTCAIRO_DEVICE
+	bool "Compile with extcairo device support"
+	default y
+	select BR2_PACKAGE_CAIRO
+	select BR2_PACKAGE_PANGO
+	help
+	  If unsure, say Y.
+endif
