@@ -1,5 +1,5 @@
 board=sama7g5vb
 board_name=sama7g5vb
 bootargs=console=ttyS0,115200 earlycon earlyprintk=serial,ttyS0, ignore_loglevel root=/dev/mmcblk0p2 memtest=0 rootfstype=ext4 rw rootwait cma=256m
-bootcmd=fatload mmc 1:1 0x63000000 sama7g5vb.itb; bootm 0x63000000#kernel - 0x63000000#rank1
+bootcmd=fatload mmc 0:1 0x63000000 sama7g5vb.itb; bootm 0x63000000#kernel - 0x63000000#rank1
 bootdelay=1
