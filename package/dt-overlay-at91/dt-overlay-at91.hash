@@ -5,6 +5,7 @@ sha256 90f820bcdb5fa370fafa4df5e5ae1a5af8f6ecbcd51fdd6a0df1838bb8df4870  dt-over
 sha256 9599aa88d0dc7eb23bc3c3ca898e3fb4422e5b93b8cb4e25eec86df6ddf2d949  dt-overlay-at91-linux4sam-2020.04.tar.gz
 sha256 227d44317271425fd3d96d6a4d2a9d27fc4cd677d4c9808c6c0bbbb6d05df049  dt-overlay-at91-sama7g5-early-2.0.tar.gz
 sha256 758fe7b80a6ce12e5e065deb40e39c1e578c66cf447bc5b99eb4be644c071c28  dt-overlay-at91-linux4sam-2020.10.tar.gz
+sha256 7570d6ec0e83d8d92914faeecb7d451270ec5b560a9ded421948e743e5ca2a14  dt-overlay-at91-7ad311899af48efbb43f0e3ac935da5981bd4b2d.tar.gz
 
 # Hash for license files:
 sha256 fbdbfc6e5eb6fb789b6f754d4951df6cd9684a59818dbe391cdb56812314e500  COPYING
