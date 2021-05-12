@@ -47,6 +47,13 @@ config BR2_PACKAGE_EGT_SVG_SUPPORT
 	help
 	  If unsure, say Y.
 
+config BR2_PACKAGE_EGT_FONTCONFIG_SUPPORT
+        bool "Compile with Fontconfig support"
+        default y
+        select BR2_PACKAGE_FONTCONFIG
+        help
+          If unsure, say Y.
+
 config BR2_PACKAGE_EGT_INSTALL_EXAMPLES
 	bool "Compile and install examples"
 	default y
