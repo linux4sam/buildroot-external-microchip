@@ -40,6 +40,13 @@ config BR2_PACKAGE_EGT_CHART_SUPPORT
 	help
 	  If unsure, say Y.
 
+config BR2_PACKAGE_EGT_SVG_SUPPORT
+	bool "Compile with SVG support"
+	default y
+	select BR2_PACKAGE_LIBRSVG
+	help
+	  If unsure, say Y.
+
 config BR2_PACKAGE_EGT_INSTALL_EXAMPLES
 	bool "Compile and install examples"
 	default y
