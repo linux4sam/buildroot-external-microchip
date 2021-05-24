@@ -21,7 +21,6 @@ menu "Microchip CryptoAuth"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/cryptoauthlib/Config.in"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/python-cryptoauthlib/Config.in"
 endmenu
-source "$BR2_EXTERNAL_MCHP_PATH/package/greengrass-core/Config.in"
 
 menu "EGT Applications"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/egt/Config.in"
