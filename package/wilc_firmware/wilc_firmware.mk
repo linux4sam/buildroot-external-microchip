@@ -7,7 +7,7 @@
 WILC_FIRMWARE_VERSION = wilc_linux_15_5rc2
 WILC_FIRMWARE_SITE = $(call github,linux4wilc,firmware,$(WILC_FIRMWARE_VERSION))
 WILC_FIRMWARE_LICENSE = Microchip firmware
-WILC_FIRMWARE_LICENSE_FILES = LICENCE.wilc_fw
+WILC_FIRMWARE_LICENSE_FILES = LICENSE.wilc_fw
 
 define WILC_FIRMWARE_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/lib/firmware/mchp
