@@ -1,0 +1,314 @@
+#include "skeleton.dtsi"
+#include <dt-bindings/clk/at91.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+	model = "Atmel SAMA5D2 family SoC";
+	compatible = "atmel,sama5d2";
+	interrupt-parent = <&aic>;
+
+	aliases {
+		spi0 = &spi0;
+		spi1 = &qspi0;
+		spi2 = &qspi1;
+		i2c0 = &i2c0;
+		i2c1 = &i2c1;
+	};
+
+	clocks {
+		slow_rc_osc: slow_rc_osc {
+			compatible = "fixed-clock";
+			#clock-cells = <0>;
+			clock-frequency = <64000>;
+			u-boot,dm-pre-reloc;
+		};
+
+		main_rc: main_rc {
+			compatible = "fixed-clock";
+			#clock-cells = <0>;
+			clock-frequency = <12000000>;
+			u-boot,dm-pre-reloc;
+		};
+
+		slow_xtal: slow_xtal {
+			compatible = "fixed-clock";
+			#clock-cells = <0>;
+			clock-frequency = <32768>;
+			u-boot,dm-pre-reloc;
+		};
+
+		main_xtal: main_xtal {
+			compatible = "fixed-clock";
+			#clock-cells = <0>;
+			u-boot,dm-pre-reloc;
+		};
+	};
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		A5_0: cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a5";
+			clocks = <&pmc PMC_TYPE_CORE ID_MCK_PRES>, <&pmc PMC_TYPE_CORE ID_MCK_DIV>, <&main_xtal>;
+			clock-names = "cpu", "master", "xtal";
+		};
+	};
+
+	ahb {
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		u-boot,dm-pre-reloc;
+
+		usb1: ohci@00400000 {
+			compatible = "atmel,at91rm9200-ohci", "usb-ohci";
+			reg = <0x00400000 0x100000>;
+			clocks = <&pmc PMC_TYPE_PERIPHERAL 41>, <&pmc PMC_TYPE_PERIPHERAL 41>, <&pmc PMC_TYPE_SYSTEM ID_USBH>;
+			clock-names = "ohci_clk", "hclk", "uhpck";
+			status = "disabled";
+		};
+
+		usb2: ehci@00500000 {
+			compatible = "atmel,at91sam9g45-ehci", "usb-ehci";
+			reg = <0x00500000 0x100000>;
+			clocks = <&pmc PMC_TYPE_CORE ID_UTMI>, <&pmc PMC_TYPE_PERIPHERAL 41>;
+			clock-names = "usb_clk", "ehci_clk";
+			status = "disabled";
+		};
+
+		sdmmc0: sdio-host@a0000000 {
+			compatible = "atmel,sama5d2-sdhci";
+			reg = <0xa0000000 0x300>;
+			clocks = <&pmc PMC_TYPE_PERIPHERAL 31>, <&pmc PMC_TYPE_GCK 31>, <&pmc PMC_TYPE_CORE ID_MAINCK>;
+			clock-names = "hclock", "multclk", "baseclk";
+			status = "disabled";
+		};
+
+		sdmmc1: sdio-host@b0000000 {
+			compatible = "atmel,sama5d2-sdhci";
+			reg = <0xb0000000 0x300>;
+			clocks = <&pmc PMC_TYPE_PERIPHERAL 32>, <&pmc PMC_TYPE_GCK 32>, <&pmc PMC_TYPE_CORE ID_MAINCK>;
+			clock-names = "hclock", "multclk", "baseclk";
+			status = "disabled";
+		};
+
+		apb {
+			compatible = "simple-bus";
+			#address-cells = <1>;
+			#size-cells = <1>;
+			u-boot,dm-pre-reloc;
+
+			hlcdc: hlcdc@f0000000 {
+				compatible = "atmel,at91sam9x5-hlcdc";
+				reg = <0xf0000000 0x2000>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 45>;
+				status = "disabled";
+			};
+
+			pmc: pmc@f0014000 {
+				compatible = "atmel,sama5d2-pmc", "syscom";
+				reg = <0xf0014000 0x160>;
+				#clock-cells = <2>;
+				clocks = <&clk32k>, <&main_xtal>, <&main_rc>;
+				clock-names = "slow_clk", "main_xtal", "main_rc";
+				regmap-sfr = <&sfr>;
+				status = "okay";
+				u-boot,dm-pre-reloc;
+			};
+
+			clk32k: sckc@fffffe50 {
+				compatible = "atmel,sama5d4-sckc";
+				reg = <0xfffffe50 0x4>;
+				clocks = <&slow_rc_osc>, <&slow_xtal>;
+				#clock-cells = <0>;
+			};
+
+			qspi0: spi@f0020000 {
+				compatible = "atmel,sama5d2-qspi";
+				reg = <0xf0020000 0x100>, <0xd0000000 0x08000000>;
+				reg-names = "qspi_base", "qspi_mmap";
+				#address-cells = <1>;
+				#size-cells = <0>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 52>;
+				status = "disabled";
+			};
+
+			qspi1: spi@f0024000 {
+				compatible = "atmel,sama5d2-qspi";
+				reg = <0xf0024000 0x100>, <0xd8000000 0x08000000>;
+				reg-names = "qspi_base", "qspi_mmap";
+				#address-cells = <1>;
+				#size-cells = <0>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 53>;
+				status = "disabled";
+			};
+
+			spi0: spi@f8000000 {
+				compatible = "atmel,at91rm9200-spi";
+				reg = <0xf8000000 0x100>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 33>;
+				clock-names = "spi_clk";
+				#address-cells = <1>;
+				#size-cells = <0>;
+				status = "disabled";
+			};
+
+			macb0: ethernet@f8008000 {
+				compatible = "cdns,macb";
+				reg = <0xf8008000 0x1000>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 5>, <&pmc PMC_TYPE_PERIPHERAL 5>;
+				clock-names = "hclk", "pclk";
+				status = "disabled";
+			};
+
+			tcb0: timer@f800c000 {
+				compatible = "atmel,sama5d2-tcb", "simple-mfd", "syscon";
+				reg = <0xf800c000 0x100>;
+				interrupts = <35 IRQ_TYPE_LEVEL_HIGH 0>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 35>, <&pmc PMC_TYPE_GCK 35>, <&clk32k>;
+				clock-names = "t0_clk", "gclk", "slow_clk";
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				timer0: timer@0 {
+					compatible = "atmel,tcb-timer";
+					reg = <0>, <1>;
+				};
+			};
+
+			uart0: serial@f801c000 {
+				compatible = "atmel,at91sam9260-usart";
+				reg = <0xf801c000 0x100>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 24>;
+				clock-names = "usart";
+				status = "disabled";
+			};
+
+			uart1: serial@f8020000 {
+				compatible = "atmel,at91sam9260-usart";
+				reg = <0xf8020000 0x100>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 25>;
+				clock-names = "usart";
+				status = "disabled";
+			};
+
+			uart2: serial@f8024000 {
+				compatible = "atmel,at91sam9260-usart";
+				reg = <0xf8024000 0x100>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 26>;
+				clock-names = "usart";
+				status = "disabled";
+			};
+
+			i2c0: i2c@f8028000 {
+				compatible = "atmel,sama5d2-i2c";
+				reg = <0xf8028000 0x100>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 29>;
+				status = "disabled";
+			};
+
+			rstc: rstc@f8048000 {
+				compatible = "atmel,sama5d3-rstc";
+				reg = <0xf8048000 0x10>;
+				clocks = <&clk32k>;
+			};
+
+			shdwc: shdwc@f8048010 {
+				compatible = "atmel,sama5d2-shdwc";
+				reg = <0xf8048010 0x10>;
+				clocks = <&clk32k>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+				atmel,wakeup-rtc-timer;
+			};
+
+			pit: timer@f8048030 {
+				compatible = "atmel,at91sam9260-pit";
+				reg = <0xf8048030 0x10>;
+				clocks = <&pmc PMC_TYPE_CORE ID_H32MX>;
+			};
+
+			watchdog: watchdog@f8048040 {
+				compatible = "atmel,sama5d4-wdt";
+				reg = <0xf8048040 0x10>;
+				clocks = <&clk32k>;
+				status = "disabled";
+			};
+
+			sfr: sfr@f8030000 {
+				compatible = "atmel,sama5d2-sfr", "syscon";
+				reg = <0xf8030000 0x98>;
+				u-boot,dm-pre-reloc;
+			};
+
+			spi1: spi@fc000000 {
+				compatible = "atmel,at91rm9200-spi";
+				reg = <0xfc000000 0x100>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 34>;
+				clock-names = "spi_clk";
+				status = "disabled";
+			};
+
+			uart3: serial@fc008000 {
+				compatible = "atmel,at91sam9260-usart";
+				reg = <0xfc008000 0x100>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 27>;
+				clock-names = "usart";
+				status = "disabled";
+			};
+
+			uart4: serial@fc00c000 {
+				compatible = "atmel,at91sam9260-usart";
+				reg = <0xfc00c000 0x100>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 28>;
+				clock-names = "usart";
+				status = "disabled";
+			};
+
+			aic: interrupt-controller@fc020000 {
+				compatible = "atmel,sama5d2-aic";
+				reg = <0xfc020000 0x200>;
+				#interrupt-cells = <3>;
+				interrupt-controller;
+				atmel,external-irqs = <49>;
+				status = "disabled";
+			};
+
+			i2c1: i2c@fc028000 {
+				compatible = "atmel,sama5d2-i2c";
+				reg = <0xfc028000 0x100>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 30>;
+				status = "disabled";
+			};
+
+			pioA: gpio@fc038000 {
+				compatible = "atmel,sama5d2-gpio";
+				reg = <0xfc038000 0x600>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 18>;
+				gpio-controller;
+				#gpio-cells = <2>;
+				u-boot,dm-pre-reloc;
+
+				pinctrl {
+					compatible = "atmel,sama5d2-pinctrl";
+					u-boot,dm-pre-reloc;
+				};
+			};
+		};
+	};
+
+	onewire_tm: onewire {
+		compatible = "w1-gpio";
+		status = "disabled";
+	};
+};
