@@ -34,6 +34,7 @@ endmenu
 
 menu "Fonts"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/noto-fonts/Config.in"
+	source "$BR2_EXTERNAL_MCHP_PATH/package/lohit-fonts/Config.in"
 endmenu
 
 source "$BR2_EXTERNAL_MCHP_PATH/system/Config.in"

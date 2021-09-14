@@ -1,0 +1,17 @@
+config BR2_PACKAGE_LOHIT_FONTS
+	bool "Lohit Indian languages fonts"
+	help
+	  Lohit is a font family designed to cover Indic scripts
+
+	  https://github.com/lohit-fonts/lohit-fonts
+
+if BR2_PACKAGE_LOHIT_FONTS
+
+config BR2_PACKAGE_LOHIT_FONTS_FONTS
+	string "List of fonts to install"
+	default "devanagari"
+	help
+	  Specify a space-separated list of fonts to install. They
+	  correspond to the directory of the font within lohit Font
+	  directory code base. For example, devanagari, kannada.
+endif
