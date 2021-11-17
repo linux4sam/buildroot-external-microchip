@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-WILC_FIRMWARE_VERSION = wilc_linux_15_5
+WILC_FIRMWARE_VERSION = wilc_linux_15_6rc1
 WILC_FIRMWARE_SITE = $(call github,linux4wilc,firmware,$(WILC_FIRMWARE_VERSION))
 WILC_FIRMWARE_LICENSE = Microchip firmware
 WILC_FIRMWARE_LICENSE_FILES = LICENSE.wilc_fw
