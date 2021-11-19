@@ -153,9 +153,4 @@ define EGT_RUN_AUTOGEN
 endef
 EGT_POST_PATCH_HOOKS += EGT_RUN_AUTOGEN
 
-define EGT_MAKE_CHECK
-	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D) check
-endef
-#EGT_POST_BUILD_HOOKS += EGT_MAKE_CHECK
-
 $(eval $(autotools-package))
