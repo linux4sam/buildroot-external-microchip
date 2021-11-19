@@ -1,0 +1,13 @@
+config BR2_PACKAGE_EGT_SAMPLES_CONTRIBUTION
+    bool "egt sample applications from the community"
+    select BR2_PACKAGE_EGT
+    help
+      Various EGT sample applications made by the community.
+
+if BR2_PACKAGE_EGT_SAMPLES_CONTRIBUTION
+config BR2_PACKAGE_EGT_SAMPLES_CONTRIBUTION_SLIDERB
+    bool "sliderb"
+    default y
+    help
+      Slider with an interactive bump as the handle.
+endif

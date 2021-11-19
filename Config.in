@@ -28,6 +28,7 @@ menu "EGT Applications"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/egt-launcher/Config.in"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/egt-thermostat/Config.in"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/egt-samples/Config.in"
+	source "$BR2_EXTERNAL_MCHP_PATH/package/egt-samples-contribution/Config.in"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/egt-media/Config.in"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/egt-media-extra/Config.in"
 endmenu
