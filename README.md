@@ -11,7 +11,7 @@ the standard buildroot tree.
 
 ## Install System Dependencies
 
-The external is tested on Ubuntu 18.04 LTS.  The following system build
+The external is tested on Ubuntu 20.04 LTS.  The following system build
 dependencies are required.
 
     sudo apt-get install subversion build-essential bison flex gettext \
