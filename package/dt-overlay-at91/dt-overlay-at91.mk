@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-DT_OVERLAY_AT91_VERSION = 8581f4df41830e44bed6b466b96b4cec9537938f
+DT_OVERLAY_AT91_VERSION = bc401e014934bf59ed1a03ce4120bf0688768aa6
 DT_OVERLAY_AT91_SITE = https://bitbucket.microchip.com/scm/linux4sam/dt-overlay-at91.git
 DT_OVERLAY_AT91_SITE_METHOD = git
 DT_OVERLAY_AT91_LICENSE = GPL-2.0 MIT 
