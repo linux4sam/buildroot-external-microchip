@@ -1,0 +1,12 @@
+config BR2_PACKAGE_VIDEO_CAPTURE_AT91
+	bool "video-capture-at91"
+	help
+	  This package is a collection of scripts to configure and initialize
+	  the image capture pipeline on different AT91 MPU products.
+
+if BR2_PACKAGE_VIDEO_CAPTURE_AT91
+config BR2_PACKAGE_VIDEO_CAPTURE_AT91_PLATFORM
+	string "platform name"
+	help
+	  Available platforms: sama7g5
+endif
