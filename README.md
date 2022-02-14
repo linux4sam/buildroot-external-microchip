@@ -26,7 +26,7 @@ required.  It will let you know what those are.
 ## Buildroot Dependencies
 
 This buildroot external requires the specific buildroot-at91 version
-2021.02-at91. It is not designed to work with another version of buildroot-at91.
+2022.02-at91. It is not designed to work with another version of buildroot-at91.
 
 
 ## Build
@@ -34,8 +34,8 @@ This buildroot external requires the specific buildroot-at91 version
 Clone, configure, and build.  When building, use the appropriate defconfig in
 the `buildroot-external-microchip/configs` directory for your board.
 
-    git clone https://github.com/linux4sam/buildroot-external-microchip.git -b 2021.02-at91
-    git clone https://github.com/linux4sam/buildroot-at91.git -b 2021.02-at91
+    git clone https://github.com/linux4sam/buildroot-external-microchip.git -b 2022.02-at91
+    git clone https://github.com/linux4sam/buildroot-at91.git -b 2022.02-at91
     cd buildroot-at91
     BR2_EXTERNAL=../buildroot-external-microchip/ make sama5d4_xplained_graphics_defconfig
     make
