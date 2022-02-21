@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-VIDEO_CAPTURE_AT91_VERSION = 31eb5c0bc3ae1382e2bb54cfc946ecf02266f6ab
+VIDEO_CAPTURE_AT91_VERSION = 9cbeed745ab98f1a847e349beb30ac16c0d1ca08
 VIDEO_CAPTURE_AT91_SITE = $(call github,linux4sam,video-capture-at91,$(VIDEO_CAPTURE_AT91_VERSION))
 VIDEO_CAPTURE_AT91_LICENSE = MIT
 VIDEO_CAPTURE_AT91_LICENSE_FILES = LICENSES/MIT
