@@ -1,0 +1,27 @@
+From 877f03ed9d48814b81258e7b18f1a0be49cdbf35 Mon Sep 17 00:00:00 2001
+From: Eugen Hristev <eugen.hristev@microchip.com>
+Date: Mon, 21 Feb 2022 18:22:13 +0200
+Subject: [PATCH] pipeline: simple: add atmel-isc-common
+
+Add atmel-isc-common as simple pipeline handler.
+
+Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+---
+ src/libcamera/pipeline/simple/simple.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/libcamera/pipeline/simple/simple.cpp b/src/libcamera/pipeline/simple/simple.cpp
+index ece821bf..d400a4cd 100644
+--- a/src/libcamera/pipeline/simple/simple.cpp
++++ b/src/libcamera/pipeline/simple/simple.cpp
+@@ -163,6 +163,7 @@ static const SimplePipelineInfo supportedDevices[] = {
+ 	{ "imx7-csi", { { "pxp", 1 } } },
+ 	{ "qcom-camss", {} },
+ 	{ "sun6i-csi", {} },
++	{ "atmel_isc_commo", {} },
+ };
+ 
+ } /* namespace */
+-- 
+2.25.1
+
