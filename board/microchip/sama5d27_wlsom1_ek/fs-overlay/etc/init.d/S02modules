@@ -1,7 +1,5 @@
 #!/bin/sh
 
-/etc/init.d/S02sysctrl start
-
 # make sure module support is enabled
 [ -e /proc/ksyms -o -e /proc/modules ] || exit 0
 
