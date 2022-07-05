@@ -18,5 +18,5 @@
 # has an EV_ABS value (-a) which is used for touchscreen type devices.
 SUBSYSTEM=="input", KERNEL=="event[0-9]*", ENV{ID_INPUT_TOUCHSCREEN}=="1", SYMLINK+="input/touchscreen0"
 
-# Create a symlink for the panel keyboard input which is has an I2C parent
-SUBSYSTEM=="input", SUBSYSTEMS=="i2c", KERNEL=="event[0-9]*", ENV{ID_INPUT_KEY}=="1", SYMLINK+="input/keyboard0"
+# Create a symlink for the panel keyboard input which has a platform parent
+SUBSYSTEM=="input", SUBSYSTEMS=="platform", KERNEL=="event[0-9]*", ENV{ID_INPUT_KEY}=="1", SYMLINK+="input/keyboard0"
