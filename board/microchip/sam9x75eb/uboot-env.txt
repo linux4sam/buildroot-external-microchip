@@ -1,0 +1,6 @@
+board=sam9x75eb
+board_name=sam9x75eb
+bootargs=console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait rootfstype=ext4 atmel.pm_modes=standby,ulp0
+bootcmd=fatload mmc 0:1 ${loadaddr} ${board_name}.itb; bootm ${loadaddr}#kernel_dtb
+bootdelay=1
+loadaddr=0x21000000
