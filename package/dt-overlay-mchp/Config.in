@@ -1,28 +1,28 @@
-config BR2_PACKAGE_DT_OVERLAY_AT91
-	bool "dt-overlay-at91"
+config BR2_PACKAGE_DT_OVERLAY_MCHP
+	bool "dt-overlay-mchp"
 	help
 	  This package contains DT overlays files (dtso) for Microchip
 	  platforms plus its files to generate FIT images.
 
-if BR2_PACKAGE_DT_OVERLAY_AT91
-config BR2_PACKAGE_DT_OVERLAY_AT91_PLATFORM
+if BR2_PACKAGE_DT_OVERLAY_MCHP
+config BR2_PACKAGE_DT_OVERLAY_MCHP_PLATFORM
 	string "platform name"
 	help
 	  Available platforms: at91sam9x5ek, sama5d27_som1_ek,
 	  sama5d2_ptc_ek, sama5d2_xplained, sama5d3_xplained,
-	  sama5d4_xplained, sam9x60ek, sam9x60_curiosity.
+	  sama5d4_xplained, sam9x60ek,sam9x60_curiosity.
 
 choice
 	prompt "output"
-	default BR2_PACKAGE_DT_OVERLAY_AT91_FIT
+	default BR2_PACKAGE_DT_OVERLAY_MCHP_FIT
 	help
 	  Build only the device tree overlays or build them and embed
 	  them in a FIT image.
 
-config BR2_PACKAGE_DT_OVERLAY_AT91_ONLY
+config BR2_PACKAGE_DT_OVERLAY_MCHP_ONLY
 	bool "dtbos only"
 
-config BR2_PACKAGE_DT_OVERLAY_AT91_FIT
+config BR2_PACKAGE_DT_OVERLAY_MCHP_FIT
 	bool "FIT image"
 endchoice
 endif
