@@ -11,6 +11,7 @@ sha256 749d8914e50eb6daf3b9f1c135c1d1c7514e3436f1d7f4ef0a88dbc297b08456  dt-over
 sha256 1cfb135b69b80d8eafb6675924cb289a5519e222e19c7e563c22ec1445fbf84a  dt-overlay-mchp-sama7g5-early-4.0.tar.gz
 sha256 34073c1950945fed1faf78faedf8b28bab03c21bb9538f0d4f15dc2e8a385acc  dt-overlay-mchp-linux4sam-2022.04.tar.gz
 sha256 07bda7c740022f5b10a0c6bf9a99ab12eca07d73b540c635b9a05c050ffa7bd6  dt-overlay-mchp-sam9x60-curiosity-2022.07-rc1.tar.gz
+sha256 0b05123e490afc951f1478a310076f0414f665836762acc324b2f0ef90269e5d  dt-overlay-mchp-sam9x60-curiosity-2022.07.tar.gz
 
 # Hash for license files:
 sha256 fbdbfc6e5eb6fb789b6f754d4951df6cd9684a59818dbe391cdb56812314e500  COPYING
