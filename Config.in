@@ -10,6 +10,7 @@ source "$BR2_EXTERNAL_MCHP_PATH/package/uart_brk_ioctl/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/wilc_firmware/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/9bit/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/plplot/Config.in"
+source "$BR2_EXTERNAL_MCHP_PATH/package/mpfs_examples/Config.in"
 
 menu "WILC BT and WiFi Applications"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/websocket/Config.in"
