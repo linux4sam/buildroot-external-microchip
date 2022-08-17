@@ -20,14 +20,20 @@ define DT_OVERLAY_MCHP_INSTALL_TARGET_CMDS
 			$(BINARIES_DIR))
 endef
 else
+ifeq ($(BR2_riscv),y)
+	dt_overlay_arch := riscv
+else
+	dt_overlay_arch := arm
+endif
 define DT_OVERLAY_MCHP_BUILD_CMDS
-	PATH="$(LINUX_DIR)/scripts/dtc:$(HOST_DIR)/bin:$(PATH)" $(MAKE) DTC="$(LINUX_DIR)/scripts/dtc/dtc" KERNEL_DIR="$(LINUX_DIR)" -C $(@D) $(BR2_PACKAGE_DT_OVERLAY_MCHP_PLATFORM).itb
+	ARCH=$(dt_overlay_arch) PATH="$(LINUX_DIR)/scripts/dtc:$(HOST_DIR)/bin:$(PATH)" $(MAKE) DTC="$(LINUX_DIR)/scripts/dtc/dtc" KERNEL_DIR="$(LINUX_DIR)" -C $(@D) $(BR2_PACKAGE_DT_OVERLAY_MCHP_PLATFORM).itb
 endef
 define DT_OVERLAY_MCHP_INSTALL_TARGET_CMDS
 	$(foreach f,$(notdir $(wildcard $(@D)/*/*.dtbo)),
 		$(INSTALL) -m 0644 -D $(@D)/$(BR2_PACKAGE_DT_OVERLAY_MCHP_PLATFORM)/$(f) \
 			$(BINARIES_DIR))
 	$(INSTALL) -m 0644 -D $(@D)/$(BR2_PACKAGE_DT_OVERLAY_MCHP_PLATFORM).itb $(BINARIES_DIR)/
+	$(INSTALL) -m 0644 -D $(@D)/$(BR2_PACKAGE_DT_OVERLAY_MCHP_PLATFORM).its $(BINARIES_DIR)/
 endef
 endif
 
