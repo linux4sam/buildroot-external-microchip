@@ -35,7 +35,7 @@ if ! test -f /etc/wpa_supplicant.conf; then
 cat << 'EOT' > /etc/wpa_supplicant.conf
 ctrl_interface=/var/run/wpa_supplicant
 ctrl_interface_group=0
-update config=1
+update_config=1
 
 network={
 	key_mgmt=NONE
