@@ -38,7 +38,7 @@ Clone, configure, and build.  When building, use the appropriate defconfig in
 the `buildroot-external-microchip/configs` directory for your board.
 Here, as an example, we use `sama5d4_xplained_graphics_defconfig`.
 
-    git clone https://github.com/linux4microchip/buildroot-external-mchp.git -b 2022.02
+    git clone https://github.com/linux4microchip/buildroot-external-microchip.git -b 2022.02-mchp
     git clone https://git.busybox.net/buildroot -b 2022.02
     cd buildroot
     BR2_EXTERNAL=../buildroot-external-microchip/ make sama5d4_xplained_graphics_defconfig
