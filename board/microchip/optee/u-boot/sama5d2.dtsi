@@ -1,6 +1,6 @@
 #include "skeleton.dtsi"
-#include <dt-bindings/clk/at91.h>
 #include <dt-bindings/interrupt-controller/irq.h>
+#include <dt-bindings/clk/at91.h>
 
 / {
 	model = "Atmel SAMA5D2 family SoC";
@@ -62,7 +62,7 @@
 		#size-cells = <1>;
 		u-boot,dm-pre-reloc;
 
-		usb1: ohci@00400000 {
+		usb1: ohci@400000 {
 			compatible = "atmel,at91rm9200-ohci", "usb-ohci";
 			reg = <0x00400000 0x100000>;
 			clocks = <&pmc PMC_TYPE_PERIPHERAL 41>, <&pmc PMC_TYPE_PERIPHERAL 41>, <&pmc PMC_TYPE_SYSTEM ID_USBH>;
@@ -70,7 +70,7 @@
 			status = "disabled";
 		};
 
-		usb2: ehci@00500000 {
+		usb2: ehci@500000 {
 			compatible = "atmel,at91sam9g45-ehci", "usb-ehci";
 			reg = <0x00500000 0x100000>;
 			clocks = <&pmc PMC_TYPE_CORE ID_UTMI>, <&pmc PMC_TYPE_PERIPHERAL 41>;
@@ -173,10 +173,12 @@
 				clock-names = "t0_clk", "gclk", "slow_clk";
 				#address-cells = <1>;
 				#size-cells = <0>;
+				u-boot,dm-pre-reloc;
 
 				timer0: timer@0 {
 					compatible = "atmel,tcb-timer";
 					reg = <0>, <1>;
+					u-boot,dm-pre-reloc;
 				};
 			};
 
@@ -210,6 +212,14 @@
 				#address-cells = <1>;
 				#size-cells = <0>;
 				clocks = <&pmc PMC_TYPE_PERIPHERAL 29>;
+				status = "disabled";
+			};
+
+			pwm0: pwm@f802c000 {
+				compatible = "atmel,sama5d2-pwm";
+				reg = <0xf802c000 0x4000>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 38>;
+				#pwm-cells = <3>;
 				status = "disabled";
 			};
 
@@ -274,12 +284,11 @@
 			};
 
 			aic: interrupt-controller@fc020000 {
-				compatible = "atmel,sama5d2-aic";
-				reg = <0xfc020000 0x200>;
 				#interrupt-cells = <3>;
+				compatible = "atmel,sama5d2-aic";
 				interrupt-controller;
+				reg = <0xfc020000 0x200>;
 				atmel,external-irqs = <49>;
-				status = "disabled";
 			};
 
 			i2c1: i2c@fc028000 {
@@ -291,18 +300,13 @@
 				status = "disabled";
 			};
 
-			pioA: gpio@fc038000 {
-				compatible = "atmel,sama5d2-gpio";
+			pioA: pinctrl@fc038000 {
+				compatible = "atmel,sama5d2-pinctrl";
 				reg = <0xfc038000 0x600>;
 				clocks = <&pmc PMC_TYPE_PERIPHERAL 18>;
 				gpio-controller;
 				#gpio-cells = <2>;
 				u-boot,dm-pre-reloc;
-
-				pinctrl {
-					compatible = "atmel,sama5d2-pinctrl";
-					u-boot,dm-pre-reloc;
-				};
 			};
 		};
 	};
