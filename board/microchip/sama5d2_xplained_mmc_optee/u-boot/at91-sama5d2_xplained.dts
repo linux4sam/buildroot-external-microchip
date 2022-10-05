@@ -13,18 +13,18 @@
 		stdout-path = &uart1;
 	};
 
+	memory {
+		reg = <0x22000000 0x1E000000>;
+	};
+
 	clocks {
 		slow_xtal: slow_xtal {
 			clock-frequency = <32768>;
 		};
 
 		main_xtal: main_xtal {
-			clock-frequency = <24000000>;
+			clock-frequency = <12000000>;
 		};
-	};
-
-	memory {
-		reg = <0x22000000 0x1E000000>;
 	};
 
 	onewire_tm: onewire {
