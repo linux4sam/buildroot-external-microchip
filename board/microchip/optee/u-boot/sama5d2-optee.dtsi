@@ -41,30 +41,6 @@
 	};
 };
 
-&pmc {
-	status = "disabled";
-};
-
-&clk32k {
-	status = "disabled";
-};
-
-&rstc {
-	status = "disabled";
-};
-
-&shdwc {
-	status = "disabled";
-};
-
-&pit {
-	status = "disabled";
-};
-
-&watchdog {
-	status = "disabled";
-};
-
 &tcb0 {
 	clocks = <&scmi0_clock AT91_SCMI_CLK_PERIPH_TCB0_CLK>, <&scmi0_clock AT91_SCMI_CLK_GCK_TCB0_GCLK>, <&clk32k>;
 };
@@ -91,6 +67,14 @@
 
 &hlcdc {
 	clocks = <&scmi0_clock AT91_SCMI_CLK_PERIPH_LCDC_CLK>;
+};
+
+&pmc {
+	status = "disabled";
+};
+
+&clk32k {
+	status = "disabled";
 };
 
 &qspi0 {
@@ -123,6 +107,22 @@
 
 &i2c0 {
 	clocks = <&scmi0_clock AT91_SCMI_CLK_PERIPH_TWI0_CLK>;
+};
+
+&rstc {
+	status = "disabled";
+};
+
+&shdwc {
+	status = "disabled";
+};
+
+&pit {
+	status = "disabled";
+};
+
+&watchdog {
+	clocks = <&scmi0_clock AT91_SCMI_CLK_SCKC_SLOWCK_32K>;
 };
 
 &spi1 {

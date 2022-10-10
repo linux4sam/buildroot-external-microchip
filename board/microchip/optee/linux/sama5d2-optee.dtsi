@@ -49,6 +49,7 @@
 			reg = <0x21000000 0x00400000>;
 		};
 		scmi0_shmem: scmi0_shmem@21400000 {
+			compatible = "arm,scmi-shmem";
 			no-map;
 			reg = <0x21400000 0x80>;
 		};
