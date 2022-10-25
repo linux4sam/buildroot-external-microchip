@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# Configure the T1 Phy mode master/slave
+#
+
+configure_t1phymode() {
+    ETHDEV=lan
+    START=1
+    p=2
+    while [ -e "/sys/class/net/lan$p" ]; do
+	    let p=$p+1
+    done
+    PORTS=$p
+
+    mode=0
+    mode=$(cat /proc/cmdline | awk -F"phymode=" '{print $2}' | awk -F" " '{ print $1 }')
+
+    p=$START
+    while [ $p -lt $PORTS ]; do
+        if [ -f "/sys/class/net/$ETHDEV$p/of_node/phy-mode" ]; then
+		t1port=$(cat /sys/class/net/$ETHDEV$p/of_node/phy-mode)
+		if [ $t1port = "internal" ]; then
+			temp=$((1<<p))
+			if [ $((mode & temp)) -eq $temp ]; then
+				ethtool -s $ETHDEV$p master-slave forced-master
+			else
+				ethtool -s $ETHDEV$p master-slave forced-slave
+			fi
+		fi
+        fi
+        let p=$p+1
+    done
+
+}
+
+start() {
+    configure_t1phymode
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        ;;
+    *)
+        echo "Usage: $0 {start}"
+        exit 1
+esac
+
+exit $?
