@@ -7,7 +7,7 @@ else
   load mmc 0:${mmcbootpart} ${fileaddr} mpfs_icicle.itb;
 fi;
 
-bootm start ${fileaddr};
+bootm start ${fileaddr}#kernel_dtb;
 bootm loados ${fileaddr};
 # Try to load a ramdisk if available inside fitImage
 bootm ramdisk;

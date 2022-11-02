@@ -3,4 +3,4 @@
 cd ${BINARIES_DIR}
 mkdir dts
 cp -r microchip/ dts/
-${BUILD_DIR}/uboot-2022.01/tools/mkimage -f mpfs_icicle.its mpfs_icicle.itb
+${BUILD_DIR}/uboot-mpfs-uboot-2022.01/tools/mkimage -f mpfs_icicle.its mpfs_icicle.itb
