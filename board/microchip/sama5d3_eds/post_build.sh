@@ -1,7 +1,11 @@
 #!/bin/bash
 # SPDX-License-Identifier: GPL-2.0
 
-echo "conf=${BR2_CONFIG}, hd=${HOST_DIR}, sd=${STAGING_DIR}, td=${TARGET_DIR}, bd=${BUILD_DIR}, bindir=${BINARIES_DIR}, base=${BASE_DIR}"
+echo .
+echo "*** post-build script ***"
+# echo "conf=${BR2_CONFIG}, hd=${HOST_DIR}, sd=${STAGING_DIR}, td=${TARGET_DIR}, bd=${BUILD_DIR}, bindir=${BINARIES_DIR}, base=${BASE_DIR}"
+
+touch ${TARGET_DIR}/etc/timestamp
 
 if grep -Eq "^BR2_PACKAGE_CRYPTOAUTHLIB=y$" ${BR2_CONFIG}; then
 echo "Copying libcryptoauth.so to python3.8/site-packages"
