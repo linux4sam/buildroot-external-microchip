@@ -120,25 +120,39 @@ documentation][3].
 
 ### PolarFire SoC
 
-#### Create an SD Card
+There are multiple configurations provided for PolarFire SoC. The
+'icicle_defconfig' is intended for use with the Icicle kit in
+Symmetric Multiprocessing (SMP) mode, and the 'icicle_amp_defconfig' is
+intended for use with the Icicle kit in Asymmemtric Multiprocessing
+(AMP) mode. You can specify the configuration you would like to use with
+the following command:
 
-A SD card image is generated in the file `sdcard.img`.  The first partition of
-this image contains a FAT filesystem, u-boot, a u-boot env, ITB file, which
-contains kernel and device tree. The second partition contains the root
-filesystem. This image can be written directly to an SD card.
+    BR2_EXTERNAL=../buildroot-external-microchip/ make icicle_defconfig
+    make
 
-You need at least a 1GB SD card. All the data on the SD card will be
-lost. Find the device node name for your card.  To copy the image on the SD
-card:
+For more information on AMP please see the [AMP guide for PolarFire SoC][9].
+
+The images generated from both of these configurations can be loaded
+using the following method.
+
+#### Create an Image for eMMC/SD Card
+
+An image is generated in the file `sdcard.img` in the output/images
+directory. The first partition of this image contains a U-Boot binary,
+embedded in a Hart Software Services (HSS) payload. The second partition
+contains a FAT filesystem with a U-Boot env and an ITB file containing
+the kernel and the device tree. The third partition contains the file
+system. This image can be written directly to the eMMC or an SD card.
+
+If using an SD Card, you need at least 1GB. All the data on
+the SD card will be lost. Find the device node name for your card.
+To copy the image:
 
     cd output/images
     sudo dd if=sdcard.img of=/dev/sdX bs=1M
 
 Another method, which is cross platform, to write the SD card image is to use
-[Etcher][5].
-
-For more information on how these components are generated and what makes up a
-bootable SD card, see [SDCardBootNotice][4].
+[USBImager][10] or [Etcher][5].
 
 #### Documentation
 
@@ -161,3 +175,5 @@ information.
 [6]: https://www.linux4sam.org/bin/view/Linux4SAM/PDADetectionAtBoot
 [7]: https://www.linux4sam.org/bin/view/Linux4SAM/UsingFITwithOverlays
 [8]: https://github.com/polarfire-soc/polarfire-soc-documentation
+[9]: https://mi-v-ecosystem.github.io/redirects/asymmetric-multiprocessing_amp
+[10]: https://bztsrc.gitlab.io/usbimager/
