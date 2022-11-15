@@ -1,0 +1,11 @@
+config BR2_PACKAGE_MPFS_AMP_EXAMPLES
+	bool "mpfs amp examples"
+	help
+	  Build Linux + FreeRTOS AMP example
+	  for PolarFire SoC binary to be
+	  included in the HSS payload.bin
+
+config BR2_PACKAGE_MPFS_AMP_CONTEXT_B
+	string "context_b_binary_name"
+	help
+	  Microchip PolarFire SoC AMP example project to run as context b
