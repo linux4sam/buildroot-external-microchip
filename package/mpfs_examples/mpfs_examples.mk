@@ -23,7 +23,7 @@ endef
 define MPFS_EXAMPLES_INSTALL_TARGET_CMDS
         $(INSTALL) -d $(TARGET_DIR)$(MPFS_EXAMPLE_TARGET_DIR)
 	$(foreach d,$(MPFS_EXAMPLE_DIRS), \
-		rm -rf $(TARGET_DIR)$(MPFS_XAMPLE_TARGET_DIR)$(d); \
+		rm -rf $(TARGET_DIR)$(MPFS_EXAMPLE_TARGET_DIR)$(d); \
 		cp -a $(@D)/$(d) $(TARGET_DIR)$(MPFS_EXAMPLE_TARGET_DIR)$(d)$(sep))
 
         echo $(MPFS_EXAMPLE_FILES)
