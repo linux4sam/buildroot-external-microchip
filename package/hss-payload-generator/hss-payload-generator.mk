@@ -21,7 +21,7 @@ define HOST_HSS_PAYLOAD_GENERATOR_BUILD_CMDS
 
 	cp $(BR2_PACKAGE_HOST_HSS_PAYLOAD_GENERATOR_SRC) $(@D)/tools/hss-payload-generator/src.bin
 	( \
-		if [ "$(BR2_PACKAGE_ MPFS_AMP_EXAMPLES)" = "y" ]; then \
+		if [ "$(BR2_PACKAGE_MPFS_AMP_EXAMPLES)" = "y" ]; then \
 			cp $(BINARIES_DIR)/mpfs-rpmsg-remote.elf $(@D)/tools/hss-payload-generator/amp.elf; \
 		fi; \
 		cd $(@D)/tools/hss-payload-generator; \
