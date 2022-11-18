@@ -4,7 +4,7 @@
 if test -n ${mtd_present}; then
   mtd read fitimage ${fileaddr} 0x0;
 else
-  load mmc 0:${mmcbootpart} ${fileaddr} mpfs_icicle.itb;
+  load mmc 0:${distro_bootpart} ${fileaddr} mpfs_icicle.itb;
 fi;
 
 bootm start ${fileaddr}#kernel_dtb;
