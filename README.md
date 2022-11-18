@@ -120,20 +120,19 @@ documentation][3].
 
 ### PolarFire SoC
 
-There are multiple configurations provided for PolarFire SoC. The
-'icicle_defconfig' is intended for use with the Icicle kit in
-Symmetric Multiprocessing (SMP) mode, and the 'icicle_amp_defconfig' is
-intended for use with the Icicle kit in Asymmemtric Multiprocessing
-(AMP) mode. You can specify the configuration you would like to use with
-the following command:
+There are several configurations available for PolarFire SoC Icicle Kit.
+To generate an image, choose any of the Icicle Kit defconfigs provided
+in the configs directory and follow the corresponding instructions.
+
+For example, to build an image suitable for programming to the SD/eMMC
+for the Icicle Kit:
 
     BR2_EXTERNAL=../buildroot-external-microchip/ make icicle_defconfig
     make
 
-For more information on AMP please see the [AMP guide for PolarFire SoC][9].
-
-The images generated from both of these configurations can be loaded
-using the following method.
+The `icicle_amp_defconfig` can be used to build the Icicle Kit with
+Asymmetric Multiprocessing (AMP) support. For more information on AMP,
+please see the [AMP guide for PolarFire SoC][9].
 
 #### Create an Image for eMMC/SD Card
 
@@ -151,8 +150,32 @@ To copy the image:
     cd output/images
     sudo dd if=sdcard.img of=/dev/sdX bs=1M
 
-Another method, which is cross platform, to write the SD card image is to use
+Another method, which is cross platform, to write the image is to use
 [USBImager][10] or [Etcher][5].
+
+For instructions on how to transfer the image to the eMMC/SD, please refer to
+the *Programming the Linux image* section of our [guide on updating PolarFire SoC dev kits][12].
+
+#### Create an Image for an external QSPI Flash memory
+
+The `icicle_nor_defconfig` and `icicle_nand_defconfig` defconfigs provide
+support for building images suitable for programming to the oficially supported
+QSPI flash memories.
+
+An image with the name `nor.img` or `nand.img `is generated in the output/images directory.
+
+For more information on how to enable QSPI support on PolarFire SoC, please
+refer to the [Booting from QSPI][11] documentation.
+
+Note: The nand.img image generated triggers a "free space fixup" procedure in
+the kernel the very first time the file system is mounted. Therefore, the first
+mount might take additional time to complete. This is a one-time harmless procedure
+that involves finding all empty pages in the UBIFS file system and re-erasing them. This is useful
+when a non-UBIFS-aware programmer is used to flash the image to a NAND memory.
+
+For instructions on how to transfer the image to the external QSPI flash memory
+refer to the *External QSPI Flash Memory* section of the [updating PolarFire SoC dev kits][12]
+documentation.
 
 #### Documentation
 
@@ -177,3 +200,5 @@ information.
 [8]: https://github.com/polarfire-soc/polarfire-soc-documentation
 [9]: https://mi-v-ecosystem.github.io/redirects/asymmetric-multiprocessing_amp
 [10]: https://bztsrc.gitlab.io/usbimager/
+[11]: https://mi-v-ecosystem.github.io/redirects/booting-from-qspi_booting-from-qspi
+[12]: https://mi-v-ecosystem.github.io/redirects/boards-mpfs-generic-updating-mpfs-kit
