@@ -12,3 +12,7 @@ mv *.dtbo mpfs_icicle/
 gzip -9 Image -c > Image.gz
 $HOST_DIR/bin/mkimage -f mpfs_icicle.its mpfs_icicle.itb
 ${BASE_DIR}/support/scripts/genimage.sh -c ${GENIMAGE_CFG}
+
+if [[ "${GENIMAGE_CFG}" == *"genimage_rootfs.cfg"* || "${GENIMAGE_CFG}" == *"genimage.cfg"* ]]; then
+    $HOST_DIR/bin/bmaptool create -o ${BINARIES_DIR}/sdcard.bmap ${BINARIES_DIR}/sdcard.img
+fi
