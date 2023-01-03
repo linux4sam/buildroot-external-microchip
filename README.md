@@ -17,7 +17,7 @@ dependencies are required.
     sudo apt-get install subversion build-essential bison flex gettext \
     libncurses5-dev texinfo autoconf automake libtool mercurial git-core \
     gperf gawk expat curl cvs libexpat-dev bzr unzip bc python-dev \
-    wget cpio rsync xxd
+    wget cpio rsync xxd bmap-tools
 
 In some cases, buildroot will notify that additional host dependencies are
 required.  It will let you know what those are.
@@ -143,12 +143,30 @@ contains a FAT filesystem with a U-Boot env and an ITB file containing
 the kernel and the device tree. The third partition contains the file
 system. This image can be written directly to the eMMC or an SD card.
 
-If using an SD Card, you need at least 1GB. All the data on
-the SD card will be lost. Find the device node name for your card.
-To copy the image:
+The `icicle_defconfig` generates an image with RAM-based
+filesystem, whereas the `icicle_rootfs_defconfig` generates an image containing
+a root filesystem.
+
+There are several ways to copy the image to the eMMC or an SD card:
+
+a) Copy the image to the eMMC or SD card using the standard Unix `dd` tool:
+
+Find the device node name for your card and then copy the image as shown below:
 
     cd output/images
     sudo dd if=sdcard.img of=/dev/sdX bs=1M
+
+b) Copy the image to the eMMC or SD card using `bmaptool` (recommended)
+
+This is a generic tool for creating a block map (bmap) for a file and copying
+files using this block map. Raw system image files can be flashed a lot faster
+with bmaptool than with traditional tools, like "dd".
+
+    cd output/images
+    sudo bmaptool copy sdcard.img /dev/sdX
+
+If using an SD Card, you need at least 8GB. All the data on the SD card
+will be lost.
 
 Another method, which is cross platform, to write the image is to use
 [USBImager][10] or [Etcher][5].
