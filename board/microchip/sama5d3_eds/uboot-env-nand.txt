@@ -1,0 +1,17 @@
+_chip=lan9303
+board_name=sama5d3_eds
+bootargs=console=ttyS0,115200 earlyprintk mtdparts=atmel_nand:256k(bootstrap)ro,768k(uboot)ro,256K(env_redundant),256k(env),6656k(itb)ro,-(rootfs) rootfstype=ubifs ubi.mtd=5 root=ubi0:rootfs rw
+prep_bootargs=test -n $display_var && setenv bootargs ${bootargs} ${at91_video_bootargs}
+prep_overlays=test -n ${_chip} && setenv at91_overlays '#'${_chip}
+load_image=nand read ${loadaddr} 0x180000 0x680000
+loadaddr=0x21000000
+bootcmd=run prep_overlays; run load_image; bootm ${loadaddr}#kernel_dtb${at91_overlays};
+bootdelay=1
+ethaddr=02:10:a0:94:77:20
+eth1addr=02:10:a0:93:03:20
+ipaddr=192.168.0.20
+netmask=255.255.255.0
+serverip=192.168.0.110
+stderr=serial@ffffee00
+stdin=serial@ffffee00
+stdout=serial@ffffee00

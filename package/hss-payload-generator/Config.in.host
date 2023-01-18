@@ -1,0 +1,18 @@
+config BR2_PACKAGE_HOST_HSS_PAYLOAD_GENERATOR
+	bool "HSS Payload Generator"
+	help
+	  Microchip PolarFire SoC Payload Generator
+
+if BR2_PACKAGE_HOST_HSS_PAYLOAD_GENERATOR
+
+config BR2_PACKAGE_HOST_HSS_PAYLOAD_GENERATOR_CFG
+	string "Config file path and source location"
+	help
+	  Path to config.yaml file (including config.yaml)
+
+config BR2_PACKAGE_HOST_HSS_PAYLOAD_GENERATOR_SRC
+	string "Payload file path and binary location"
+	help
+	  Path to payload binary file (including file name)
+	  Must match payload file name in config.yaml file
+endif

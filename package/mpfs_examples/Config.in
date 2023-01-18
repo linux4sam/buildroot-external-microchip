@@ -1,0 +1,7 @@
+config BR2_PACKAGE_MPFS_EXAMPLES
+	bool "mpfs_examples"
+	depends on BR2_PACKAGE_LIBOPENSSL
+	depends on BR2_PACKAGE_LIBGPIOD
+	help
+	  Linux userspace examples for PolarFire SoC
+
