@@ -26,6 +26,7 @@ BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_MCHP_PATH)/board/microchip/sama5d3_eds/rootfs
 BR2_ROOTFS_POST_IMAGE_SCRIPT="$(BR2_EXTERNAL_MCHP_PATH)/board/microchip/sama5d3_eds/post_image.sh"
 BR2_ROOTFS_POST_BUILD_SCRIPT="$(BR2_EXTERNAL_MCHP_PATH)/board/microchip/sama5d3_eds/post_build.sh"
 
+BR2_ROOTFS_DEVICE_TABLE="$(BR2_EXTERNAL_MCHP_PATH)/system/device_table.txt"
 BR2_LINUX_KERNEL=y
 ##
 BR2_LINUX_KERNEL_CUSTOM_TARBALL=y
