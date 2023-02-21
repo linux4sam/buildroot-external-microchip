@@ -2,23 +2,23 @@
 
 if test -n ${mtd_present}; then
   setenv mtdparts "mtdparts=nor0:2m(payload),128k(env),5m(fitimage),23m(rootfs)"
-  mtd read fitimage ${ramdisk_addr_r} 0x0
+  mtd read fitimage ${scriptaddr} 0x0
 fi;
 
 if test "${$?}" -eq 0; then
   setenv base_args "earlycon uio_pdrv_genirq.of_id=generic-uio"
   setenv bootargs "${base_args} ubi.mtd=3 root=ubi0:rootfs rootfstype=ubifs rootwait rw mtdparts=spi2.0:2m(payload),128k(env),5m(fitimage),23m(rootfs)"
 else
-  load mmc 0:${distro_bootpart} ${ramdisk_addr_r} mpfs_icicle.itb
+  load mmc 0:${distro_bootpart} ${scriptaddr} mpfs_icicle.itb
 fi;
 
 if test -n ${mtd_present}; then
-    bootm start ${ramdisk_addr_r}#kernel_dtb#pmod3
+    bootm start ${scriptaddr}#kernel_dtb#pmod3
 else
-  bootm start ${ramdisk_addr_r};
+  bootm start ${scriptaddr};
 fi;
 
-bootm loados ${ramdisk_addr_r};
+bootm loados ${scriptaddr};
 # Try to load a ramdisk if available inside fitImage
 bootm ramdisk;
 bootm prep;

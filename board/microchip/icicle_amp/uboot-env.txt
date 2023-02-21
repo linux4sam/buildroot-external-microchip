@@ -1,14 +1,13 @@
-# this assumes ${fileaddr} is already set!!
+# this assumes ${scriptaddr} is already set!!
 
-# Try to boot a fitImage from QSPI or eMMC/SD
-if test -n ${mtd_present}; then
-  mtd read fitimage ${fileaddr} 0x0;
-else
-  load mmc 0:${distro_bootpart} ${fileaddr} mpfs_icicle_amp.itb;
-fi;
+# Try to boot a fitImage from eMMC/SD
 
-bootm start ${fileaddr}#kernel_dtb;
-bootm loados ${fileaddr};
+setenv fdt_high 0xffffffffffffffff
+setenv initrd_high 0xffffffffffffffff
+
+load mmc 0:${distro_bootpart} ${scriptaddr} mpfs_icicle_amp.itb;
+bootm start ${scriptaddr}#kernel_dtb;
+bootm loados ${scriptaddr};
 # Try to load a ramdisk if available inside fitImage
 bootm ramdisk;
 bootm prep;
