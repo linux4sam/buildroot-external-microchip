@@ -134,6 +134,11 @@ The `icicle_amp_defconfig` can be used to build the Icicle Kit with
 Asymmetric Multiprocessing (AMP) support. For more information on AMP,
 please see the [AMP guide for PolarFire SoC][9].
 
+Please note that this buildroot external is intended for use with the latest
+version of the [Icicle Kit Reference Design][13]. For reference design versions
+prior to v2022.10, please use the [linux4microchip+fpga-2022.11 tag][14] of this
+repository.
+
 #### Create an Image for eMMC/SD Card
 
 An image is generated in the file `sdcard.img` in the output/images
@@ -220,3 +225,5 @@ information.
 [10]: https://bztsrc.gitlab.io/usbimager/
 [11]: https://mi-v-ecosystem.github.io/redirects/booting-from-qspi_booting-from-qspi
 [12]: https://mi-v-ecosystem.github.io/redirects/boards-mpfs-generic-updating-mpfs-kit
+[13]: https://github.com/polarfire-soc/icicle-kit-reference-design/releases
+[14]: https://github.com/linux4microchip/buildroot-external-microchip/releases/tag/linux4microchip%2Bfpga-2022.11
