@@ -14,6 +14,8 @@ define VIDEO_CAPTURE_AT91_INSTALL_TARGET_CMDS
 	install -d $(TARGET_DIR)/root/video-capture-at91
 	cp -r $(@D)/$(BR2_PACKAGE_VIDEO_CAPTURE_AT91_PLATFORM)/* \
 			$(TARGET_DIR)/root/video-capture-at91/
+	cp -r $(@D)/utils.sh \
+			$(TARGET_DIR)/root/
 endef
 
 $(eval $(generic-package))
