@@ -3,7 +3,7 @@
  # Microchip AMP Examples
  #
 ################################################################################
-MPFS_AMP_EXAMPLES_VERSION = v2023.02
+MPFS_AMP_EXAMPLES_VERSION = 92a404c18a9290c5b1cd910aa090f8d05252c75d
 MPFS_AMP_EXAMPLES_SITE = https://github.com/polarfire-soc/polarfire-soc-amp-examples.git
 MPFS_AMP_EXAMPLES_SITE_METHOD = git
 MPFS_AMP_EXAMPLES_INSTALL_TARGET = NO
