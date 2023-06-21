@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-if ! [ -d ${BR2_EXTERNAL_MCHP_PATH}/board/microchip/icicle_amp/rootfs-overlay/boot ]; then
-	mkdir ${BR2_EXTERNAL_MCHP_PATH}/board/microchip/icicle_amp/rootfs-overlay/boot
+if ! [ -d ${TARGET_DIR}/boot ]; then
+	mkdir ${TARGET_DIR}/boot
 fi
-if [ -d ${BINARIES_DIR}/mpfs_icicle_amp ]; then
-	cp ${BINARIES_DIR}/mpfs_icicle_amp/*.dtbo ${BR2_EXTERNAL_MCHP_PATH}/board/microchip/icicle_amp/rootfs-overlay/boot
+if [ -d ${BINARIES_DIR}/mpfs_icicle ]; then
+	cp ${BINARIES_DIR}/mpfs_icicle/*.dtbo ${TARGET_DIR}/boot
 else
-	cp ${BINARIES_DIR}/*.dtbo ${BR2_EXTERNAL_MCHP_PATH}/board/microchip/icicle_amp/rootfs-overlay/boot
+	cp ${BINARIES_DIR}/*.dtbo ${TARGET_DIR}/boot
 fi
