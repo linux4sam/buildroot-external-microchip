@@ -3,7 +3,7 @@
  # Hart Software Services
  #
 ################################################################################
-HSS_PAYLOAD_GENERATOR_VERSION = v2023.02
+HSS_PAYLOAD_GENERATOR_VERSION = v2023.06
 HSS_PAYLOAD_GENERATOR_SITE = $(call github,polarfire-soc,hart-software-services,$(HSS_PAYLOAD_GENERATOR_VERSION))
 HSS_PAYLOAD_GENERATOR_INSTALL_STAGING = NO
 HSS_PAYLOAD_GENERATOR_INSTALL_TARGET = YES
