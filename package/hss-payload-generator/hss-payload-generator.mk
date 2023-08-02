@@ -1,34 +1,38 @@
 ################################################################################
- #
- # Hart Software Services
- #
+#
+# hss-payload-generator
+#
 ################################################################################
-HSS_PAYLOAD_GENERATOR_VERSION = v2023.06
-HSS_PAYLOAD_GENERATOR_SITE = $(call github,polarfire-soc,hart-software-services,$(HSS_PAYLOAD_GENERATOR_VERSION))
-HSS_PAYLOAD_GENERATOR_INSTALL_STAGING = NO
-HSS_PAYLOAD_GENERATOR_INSTALL_TARGET = YES
-HSS_PAYLOAD_GENERATOR_LICENSE = MIT
-HSS_PAYLOAD_GENERATOR_LICENSE_FILES = LICENSE.md
-HOST_HSS_PAYLOAD_GENERATOR_DEPENDENCIES = host-elfutils host-libyaml
+HOST_HSS_PAYLOAD_GENERATOR_VERSION = 2023.06
+HOST_HSS_PAYLOAD_GENERATOR_SITE = $(call github,polarfire-soc,hart-software-services,v$(HSS_PAYLOAD_GENERATOR_VERSION))
+HOST_HSS_PAYLOAD_GENERATOR_LICENSE = MIT
+HOST_HSS_PAYLOAD_GENERATOR_LICENSE_FILES = LICENSE.md
+HOST_HSS_PAYLOAD_GENERATOR_DEPENDENCIES = host-elfutils host-libyaml host-openssl
 
 ifeq ($(BR2_PACKAGE_MPFS_AMP_EXAMPLES),y)
-HOST_HSS_PAYLOAD_GENERATOR_DEPENDENCIES += uboot mpfs_amp_examples
+	HOST_HSS_PAYLOAD_GENERATOR_DEPENDENCIES += uboot mpfs_amp_examples
 else
-HOST_HSS_PAYLOAD_GENERATOR_DEPENDENCIES += uboot
+	HOST_HSS_PAYLOAD_GENERATOR_DEPENDENCIES += uboot
 endif
 
 define HOST_HSS_PAYLOAD_GENERATOR_BUILD_CMDS
-	$(MAKE) -C $(@D)/tools/hss-payload-generator HOST_INCLUDES=-I$(HOST_DIR)/usr/include/ LDFLAGS=$(HOST_LDFLAGS)
+	$(MAKE) -C $(@D)/tools/hss-payload-generator \
+		HOST_INCLUDES="$(HOST_CPPFLAGS)" \
+		LDFLAGS=$(HOST_LDFLAGS)
 
-	cp $(BR2_PACKAGE_HOST_HSS_PAYLOAD_GENERATOR_SRC) $(@D)/tools/hss-payload-generator/src.bin
+	cp $(BR2_PACKAGE_HOST_HSS_PAYLOAD_GENERATOR_SRC) \
+		$(@D)/tools/hss-payload-generator/src.bin
+
 	( \
 		if [ "$(BR2_PACKAGE_MPFS_AMP_EXAMPLES)" = "y" ]; then \
-			cp $(BINARIES_DIR)/mpfs-rpmsg-remote.elf $(@D)/tools/hss-payload-generator/amp.elf; \
+			cp $(BINARIES_DIR)/mpfs-rpmsg-remote.elf \
+				$(@D)/tools/hss-payload-generator/amp.elf; \
 		fi; \
 		cd $(@D)/tools/hss-payload-generator; \
-		./hss-payload-generator -c $(BR2_PACKAGE_HOST_HSS_PAYLOAD_GENERATOR_CFG) -v $(BINARIES_DIR)/payload.bin; \
+		./hss-payload-generator \
+			-c $(BR2_PACKAGE_HOST_HSS_PAYLOAD_GENERATOR_CFG) \
+			-v $(BINARIES_DIR)/payload.bin; \
 	)
-
 endef
 
 $(eval $(host-generic-package))
