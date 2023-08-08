@@ -4,7 +4,7 @@
 #
 ################################################################################
 HOST_HSS_PAYLOAD_GENERATOR_VERSION = 2023.06
-HOST_HSS_PAYLOAD_GENERATOR_SITE = $(call github,polarfire-soc,hart-software-services,v$(HSS_PAYLOAD_GENERATOR_VERSION))
+HOST_HSS_PAYLOAD_GENERATOR_SITE = $(call github,polarfire-soc,hart-software-services,v$(HOST_HSS_PAYLOAD_GENERATOR_VERSION))
 HOST_HSS_PAYLOAD_GENERATOR_LICENSE = MIT
 HOST_HSS_PAYLOAD_GENERATOR_LICENSE_FILES = LICENSE.md
 HOST_HSS_PAYLOAD_GENERATOR_DEPENDENCIES = host-elfutils host-libyaml host-openssl
