@@ -1,4 +1,4 @@
-config BR2_PACKAGE_WILC_FIRMWARE
+config BR2_PACKAGE_WILCMCHP_FIRMWARE
 	bool "Microchip WILC devices firmware"
 	help
 	  Microchip WILC devices firmware files for use with Linux kernel.
