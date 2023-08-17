@@ -4,12 +4,12 @@
 #
 ################################################################################
 
-WILC_FIRMWARE_VERSION = wilc_linux_16_1
-WILC_FIRMWARE_SITE = $(call github,linux4wilc,firmware,$(WILC_FIRMWARE_VERSION))
-WILC_FIRMWARE_LICENSE = Microchip firmware
-WILC_FIRMWARE_LICENSE_FILES = LICENSE.wilc_fw
+WILCMCHP_FIRMWARE_VERSION = wilc_linux_16_1
+WILCMCHP_FIRMWARE_SITE = $(call github,linux4wilc,firmware,$(WILCMCHP_FIRMWARE_VERSION))
+WILCMCHP_FIRMWARE_LICENSE = Microchip firmware
+WILCMCHP_FIRMWARE_LICENSE_FILES = LICENSE.wilc_fw
 
-define WILC_FIRMWARE_INSTALL_TARGET_CMDS
+define WILCMCHP_FIRMWARE_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/lib/firmware/mchp
 	$(INSTALL) -D -m 0644 $(@D)/* $(TARGET_DIR)/lib/firmware/mchp
 
