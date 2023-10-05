@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-PYTHON_MPIO_VERSION = v1.5
+PYTHON_MPIO_VERSION = v1.7
 PYTHON_MPIO_SITE = $(call github,linux4sam,mpio,$(PYTHON_MPIO_VERSION))
 PYTHON_MPIO_LICENSE = Apache-2.0, MIT
 PYTHON_MPIO_LICENSE_FILES = LICENSE LICENSE.MIT
