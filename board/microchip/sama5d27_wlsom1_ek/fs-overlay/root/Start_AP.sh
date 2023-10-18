@@ -30,7 +30,7 @@ else
         fi  
 fi  
 echo "2.############## Bringing up the wlan0 interface ##############" 
-ifconfig wlan0 up
+networkctl up wlan0
 if ifconfig | grep -q "wlan0" ; then
         echo "Wireless LAN interface is UP!"
 else
@@ -38,8 +38,15 @@ else
 	exit 0
 fi
   
-echo "3.############## Starting the Host AP deamon ##############" 
-hostapd /etc/wilc_hostapd_open.conf -B &
+cp /usr/lib/systemd/network/80-wifi-softap.network.example /etc/systemd/network/wlan0.network
+
+echo "2.############# Stopping wpa_supplicant service if any ####"
+systemctl stop wpa_supplicant.service
+echo "3.############# Restarting systemd-networkd service #######"
+systemctl restart systemd-networkd.service
+echo "4.############## Starting the Host AP deamon ##############" 
+systemctl start hostapd@open.service
+
 if ps | grep -q "hostapd" ; 
 then
 	echo "hostapd process has started successfully"
@@ -47,17 +54,12 @@ else
 	echo "hostapd has failed to start"
 	exit 0
 fi
-echo "4.############## Configuring the AP IP Address to 192.168.0.1 ##############"
-ifconfig wlan0 192.168.0.1
-echo "5.############## Starting the DHCP server ##############"
-/etc/init.d/S80dhcp-server restart
-echo "6.############## Starting the WEB scoket deamon ##############"
 cd /root
 ./websocket & 
 echo "Now, The device comes up as an Access Point(AP) and host a webpage to provision"
 echo "WiFi station interface"
 echo "\n"
 echo "Use a Phone/Laptop and connect to the 'wilc1000_SoftAP' WiFi AP"
-echo "Using the web browser open http://192.168.0.1"
+echo "Using the web browser open http://192.168.1.1"
 echo "---------------------------------------------------"
 echo "---------------------------------------------------"

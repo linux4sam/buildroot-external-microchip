@@ -65,13 +65,12 @@ else
 
 fi
 
-echo "2.############## Connecting to configured AP ##############"
-ifconfig wlan0 down
-ifconfig wlan0 up
-echo "3.############## Starting WPA Supplicant  ##############"
-wpa_supplicant -Dnl80211 -iwlan0 -c/etc/wpa_supplicant.conf &
+echo "2.############## Reload network configuration ##############"
+networkctl reload
 
-echo "3.############## Starting DHCP Client  ##############"
-udhcpc -i wlan0 &
-echo "---------------------------------------------------"
-echo "---------------------------------------------------"
+echo "3.############## Starting WPA Supplicant  ##################"
+cp /usr/lib/systemd/network/80-wifi-station.network.example /etc/systemd/network/wlan0.network
+systemctl restart wpa_supplicant.service
+
+echo "4.############## Restart systemd-networkd service ##########"
+systemctl restart systemd-networkd.service
