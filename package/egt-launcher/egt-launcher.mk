@@ -18,8 +18,8 @@ endef
 EGT_LAUNCHER_POST_PATCH_HOOKS += EGT_LAUNCHER_RUN_AUTOGEN
 
 define EGT_LAUNCHER_INSTALL_INIT
-        $(INSTALL) -m 0755 -D $(EGT_LAUNCHER_PKGDIR)/S99demo \
-                $(TARGET_DIR)/etc/init.d/S99demo
+        $(INSTALL) -m 0755 -D $(EGT_LAUNCHER_PKGDIR)/check-card-init \
+                $(TARGET_DIR)/usr/sbin/check-card-init
         $(INSTALL) -m 0644 -D $(EGT_LAUNCHER_PKGDIR)/setup.sh \
                 $(TARGET_DIR)/etc/profile.d/setup.sh
 endef
@@ -27,5 +27,15 @@ endef
 ifeq ($(BR2_PACKAGE_EGT_LAUNCHER_INIT),y)
 EGT_LAUNCHER_POST_INSTALL_TARGET_HOOKS += EGT_LAUNCHER_INSTALL_INIT
 endif
+
+define EGT_LAUNCHER_INSTALL_INIT_SYSTEMD
+$(INSTALL) -D -m 644 $(BR2_EXTERNAL)/package/egt-launcher/egt-launcher.service \
+$(TARGET_DIR)/usr/lib/systemd/system/egt-launcher.service
+
+mkdir -p $(TARGET_DIR)/etc/systemd/system/multi-user.target.wants
+
+ln -sf /usr/lib/systemd/system/egt-launcher.service \
+$(TARGET_DIR)/etc/systemd/system/multi-user.target.wants/egt-launcher.service
+endef
 
 $(eval $(autotools-package))

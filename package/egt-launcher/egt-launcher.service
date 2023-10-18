@@ -1,0 +1,14 @@
+[Unit]
+Description=EGT Launcher
+
+[Service]
+Type=forking
+
+ExecStartPre=/usr/sbin/check-card-init
+ExecStart=sh -c 'egt-launcher /opt/applications/resources /usr/share/egt'
+
+RemainAfterExit=yes
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

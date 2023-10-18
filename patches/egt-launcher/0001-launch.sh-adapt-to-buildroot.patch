@@ -20,7 +20,7 @@ index 0e6b5eb..602dbb2 100755
  {
      handle_exit_key $@
 -    egt-launcher
-+    /etc/init.d/S99demo start
++    systemctl restart egt-launcher.service
  }
  
  # close stdout, stderr, stdin and double fork - it's magic
