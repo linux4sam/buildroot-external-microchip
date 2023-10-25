@@ -5,7 +5,7 @@
 ################################################################################
 
 PLPLOT_VERSION = plplot-5.15.0
-PLPLOT_SITE = https://git.code.sf.net/p/plplot/plplot
+PLPLOT_SITE = git://git.code.sf.net/p/plplot/plplot
 PLPLOT_LICENSE = GPL
 PLPLOT_LICENSE_FILES = Copyright
 PLPLOT_INSTALL_STAGING = YES
