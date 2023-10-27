@@ -48,3 +48,10 @@ if grep -Eq "^BR2_PACKAGE_GREENGRASS_CORE=y$" ${BR2_CONFIG}; then
 		_EOF_
 	fi
 fi
+
+if grep -Eq "^BR2_PACKAGE_SYSTEMD=y$" ${BR2_CONFIG}; then
+	mv ${TARGET_DIR}/usr/lib/systemd/system/dhcpd.service ${TARGET_DIR}/usr/lib/systemd/system/dhcpd.service.example
+	rm -rf ${TARGET_DIR}/etc/systemd/system/multi-user.target.wants/dhcpd.service
+	rm -rf ${TARGET_DIR}/etc/systemd/system/multi-user.target.wants/wpa_supplicant.service
+	rm -rf ${TARGET_DIR}/usr/lib/systemd/system/wpa_supplicant.service
+fi

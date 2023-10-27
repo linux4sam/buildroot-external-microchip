@@ -38,6 +38,7 @@ else
 	exit 0
 fi
   
+cp /usr/lib/systemd/system/hostapd@.service.example /etc/systemd/system/hostapd@.service
 cp /usr/lib/systemd/network/80-wifi-softap.network.example /etc/systemd/network/wlan0.network
 
 echo "2.############# Stopping wpa_supplicant service if any ####"

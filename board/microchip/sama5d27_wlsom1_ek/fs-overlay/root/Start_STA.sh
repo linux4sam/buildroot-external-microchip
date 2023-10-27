@@ -69,6 +69,7 @@ echo "2.############## Reload network configuration ##############"
 networkctl reload
 
 echo "3.############## Starting WPA Supplicant  ##################"
+cp /usr/lib/systemd/system/wpa_supplicant.service.example /etc/systemd/system/wpa_supplicant.service
 cp /usr/lib/systemd/network/80-wifi-station.network.example /etc/systemd/network/wlan0.network
 systemctl restart wpa_supplicant.service
 
