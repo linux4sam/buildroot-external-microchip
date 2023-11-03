@@ -10,9 +10,9 @@ config BR2_PACKAGE_DT_OVERLAY_MCHP_PLATFORM
 	help
 	  Available platforms: at91sam9x5ek, mpfs_icicle,
 	  mpfs_icicle_amp, sama5d27_som1_ek, sama5d27_wlsom1_ek,
-	  sama5d2_ptc_ek, sama5d2_xplained, sama5d3_eds,
-	  sama5d3_xplained, sama5d4_xplained, sam9x60ek,
-	  sam9x60_curiosity.
+	  sama5d29_curiosity, sama5d2_ptc_ek, sama5d2_xplained,
+	  sama5d3_eds, sama5d3_xplained, sama5d4_xplained,
+	  sam9x60ek, sam9x60_curiosity.
 
 choice
 	prompt "output"
