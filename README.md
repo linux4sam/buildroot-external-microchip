@@ -29,7 +29,7 @@ For AT91, this buildroot external works only with the specific buildroot-at91
 version 2023.02-at91.
 
 For PolarFire SoC, this buildroot external was tested and works with buildroot
-version 2023.02.
+version 2022.02.
 
 
 ## Build
@@ -46,7 +46,7 @@ Here, as an example, we use `sama5d4_xplained_graphics_defconfig`.
 
 For PolarFire SoCs, use the buildroot instead.
 
-    git clone https://git.busybox.net/buildroot -b 2023.02
+    git clone https://git.busybox.net/buildroot -b 2022.02
 
 The resulting bootloader, kernel, and root filesystem will be put in the
 'output/images' directory.  There is also a complete `sdcard.img`.
