@@ -1,0 +1,26 @@
+From 74a75fef7c5c28f741e8738c4e466d5b059c99d0 Mon Sep 17 00:00:00 2001
+From: Nayab Sayed <nayabbasha.sayed@microchip.com>
+Date: Fri, 1 Dec 2023 12:03:01 +0530
+Subject: [PATCH] package/systemd: disable DNSSEC
+
+Signed-off-by: Nayab Sayed <nayabbasha.sayed@microchip.com>
+---
+ src/resolve/resolved.conf.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/resolve/resolved.conf.in b/src/resolve/resolved.conf.in
+index 6d4176d..4c8d78f 100644
+--- a/src/resolve/resolved.conf.in
++++ b/src/resolve/resolved.conf.in
+@@ -22,7 +22,7 @@
+ #DNS=
+ #FallbackDNS={{DNS_SERVERS}}
+ #Domains=
+-#DNSSEC={{DEFAULT_DNSSEC_MODE_STR}}
++DNSSEC=off
+ #DNSOverTLS={{DEFAULT_DNS_OVER_TLS_MODE_STR}}
+ #MulticastDNS={{DEFAULT_MDNS_MODE_STR}}
+ #LLMNR={{DEFAULT_LLMNR_MODE_STR}}
+-- 
+2.25.1
+
