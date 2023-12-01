@@ -18,8 +18,6 @@ endef
 EGT_LAUNCHER_POST_PATCH_HOOKS += EGT_LAUNCHER_RUN_AUTOGEN
 
 define EGT_LAUNCHER_INSTALL_INIT
-        $(INSTALL) -m 0755 -D $(EGT_LAUNCHER_PKGDIR)/check-card-init \
-                $(TARGET_DIR)/usr/sbin/check-card-init
         $(INSTALL) -m 0644 -D $(EGT_LAUNCHER_PKGDIR)/setup.sh \
                 $(TARGET_DIR)/etc/profile.d/setup.sh
 endef
