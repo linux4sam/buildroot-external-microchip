@@ -27,13 +27,13 @@ EGT_LAUNCHER_POST_INSTALL_TARGET_HOOKS += EGT_LAUNCHER_INSTALL_INIT
 endif
 
 define EGT_LAUNCHER_INSTALL_INIT_SYSTEMD
-$(INSTALL) -D -m 644 $(BR2_EXTERNAL)/package/egt-launcher/egt-launcher.service \
-$(TARGET_DIR)/usr/lib/systemd/system/egt-launcher.service
+$(INSTALL) -D -m 644 $(BR2_EXTERNAL)/package/egt-launcher/egtdemo.service \
+$(TARGET_DIR)/usr/lib/systemd/system/egtdemo.service
 
 mkdir -p $(TARGET_DIR)/etc/systemd/system/multi-user.target.wants
 
-ln -sf /usr/lib/systemd/system/egt-launcher.service \
-$(TARGET_DIR)/etc/systemd/system/multi-user.target.wants/egt-launcher.service
+ln -sf /usr/lib/systemd/system/egtdemo.service \
+$(TARGET_DIR)/etc/systemd/system/multi-user.target.wants/egtdemo.service
 endef
 
 $(eval $(autotools-package))
