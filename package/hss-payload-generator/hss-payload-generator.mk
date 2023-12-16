@@ -18,7 +18,7 @@ endif
 define HOST_HSS_PAYLOAD_GENERATOR_BUILD_CMDS
 	$(MAKE) -C $(@D)/tools/hss-payload-generator \
 		HOST_INCLUDES="$(HOST_CPPFLAGS)" \
-		LDFLAGS=$(HOST_LDFLAGS)
+		LDFLAGS="$(HOST_LDFLAGS)"
 
 	cp $(BR2_PACKAGE_HOST_HSS_PAYLOAD_GENERATOR_SRC) \
 		$(@D)/tools/hss-payload-generator/src.bin
