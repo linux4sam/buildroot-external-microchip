@@ -29,14 +29,15 @@ For AT91, this buildroot external works only with the specific buildroot-at91
 version 2023.02-at91.
 
 For PolarFire SoC, this buildroot external was tested and works with buildroot
-version 2022.02.
+version 2023.02.5.
 
 
 ## Build
 
 Clone, configure, and build.  When building, use the appropriate defconfig in
 the `buildroot-external-microchip/configs` directory for your board.
-Here, as an example, we use `sama5d4_xplained_graphics_defconfig`.
+
+For AT91 configurations, as an example, we use `sama5d4_xplained_graphics_defconfig`.
 
     git clone https://github.com/linux4microchip/buildroot-external-microchip.git -b 2023.02-mchp
     git clone https://github.com/linux4sam/buildroot-at91.git -b 2023.02-at91
@@ -44,9 +45,13 @@ Here, as an example, we use `sama5d4_xplained_graphics_defconfig`.
     BR2_EXTERNAL=../buildroot-external-microchip/ make sama5d4_xplained_graphics_defconfig
     make
 
-For PolarFire SoCs, use the buildroot instead.
+For PolarFire SoC configurations, as an example, we use `icicle_defconfig`.
 
-    git clone https://git.busybox.net/buildroot -b 2022.02
+    git clone https://github.com/linux4microchip/buildroot-external-microchip.git -b 2023.02-mchp
+    git clone https://git.busybox.net/buildroot -b 2023.02.5
+    cd buildroot
+    BR2_EXTERNAL=../buildroot-external-microchip/ make icicle_defconfig
+    make
 
 The resulting bootloader, kernel, and root filesystem will be put in the
 'output/images' directory.  There is also a complete `sdcard.img`.
