@@ -1,0 +1,5 @@
+board=sama7d65eb
+board_name=sama7d65eb
+bootargs=console=ttyS0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait cma=192m atmel.pm_modes=standby,ulp0
+bootcmd=fatload mmc 0:1 0x61000000 at91-sama7d65eb.dtb; fatload mmc 0:1 0x62000000 zImage; bootz 0x62000000 - 0x61000000
+bootdelay=1
