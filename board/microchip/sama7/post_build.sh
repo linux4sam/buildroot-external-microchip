@@ -40,3 +40,6 @@ if grep -Eq "^BR2_PACKAGE_GREENGRASS_CORE=y$" ${BR2_CONFIG}; then
 		_EOF_
 	fi
 fi
+
+# Mount debugfs on boot
+echo "debugfs     /sys/kernel/debug debugfs defaults 0 0" >> ${TARGET_DIR}/etc/fstab
