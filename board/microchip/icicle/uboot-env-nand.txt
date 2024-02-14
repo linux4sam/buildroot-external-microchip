@@ -1,28 +1,13 @@
-# this assumes ${fileaddr} is already set!!
-
-if test -n ${mtd_present}; then
-  setenv mtdparts "mtdparts=spi-nand0:2m(payload),128k(env),5m(fitimage),114m(rootfs)"
-  mtd read fitimage ${scriptaddr} 0x0
-fi;
-
-if test "${$?}" -eq 0; then
-  setenv base_args "earlycon uio_pdrv_genirq.of_id=generic-uio"
-  setenv bootargs "${base_args} ubi.mtd=3 root=ubi0:rootfs rootfstype=ubifs rootwait rw mtdparts=spi2.0:2m(payload),128k(env),5m(fitimage),114m(rootfs)"
-else
-  load mmc 0:${distro_bootpart} ${scriptaddr} mpfs_icicle.itb
-fi;
-
-if test -n ${mtd_present}; then
-    bootm start ${scriptaddr}#kernel_dtb#f5c
-else
-  bootm start ${scriptaddr};
-fi;
-
+ubifsload 0x80000000 boot/mpfs_icicle.itb
+cp 0x80000000 ${scriptaddr} ${filesize}
+setenv base_args "earlycon uio_pdrv_genirq.of_id=generic-uio"
+setenv bootargs "${base_args} ubi.mtd=1 root=ubi0:rootfs rootfstype=ubifs rootwait rw mtdparts=spi2.0:2m(payload),119m(ubi)"
+bootm start ${scriptaddr}#kernel_dtb#f5c
 bootm loados ${scriptaddr};
 # Try to load a ramdisk if available inside fitImage
 bootm ramdisk;
 bootm prep;
 fdt set /soc/ethernet@20112000 mac-address ${icicle_mac_addr0};
 fdt set /soc/ethernet@20110000 mac-address ${icicle_mac_addr1};
-run design_overlays
+run design_overlays;
 bootm go;
