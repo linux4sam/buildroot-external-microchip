@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-EGT_BENCHMARK_VERSION = 1.1
+EGT_BENCHMARK_VERSION = 1.2-rc1
 EGT_BENCHMARK_SITE = https://github.com/linux4sam/egt-benchmark.git
 EGT_BENCHMARK_SITE_METHOD = git
 EGT_BENCHMARK_GIT_SUBMODULES = YES
