@@ -8,7 +8,7 @@
  *                2017 Claudiu Beznea <claudiu.beznea@microchip.com>
  */
 /dts-v1/;
-#include "at91-sama5d27_som1.dtsi"
+#include "microchip/at91-sama5d27_som1.dtsi"
 #include "sama5d2-optee.dtsi"
 #include <dt-bindings/mfd/atmel-flexcom.h>
 #include <dt-bindings/gpio/gpio.h>
