@@ -1,8 +1,0 @@
-comment "libm2d depends on libdrm"
-	depends on !BR2_PACKAGE_LIBDRM
-
-config BR2_PACKAGE_LIBM2D
-	bool "libm2d"
-	depends on BR2_PACKAGE_LIBDRM
-	help
-	  libm2d is a library that provides the Microchip 2D Graphics API.
