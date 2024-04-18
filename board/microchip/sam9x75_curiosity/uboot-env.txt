@@ -7,7 +7,7 @@ mipitest=test -n $display && test $display = HX8394 && setenv display_var 'mipi'
 at91_prepare_bootargs=test -n $at91_video_bootargs && setenv bootargs ${bootargs} ${at91_video_bootargs}
 at91_prepare_display_overlay=test -n $display_var && setenv at91_overlays_config ${at91_overlays_config}'#'${display_var}
 bootcmd=run at91_display_detect; run at91_eth_detect; run bootcmd_boot;
-bootargs=console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 rootwait atmel.pm_modes=standby,ulp0
+bootargs=console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 rootwait atmel.pm_modes=standby,ulp0 cma=128m
 bootcmd_boot=fatload mmc 0:1 0x24000000 sam9x75_curiosity.itb; bootm 0x24000000#kernel_dtb${at91_overlays_config}
 bootdelay=1
 ethact=gmac0
