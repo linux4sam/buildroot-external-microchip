@@ -21,6 +21,8 @@ elif grep -Eq "^BR2_PACKAGE_CRYPTOAUTHLIB_SAMA5D27_SOM1_EK=y$" ${BR2_CONFIG}; th
 	sed -i "s/interface = .*/interface = i2c,0xC0,0/" ${TARGET_DIR}/var/lib/cryptoauthlib/0.conf
 elif grep -Eq "^BR2_PACKAGE_CRYPTOAUTHLIB_SAMA5D27_WLSOM1_EK=y$" ${BR2_CONFIG}; then
 	sed -i "s/interface = .*/interface = i2c,0x6A,0/" ${TARGET_DIR}/var/lib/cryptoauthlib/0.conf
+elif grep -Eq "^BR2_PACKAGE_CRYPTOAUTHLIB_SAMA5D29_CURIOSITY=y$" ${BR2_CONFIG}; then
+	sed -i "s/interface = .*/interface = i2c,0x6A,1/" ${TARGET_DIR}/var/lib/cryptoauthlib/0.conf
 fi
 
 if grep -Eq "^BR2_PACKAGE_GREENGRASS_CORE=y$" ${BR2_CONFIG}; then
