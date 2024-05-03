@@ -22,7 +22,7 @@ at91_prepare_spi_overlay=setenv wilc_spi_overlay_config '#'${spi_overlay}
 bootcmd=run at91_set_display; run at91_pda_detect; run at91_prepare_video_bootargs; run at91_prepare_bootargs; run at91_prepare_overlays_config; run at91_prepare_sdio_overlay; run at91_prepare_spi_overlay; run bootcmd_boot;
 pda5000test=test -n $display && test $display = 5000 && setenv display_var 'pda5' && setenv video_mode ${video_mode_pda5}
 bootargs=console=ttyS0,115200 mtdparts=atmel_nand:256k(bootstrap)ro,768k(uboot)ro,256k(env_redundant),256k(env),6656k(itb)ro,-(rootfs) rootfstype=ubifs ubi.mtd=5 root=ubi0:rootfs rw
-bootcmd_boot=nand read 0x24000000 0x00180000 0x680000; bootm 0x24000000#kernel_dtb${at91_overlays_config}${wilc_sdio_overlay_config}${wilc_spi_overlay_config}
+bootcmd_boot=nand read 0x24000000 0x00180000 0x680000; bootm 0x24000000#kernel_dtb${at91_overlays_config}${wilc_sdio_overlay_config}
 bootdelay=1
 stderr=serial
 stdin=serial
