@@ -1,0 +1,24 @@
+From 6edb3bb485f7104353eb31754447f4404995b723 Mon Sep 17 00:00:00 2001
+From: Nayab Sayed <nayabbasha.sayed@microchip.com>
+Date: Tue, 7 May 2024 15:17:27 +0530
+Subject: [PATCH] package/optee-os: disable NVMEM HUK
+
+Signed-off-by: Nayab Sayed <nayabbasha.sayed@microchip.com>
+---
+ core/arch/arm/plat-sam/conf.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/arch/arm/plat-sam/conf.mk b/core/arch/arm/plat-sam/conf.mk
+index 761fba9..c37e598 100644
+--- a/core/arch/arm/plat-sam/conf.mk
++++ b/core/arch/arm/plat-sam/conf.mk
+@@ -133,5 +133,5 @@ CFG_NVMEM_HUK ?= n
+ else
+ CFG_ATMEL_SFC ?= y
+ CFG_NVMEM_DIE_ID ?= y
+-CFG_NVMEM_HUK ?= y
++# CFG_NVMEM_HUK ?= y
+ endif
+-- 
+2.43.2
+
