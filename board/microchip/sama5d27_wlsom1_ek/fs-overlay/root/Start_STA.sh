@@ -64,14 +64,36 @@ else
 	fi
 
 fi
+echo "2.########### Stopping hostpad if running any ###########"
 
-echo "2.############## Reload network configuration ##############"
-networkctl reload
+systemctl is-active hostapd@open --quiet
+[  $? -eq 0 ] && systemctl stop hostapd@open
 
-echo "3.############## Starting WPA Supplicant  ##################"
+systemctl is-active hostapd@wpa --quiet
+[  $? -eq 0 ] && systemctl stop hostapd@wpa
+
+echo "3.############## Bringing up wlan0 interface ##############"
+if ifconfig | grep -q "wlan0" ; then
+	echo "Wireless LAN interface is UP!"
+else
+	echo "Wireless LAN interface has FAILED"
+	echo "2. Reloading the wilc-sdio module"
+	modprobe -r wilc-sdio
+	modprobe wilc-sdio
+	if lsmod | grep -q "wilc_sdio";  then
+		echo "WILC-SDIO module insterted successfully"
+	else
+		echo "WILC-SDIO module insert failed"
+		exit 0
+	fi
+fi
+
 cp /usr/lib/systemd/system/wpa_supplicant.service.example /etc/systemd/system/wpa_supplicant.service
 cp /usr/lib/systemd/network/80-wifi-station.network.example /etc/systemd/network/wlan0.network
+networkctl reload
+
+echo "4.############## Starting WPA Supplicant  ##################"
 systemctl restart wpa_supplicant.service
 
-echo "4.############## Restart systemd-networkd service ##########"
+echo "5.############## Restart systemd-networkd service ##########"
 systemctl restart systemd-networkd.service
