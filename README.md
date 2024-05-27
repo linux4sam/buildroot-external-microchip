@@ -29,7 +29,7 @@ For AT91, this buildroot external works only with the specific buildroot-mchp
 version 2024.02-mchp.
 
 For PolarFire SoC, this buildroot external was tested and works with buildroot
-version 2023.02.5.
+version 2024.02.
 
 
 ## Build
@@ -48,8 +48,8 @@ For AT91 configurations, as an example, we use `sama5d4_xplained_graphics_defcon
 
 For PolarFire SoC configurations, as an example, we use `icicle_defconfig`.
 
-    git clone https://github.com/linux4microchip/buildroot-external-microchip.git -b 2023.02-mchp
-    git clone https://git.busybox.net/buildroot -b 2023.02.5
+    git clone https://github.com/linux4microchip/buildroot-external-microchip.git
+    git clone https://git.busybox.net/buildroot -b 2024.02
     cd buildroot
     BR2_EXTERNAL=../buildroot-external-microchip/ make icicle_defconfig
     make
