@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-DT_OVERLAY_MCHP_VERSION = linux4microchip-2024.04
-DT_OVERLAY_MCHP_SITE = $(call github,linux4microchip,dt-overlay-mchp,$(DT_OVERLAY_MCHP_VERSION))
+DT_OVERLAY_MCHP_VERSION = sama7d65-ea-1.0-rc1
+DT_OVERLAY_MCHP_SITE = $(call github,linux4sam,dt-overlay-at91,$(DT_OVERLAY_MCHP_VERSION))
 DT_OVERLAY_MCHP_LICENSE = GPL-2.0 MIT
 DT_OVERLAY_MCHP_LICENSE_FILES = COPYING LICENSES/GPL-2.0 LICENSES/MIT
 DT_OVERLAY_MCHP_DEPENDENCIES = linux host-uboot-tools
