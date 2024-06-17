@@ -3,8 +3,8 @@
 # Microchip PolarFire SoC Examples
 #
 ################################################################################
-MPFS_EXAMPLES_VERSION = 2024.02
-MPFS_EXAMPLES_SITE = $(call github,polarfire-soc,polarfire-soc-linux-examples,v$(MPFS_EXAMPLES_VERSION))
+MPFS_EXAMPLES_VERSION = 61170722040cf3ba2066c9665b9aabf038599b31
+MPFS_EXAMPLES_SITE = $(call github,polarfire-soc,polarfire-soc-linux-examples,$(MPFS_EXAMPLES_VERSION))
 MPFS_EXAMPLES_LICENSE = MIT
 MPFS_EXAMPLES_LICENSE_FILES = LICENSE
 MPFS_EXAMPLE_DIRS += amp can gpio system-services ethernet fpga-fabric-interfaces dma dt-overlays pdma
