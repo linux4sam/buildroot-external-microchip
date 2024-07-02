@@ -3,8 +3,8 @@
 # Microchip PolarFire SoC AMP Examples
 #
 ################################################################################
-MPFS_AMP_EXAMPLES_VERSION = e14b9c739c4a8703a1b3c705a2a53760a3c6af57
-MPFS_AMP_EXAMPLES_SITE = $(call github,polarfire-soc,polarfire-soc-amp-examples,$(MPFS_AMP_EXAMPLES_VERSION))
+MPFS_AMP_EXAMPLES_VERSION = 2024.02
+MPFS_AMP_EXAMPLES_SITE = $(call github,polarfire-soc,polarfire-soc-amp-examples,v$(MPFS_AMP_EXAMPLES_VERSION))
 MPFS_AMP_EXAMPLES_INSTALL_TARGET = NO
 MPFS_AMP_EXAMPLES_INSTALL_IMAGES = YES
 MPFS_AMP_EXAMPLES_LICENSE = MIT
@@ -18,7 +18,7 @@ define MPFS_AMP_EXAMPLES_BUILD_CMDS
 		$(TARGET_MAKE_ENV) $(MAKE) -C $(@D)/$(project) CROSS_COMPILE=$(TARGET_CROSS) \
 			REMOTE=1 REMOTEPROC=1 EXT_CFLAGS='-DMPFS_HAL_FIRST_HART=4 -DMPFS_HAL_LAST_HART=4'; \
 		$(INSTALL) -D -m 775 $(@D)/$(project)/Remote-Default/mpfs-rpmsg-remote.elf \
-			$(TARGET_DIR)$(MPFS_AMP_EXAMPLES_TARGET_DIR)/rproc-remote-context-fw;
+			$(TARGET_DIR)$(MPFS_AMP_EXAMPLES_TARGET_DIR)/rproc-miv-rproc-fw;
 		cp $(@D)/$(project)/Remote-Default/mpfs-rpmsg-remote.elf $(BINARIES_DIR);)
 endef
 
