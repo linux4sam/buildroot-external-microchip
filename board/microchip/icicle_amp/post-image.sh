@@ -7,10 +7,10 @@ MKIMAGE="${HOST_DIR}"/bin/mkimage
 pushd "${BINARIES_DIR}"
 mkdir -p dts
 cp -r microchip/ dts/
-mkdir -p mpfs_icicle_amp
-[ ! -f *.dtbo ] || mv *.dtbo mpfs_icicle_amp/
+mkdir -p mpfs_icicle
+[ ! -f *.dtbo ] || mv *.dtbo mpfs_icicle/
 gzip -9 Image -c > Image.gz
-"${MKIMAGE}" -f mpfs_icicle_amp.its mpfs_icicle_amp.itb
+"${MKIMAGE}" -f mpfs_icicle.its mpfs_icicle_amp.itb
 popd
 support/scripts/genimage.sh -c "${GENIMAGE_CFG}"
 
