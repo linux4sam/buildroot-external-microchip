@@ -1,4 +1,4 @@
-CONFIG_CMDLINE="earlycon debug uio_pdrv_genirq.of_id=generic-uio clk_ignore_unused"
+CONFIG_CMDLINE="earlycon root=/dev/mmcblk0p3 rootwait uio_pdrv_genirq.of_id=generic-uio clk_ignore_unused"
 CONFIG_INPUT_JOYDEV=m
 CONFIG_INPUT_JOYSTICK=y
 CONFIG_JOYSTICK_SENSEHAT=m
