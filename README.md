@@ -158,9 +158,9 @@ contains a FAT filesystem with a U-Boot env and an ITB file containing
 the kernel and the device tree. The third partition contains the file
 system. This image can be written directly to the eMMC or an SD card.
 
-The `icicle_defconfig` generates an image with RAM-based
-filesystem, whereas the `icicle_rootfs_defconfig` generates an image containing
-a root filesystem.
+The `icicle_defconfig` generates an image containing a root filesystem, whereas
+the `icicle_initramfs_defconfig` generates an image with a RAM-based
+filesystem.
 
 There are several ways to copy the image to the eMMC or an SD card:
 
