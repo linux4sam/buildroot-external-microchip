@@ -1,0 +1,5 @@
+config BR2_PACKAGE_WIRELESS_KIT_PAGES
+	bool "Wireless credentials HTML pages"
+	help
+	  HTML pages to display when gateway IP address is accessed in the server.
+
