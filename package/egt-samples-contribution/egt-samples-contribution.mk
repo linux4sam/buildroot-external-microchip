@@ -4,7 +4,7 @@
 #
 ###############################################################################
 
-EGT_SAMPLES_CONTRIBUTION_VERSION = 1.2.0
+EGT_SAMPLES_CONTRIBUTION_VERSION = 1.2.1
 EGT_SAMPLES_CONTRIBUTION_SITE = https://github.com/linux4sam/egt-samples-contribution.git
 EGT_SAMPLES_CONTRIBUTION_SITE_METHOD = git
 EGT_SAMPLES_CONTRIBUTION_LICENSE = Apache-2.0
