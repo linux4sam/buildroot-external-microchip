@@ -1,0 +1,5 @@
+config BR2_PACKAGE_BLE_BLUEZ_HCI_APPS
+	bool "Microchip bluez ble sw apps"
+	select BR2_PACKAGE_BLUEZ5_UTILS
+	help
+	  Enable ble-uart-bluez and dfu-bluez tools.
