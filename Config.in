@@ -47,3 +47,4 @@ source "$BR2_EXTERNAL_MCHP_PATH/package/libosmscout/Config.in"
 
 source "$BR2_EXTERNAL_MCHP_PATH/package/video-capture-at91/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/libcamera-mchp/Config.in"
+source "$BR2_EXTERNAL_MCHP_PATH/package/mchpcam-apps/Config.in"

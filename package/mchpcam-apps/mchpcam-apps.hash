@@ -1,0 +1,7 @@
+# source hash for linux4microchip-2024.10-rc1
+sha256  efefafce8992045da78c1448418b94b8c42cc40a01351e7ae6cb01496c83fb1d  mchpcam-apps-c018384960694ffc9f13f6a674e75cb6624ae489.tar.gz
+
+# License files
+sha256  fed54355545ffd980b814dab4a3b312c  LICENSES/GPL-2.0-or-later.txt
+sha256  78c5f665d55dd32ca7459cdac5d70830  LICENSES/GPL-2.0-only.txt
+sha256  0d542e0c8804e39aa7f37eb00da5a762  LICENSES/CC0-1.0.txt

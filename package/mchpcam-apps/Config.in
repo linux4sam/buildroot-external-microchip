@@ -1,0 +1,9 @@
+config BR2_PACKAGE_MCHPCAM_APPS
+	bool "mchpcam-apps"
+	depends on BR2_PACKAGE_LIBCAMERA_MCHP
+	help
+	  Microchip camera applications including mchpcam-still
+	  for libcamera-mchp.
+
+	  https://github.com/linux4microchip/libcamera-mchp.git
+
