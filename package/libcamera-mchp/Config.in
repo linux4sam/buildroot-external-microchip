@@ -1,0 +1,29 @@
+config BR2_PACKAGE_LIBCAMERA_MCHP_ARCH_SUPPORTS
+    bool
+    default y
+    # Invalid packing size of ControlValue struct on m68k
+    depends on !BR2_m68k
+    depends on !BR2_TOOLCHAIN_HAS_BINUTILS_BUG_27597
+
+menuconfig BR2_PACKAGE_LIBCAMERA_MCHP
+    bool "libcamera-mchp"
+    depends on BR2_PACKAGE_LIBCAMERA_MCHP_ARCH_SUPPORTS
+    depends on BR2_INSTALL_LIBSTDCPP
+    depends on BR2_TOOLCHAIN_HAS_THREADS
+    depends on BR2_TOOLCHAIN_GCC_AT_LEAST_8 # C++17
+    depends on !BR2_STATIC_LIBS # gnutls
+    depends on BR2_USE_WCHAR # gnutls
+    select BR2_PACKAGE_GNUTLS
+    select BR2_PACKAGE_LIBYAML
+    select BR2_PACKAGE_LIBEVENT
+    select BR2_PACKAGE_JPEG
+    select BR2_PACKAGE_LIBPNG
+    help
+      Microchip's custom libcamera framework.
+
+      https://github.com/linux4microchip/libcamera-mchp.git
+
+comment "libcamera-mchp needs a toolchain w/ C++, threads, wchar, dynamic library, gcc >= 8"
+    depends on BR2_PACKAGE_LIBCAMERA_MCHP_ARCH_SUPPORTS
+    depends on !BR2_INSTALL_LIBSTDCPP || !BR2_TOOLCHAIN_HAS_THREADS || \
+        !BR2_TOOLCHAIN_GCC_AT_LEAST_8 || BR2_STATIC_LIBS || !BR2_USE_WCHAR
