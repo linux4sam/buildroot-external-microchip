@@ -21,8 +21,8 @@ echo "---------------------------------------------------"
 if lsmod | grep -q "wilc_sdio" ; then
         echo "1.############## WILC-SDIO module is available ##############"
 else
-        echo "1.############## Inserting the wilc-sdio module ##############" 
-        modprobe wilc-sdio 
+        echo "1.############## Inserting the wilc-sdio module ##############"
+        modprobe wilc-sdio
         if lsmod | grep -q "wilc_sdio";  then
                 echo "WILC-SDIO module insterted successfully"
         else
@@ -39,38 +39,42 @@ update_config=1
 
 network={
 	key_mgmt=NONE
-}	
+}
 EOT
 fi
 
 if grep -q "ssid" /etc/wpa_supplicant.conf; then
-	echo "Connecting to router:-" 
+	echo "Connecting to router:-"
 	sed -n "/ssid/p" /etc/wpa_supplicant.conf
 	sleep 2
 else
 	echo "Input the SSID of the router/AP"
-	read newSsid
-	echo "New SSID " $newSsid
+	read -r newSsid
+	echo "New SSID " "$newSsid"
 	sed -i "s/{.*/& \n\tssid=\"$newSsid\"/gI" /etc/wpa_supplicant.conf
 	echo "Input the passphrase(if non-secured, press Carriage Return(Enter)"
-	read passPhrase
+	read -r passPhrase
 	if [ "$passPhrase" = "" ];then
 		echo "Connecting to Non-Secured AP"
 		sed -i "s/\bkey_mgmt\b.*/\tkey_mgmt=\"NONE\"/gI" /etc/wpa_supplicant.conf
 	else
-		echo "New Passphrase " $passPhrase
+		echo "New Passphrase " "$passPhrase"
 		sed -i "s/ssid.*/& \n\tpsk=\"$passPhrase\"/gI" /etc/wpa_supplicant.conf
 		sed -i "/key_mgmt/d" /etc/wpa_supplicant.conf
 	fi
 
 fi
-echo "2.########### Stopping hostpad if running any ###########"
+echo "2.########### Stopping AP mode services if running any ###########"
 
-systemctl is-active hostapd@open --quiet
-[  $? -eq 0 ] && systemctl stop hostapd@open
+if systemctl is-active hostapd@open --quiet; then
+	systemctl stop hostapd@open
+fi
 
-systemctl is-active hostapd@wpa --quiet
-[  $? -eq 0 ] && systemctl stop hostapd@wpa
+if systemctl is-active hostapd@wpa --quiet; then
+	systemctl stop hostapd@wpa
+fi
+
+killall -9 dhcpd
 
 echo "3.############## Bringing up wlan0 interface ##############"
 if ifconfig | grep -q "wlan0" ; then

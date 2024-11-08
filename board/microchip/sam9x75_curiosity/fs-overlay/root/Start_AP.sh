@@ -48,10 +48,23 @@ else
     echo "hostapd has failed to start"
     exit 0
 fi
+
+echo "6.############## Start DHCP server##################"
+cat > /etc/dhcp/dhcpd.conf << EOF
+subnet 192.168.1.0 netmask 255.255.255.0 {
+   range 192.168.1.2 192.168.1.110;
+   option broadcast-address 192.168.1.255;
+   option routers 192.168.1.1;
+}
+EOF
+
+sleep 5
+dhcpd wlan0 &
+
 nohup python3 -m http.server 80 -d /var/www/html &
 echo "Now, The device comes up as an Access Point(AP) and host a webpage to provision"
 echo "WiFi station interface"
-echo "\n"
+echo ""
 echo "Use a Phone/Laptop and connect to the 'wilc1000_SoftAP' WiFi AP"
 echo "Using the web browser open http://192.168.1.1"
 echo "---------------------------------------------------"

@@ -64,7 +64,7 @@ else
 	fi
 
 fi
-echo "2.########### Stopping hostpad if running any ###########"
+echo "2.########### Stopping AP mode services if running any ###########"
 
 if systemctl is-active hostapd@open --quiet; then
 	systemctl stop hostapd@open
@@ -73,6 +73,8 @@ fi
 if systemctl is-active hostapd@wpa --quiet; then
 	systemctl stop hostapd@wpa
 fi
+
+killall -9 dhcpd
 
 echo "3.############## Bringing up wlan0 interface ##############"
 if ifconfig | grep -q "wlan0" ; then
