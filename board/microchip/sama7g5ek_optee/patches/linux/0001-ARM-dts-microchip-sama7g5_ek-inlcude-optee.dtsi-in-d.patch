@@ -1,0 +1,28 @@
+From 2621e21b6f1b405ecfba68cd7b5ce199afe04429 Mon Sep 17 00:00:00 2001
+From: Tony Han <tony.han@microchip.com>
+Date: Tue, 12 Nov 2024 14:38:57 +0800
+Subject: [PATCH] ARM: dts: microchip: sama7g5_ek: inlcude optee.dtsi in
+ devicetree
+
+sama7g5-optee.dtsi is needed to be included in the devicetree for the
+OP-TEE cases.
+
+Signed-off-by: Tony Han <tony.han@microchip.com>
+---
+ arch/arm/boot/dts/microchip/at91-sama7g5ek.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
+index f053182be63e..05a414d9e300 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
++++ b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
+@@ -11,6 +11,7 @@
+ /dts-v1/;
+ #include "sama7g5-pinfunc.h"
+ #include "sama7g5.dtsi"
++#include "sama7g5-optee.dtsi"
+ #include <dt-bindings/mfd/atmel-flexcom.h>
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/pinctrl/at91.h>
+--
+2.43.0

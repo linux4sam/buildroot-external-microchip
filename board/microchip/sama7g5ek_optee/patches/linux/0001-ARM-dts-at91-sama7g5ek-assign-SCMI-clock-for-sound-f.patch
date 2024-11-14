@@ -1,0 +1,29 @@
+From c0d4af65555f90a6bf1aa2556985176e608fd40a Mon Sep 17 00:00:00 2001
+From: Tony Han <tony.han@microchip.com>
+Date: Thu, 18 Jan 2024 13:18:50 +0800
+Subject: [PATCH] ARM: dts: at91: sama7g5ek: assign SCMI clock for sound for
+ OP-TEE case
+
+When OP-TEE is used, using SCMI clocks instead of PMC clocks.
+
+Signed-off-by: Tony Han <tony.han@microchip.com>
+---
+ arch/arm/boot/dts/microchip/at91-sama7g5ek.dts | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
+index 5366a274d2b8..f053182be63e 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
++++ b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
+@@ -92,8 +92,7 @@ memory@60000000 {
+	sound: sound {
+		#address-cells = <1>;
+		#size-cells = <0>;
+-		assigned-clocks = <&pmc PMC_TYPE_CORE PMC_AUDIOPMCPLL>;
+-		assigned-clock-rates = <196608000>;
++		assigned-clocks = <&scmi0_clock AT91_SCMI_CLK_CORE_AUDIOPLLCK>;
+		compatible = "microchip,asrc-card";
+		microchip,model = "mchp-asrc-card @ sama7g5 EK";
+		status = "okay";
+--
+2.43.0
