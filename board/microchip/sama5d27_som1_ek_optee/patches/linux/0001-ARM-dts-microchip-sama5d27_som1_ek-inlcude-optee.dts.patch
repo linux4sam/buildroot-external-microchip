@@ -1,0 +1,28 @@
+From bbd7826b50bd1a219a147a89f4044c14c70124a3 Mon Sep 17 00:00:00 2001
+From: Tony Han <tony.han@microchip.com>
+Date: Tue, 12 Nov 2024 12:36:37 +0800
+Subject: [PATCH] ARM: dts: microchip: sama5d27_som1_ek: inlcude optee.dtsi in
+ devicetree
+
+sama5d2-optee.dtsi is needed to be included in the devicetree for the
+OP-TEE cases.
+
+Signed-off-by: Tony Han <tony.han@microchip.com>
+---
+ arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts b/arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts
+index f3ffb8f01d8a..9c781dce3425 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts
++++ b/arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts
+@@ -9,6 +9,7 @@
+  */
+ /dts-v1/;
+ #include "at91-sama5d27_som1.dtsi"
++#include "sama5d2-optee.dtsi"
+ #include <dt-bindings/mfd/atmel-flexcom.h>
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
+--
+2.43.0
