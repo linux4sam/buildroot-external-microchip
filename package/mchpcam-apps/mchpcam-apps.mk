@@ -3,7 +3,7 @@
 # mchpcam-apps
 #
 ################################################################################
-MCHPCAM_APPS_VERSION = c018384960694ffc9f13f6a674e75cb6624ae489
+MCHPCAM_APPS_VERSION = linux4microchip-2024.10-rc2
 MCHPCAM_APPS_SITE = $(call github,linux4microchip,libcamera-mchp,$(MCHPCAM_APPS_VERSION))
 MCHPCAM_APPS_LICENSE = \
     GPL-2.0+ (utils), \
