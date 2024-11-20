@@ -66,6 +66,9 @@ check_wlan_interface
 echo "3.############# Stopping wpa_supplicant service if any ####"
 systemctl stop wpa_supplicant.service
 
+killall -9 dhcpd
+sleep 2
+
 echo "4.############# Loading network configuration  #######"
 cp /usr/lib/systemd/system/hostapd@.service.example /etc/systemd/system/hostapd@.service
 cp /usr/lib/systemd/network/80-wifi-softap.network.example /etc/systemd/network/wlan0.network
