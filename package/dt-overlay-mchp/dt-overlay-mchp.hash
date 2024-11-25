@@ -31,8 +31,7 @@ sha256 5462c0606a95c5de236800f1785144fb67d07f23c904d51a7a6c60cf46526369  dt-over
 sha256 04ecae76934b0eae60b7d30f88d218d0cae5c6b3f1b670aeba4ee124551a18f9  dt-overlay-mchp-linux4microchip-2024.04.tar.gz
 sha256 0f9df7bf84d2a15d2bcb231168b63562c4969130d5c7980bc8cf1055ee539ef7  dt-overlay-mchp-linux4microchip+fpga-2024.06.tar.gz
 sha256 4f3233b1a5cf8d42b922da87bb32bd5dec4dee2c229d7d4ba370ab9118dbfde2  dt-overlay-mchp-linux4microchip+fpga-2024.09.tar.gz
-sha256 6fc36996bac584bc045146299706a1e95040a8fcd2f63978c36c39434bf3a1dc  dt-overlay-mchp-linux4microchip-2024.10-rc2.tar.gz
-sha256 c2cdd9ad08570cbb9a45b6d29a9868cdb3525ad67d46263fdfb8ad0dbed5d6f0  dt-overlay-mchp-linux4microchip-2024.10-rc3.tar.gz
+sha256 1115879e8065c376a5664b401ad12f3edbf1d4a7da2e52d1feeb12faec7a0f18  dt-overlay-mchp-linux4microchip-2024.10-rc4.tar.gz
 
 # Hash for license files:
 sha256 fbdbfc6e5eb6fb789b6f754d4951df6cd9684a59818dbe391cdb56812314e500  COPYING
