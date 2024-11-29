@@ -11,12 +11,12 @@ the standard buildroot tree.
 
 ## Install System Dependencies
 
-The external is tested on Ubuntu 20.04 LTS.  The following system build
+The external is tested on Ubuntu 22.04 LTS.  The following system build
 dependencies are required.
 
     sudo apt-get install subversion build-essential bison flex gettext \
     libncurses5-dev texinfo autoconf automake libtool mercurial git-core \
-    gperf gawk expat curl cvs libexpat-dev bzr unzip bc python-dev \
+    gperf gawk expat curl cvs libexpat-dev bzr unzip bc python3-dev \
     wget cpio rsync xxd bmap-tools
 
 In some cases, buildroot will notify that additional host dependencies are
