@@ -1,0 +1,9 @@
+
+This is version v2024.10 of PIC64GX SoC Buildroot External.
+
+Updated images and documentation are available at:
+        https://github.com/pic64gx
+* Yocto releases
+        https://github.com/pic64gx/meta-pic64gx-yocto-bsp/releases
+* Buildroot releases
+	https://github.com/linux4microchip/buildroot-external-microchip
