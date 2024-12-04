@@ -31,6 +31,8 @@ version 2024.02-mchp.
 For PolarFire SoC, this buildroot external was tested and works with buildroot
 version 2024.02.
 
+For PIC64GX, this buildroot external was tested and works with buildroot
+version 2024.02.
 
 ## Build
 
@@ -214,6 +216,51 @@ documentation.
 
 For more information on using buildroot for PolarFire SoC, see
 the [PolarFire SoC documentation][8].
+
+### PIC64GX
+
+There are several configurations available for PIC64GX Curiosity Kit.
+To generate an image, choose any of the PIC64GX Curiosity Kit defconfigs
+provided in the configs directory and follow the corresponding instructions.
+
+For example, to build an image suitable for programming to the SD for the
+PIC64GX Curiosity Kit:
+
+    BR2_EXTERNAL=../buildroot-external-microchip/ make pic64gx_curiosity_kit_defconfig
+    make
+
+#### Create an Image for SD Card
+
+An image is generated in the file `sdcard.img` in the output/images
+directory. The first partition of this image contains a U-Boot binary,
+embedded in a Hart Software Services (HSS) payload. The second partition
+contains a FAT filesystem with a U-Boot env and an ITB file containing
+the kernel and the device tree. The third partition contains the file
+system. This image can be written directly to the SD card.
+
+The `pic64gx_curiosity_kit_defconfig` generates an image containing a root filesystem, whereas
+the `pic64gx_curiosity_kit_initramfs_defconfig` generates an image with a RAM-based
+filesystem.
+
+There are several ways to copy the image to an SD card:
+
+a) Copy the image to the SD card using the standard Unix `dd` tool:
+
+Find the device node name for your card and then copy the image as shown below:
+
+    cd output/images
+    sudo dd if=sdcard.img of=/dev/sdX bs=1M
+
+b) Copy the image to the SD card using `bmaptool` (recommended)
+
+This is a generic tool for creating a block map (bmap) for a file and copying
+files using this block map. Raw system image files can be flashed a lot faster
+with bmaptool than with traditional tools, like "dd".
+
+    cd output/images
+    sudo bmaptool copy sdcard.img /dev/sdX
+
+For your SD Card, you need at least 8GB. All the data on the SD card will be lost.
 
 ## License
 
