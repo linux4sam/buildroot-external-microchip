@@ -9,6 +9,7 @@ bootcmd=run prep_overlays; run load_image; bootm ${loadaddr}#kernel_dtb${at91_ov
 bootdelay=1
 ethaddr=02:10:a0:94:77:20
 eth1addr=02:10:a0:93:03:20
+ethprime=eth0
 ipaddr=192.168.0.20
 netmask=255.255.255.0
 serverip=192.168.0.110
