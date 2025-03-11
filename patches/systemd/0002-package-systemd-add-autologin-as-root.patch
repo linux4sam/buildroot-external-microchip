@@ -1,0 +1,44 @@
+From 94a6e243958677e3c6a5db5e67c6b609917e75b4 Mon Sep 17 00:00:00 2001
+From: Mihai Sain <mihai.sain@microchip.com>
+Date: Thu, 6 Mar 2025 09:30:04 +0200
+Subject: [PATCH] package/systemd: add autologin as root
+
+Add autologin feature in order to speed up
+the workflow for development/debugging/testing.
+
+[    5.945279] systemd[1]: Starting Apply Kernel Variables...
+[    5.994957] systemd[1]: Starting Create Static Device Nodes in /dev gracefully...
+[    6.044416] systemd[1]: Finished Load udev Rules from Credentials.
+[    6.053150] systemd[1]: Mounted FUSE Control File System.
+[    6.116446] systemd[1]: Mounted Kernel Configuration File System.
+[    6.252708] systemd[1]: Finished Load/Save OS Random Seed.
+[    6.284438] systemd[1]: Reached target First Boot Complete.
+[    6.297194] systemd[1]: Finished Apply Kernel Variables.
+[    6.532257] systemd[1]: Started Journal Service.
+
+SAMA7D65 login: root (automatic login)
+
+[root@SAMA7D65 ~]$ uname -a
+Linux SAMA7D65 6.14.0-rc3 #1 Thu Feb 20 10:51:11 EET 2025 armv7l GNU/Linux
+
+Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
+---
+ units/serial-getty@.service.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/units/serial-getty@.service.in b/units/serial-getty@.service.in
+index 6bf101eac9..971e3f8791 100644
+--- a/units/serial-getty@.service.in
++++ b/units/serial-getty@.service.in
+@@ -33,7 +33,7 @@ Before=rescue.service
+ # The '-o' option value tells agetty to replace 'login' arguments with an
+ # option to preserve environment (-p), followed by '--' for safety, and then
+ # the entered username.
+-ExecStart=-/sbin/agetty -o '-p -- \\u' --keep-baud 115200,57600,38400,9600 - $TERM
++ExecStart=-/sbin/agetty --autologin root -o '-p -- \\u' --keep-baud 115200,57600,38400,9600 - $TERM
+ Type=idle
+ Restart=always
+ UtmpIdentifier=%I
+-- 
+2.48.1
+
