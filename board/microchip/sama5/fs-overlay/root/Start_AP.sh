@@ -125,6 +125,9 @@ EOF
 sleep 5
 dhcpd wlan0 &
 
+cd /root/
+./websocket &
+
 echo "Now, The device comes up as an Access Point(AP) and host a webpage to provision"
 echo "WiFi station interface"
 echo ""
