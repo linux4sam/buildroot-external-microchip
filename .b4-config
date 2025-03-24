@@ -1,0 +1,6 @@
+# Configuration for the `b4` tool
+# See https://b4.docs.kernel.org/en/latest/config.html
+[b4]
+  prep-cover-strategy = branch-description
+  send-no-patatt-sign = yes
+  send-prefixes = buildroot-external-microchip
