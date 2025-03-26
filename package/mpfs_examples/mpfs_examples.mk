@@ -3,7 +3,7 @@
 # Microchip PolarFire SoC Examples
 #
 ################################################################################
-MPFS_EXAMPLES_VERSION = 2024.09
+MPFS_EXAMPLES_VERSION = 2025.03
 MPFS_EXAMPLES_SITE = $(call github,polarfire-soc,polarfire-soc-linux-examples,v$(MPFS_EXAMPLES_VERSION))
 MPFS_EXAMPLES_LICENSE = MIT
 MPFS_EXAMPLES_LICENSE_FILES = LICENSE
