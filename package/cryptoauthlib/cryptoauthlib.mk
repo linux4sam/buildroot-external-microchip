@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CRYPTOAUTHLIB_VERSION = v3.7.6
+CRYPTOAUTHLIB_VERSION = v3.7.7
 CRYPTOAUTHLIB_SITE = $(call github,MicrochipTech,cryptoauthlib,$(CRYPTOAUTHLIB_VERSION))
 CRYPTOAUTHLIB_INSTALL_STAGING = YES
 CRYPTOAUTHLIB_LICENSE = LGPL-2.1
