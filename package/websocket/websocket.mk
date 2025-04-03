@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-WEBSOCKET_VERSION = linux4sam-2020.04
+WEBSOCKET_VERSION = linux4microchip-2025.04-rc1
 WEBSOCKET_SITE = $(call github,MicrochipTech,websocket-buildroot-external-microchip,$(WEBSOCKET_VERSION))
 
 define WEBSOCKET_BUILD_CMDS
