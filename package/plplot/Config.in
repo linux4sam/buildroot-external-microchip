@@ -1,8 +1,5 @@
 config BR2_PACKAGE_PLPLOT
 	bool "plplot"
-	select BR2_PACKAGE_CAIRO_PDF if BR2_PACKAGE_CAIRO
-	select BR2_PACKAGE_CAIRO_PS if BR2_PACKAGE_CAIRO
-	select BR2_PACKAGE_CAIRO_SVG if BR2_PACKAGE_CAIRO
 	help
 	  PLplot is a cross-platform software package for creating scientific plots.
 
