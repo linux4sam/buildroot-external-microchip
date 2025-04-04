@@ -1,0 +1,41 @@
+From f62038b765f17b6b68e60c08b610d77f0f75b06d Mon Sep 17 00:00:00 2001
+From: Nayab Sayed <nayabbasha.sayed@microchip.com>
+Date: Thu, 3 Apr 2025 11:10:23 +0530
+Subject: [PATCH] ble-bluez-hci-apps: fix api compatibility
+
+bt_shell_set_prompt() API now accepts two parameters compatible with
+bluez5_utils-5.79 package.
+---
+ apps/ble_uart_app/src/app_dbp.c | 2 +-
+ apps/dfu_app/src/main.c         | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/apps/ble_uart_app/src/app_dbp.c b/apps/ble_uart_app/src/app_dbp.c
+index 1d212a9915a2..382476a442f5 100644
+--- a/apps/ble_uart_app/src/app_dbp.c
++++ b/apps/ble_uart_app/src/app_dbp.c
+@@ -1523,7 +1523,7 @@ void APP_DBP_PropertyChanged(GDBusProxy *p_proxy, const char *p_name, DBusMessag
+ 
+ void APP_DBP_DBusConnectHandler(DBusConnection *p_connection, void *p_userData)
+ {
+-    bt_shell_set_prompt(PROMPT_ON);
++    bt_shell_set_prompt(PROMPT_ON, COLOR_OFF);
+ }
+ 
+ void APP_DBP_DBusDisconnectHandler(DBusConnection *p_connection, void *p_userData)
+diff --git a/apps/dfu_app/src/main.c b/apps/dfu_app/src/main.c
+index a7d17a50215d..c57376003d6d 100644
+--- a/apps/dfu_app/src/main.c
++++ b/apps/dfu_app/src/main.c
+@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
+     
+     APP_Initialize();
+ 
+-    bt_shell_set_prompt(PROMPT_ON);
++    bt_shell_set_prompt(PROMPT_ON, COLOR_OFF);
+     bt_shell_attach(fileno(stdin));
+     /*running in a loop*/
+     bt_shell_run();
+-- 
+2.34.1
+
