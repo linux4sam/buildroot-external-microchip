@@ -1,0 +1,73 @@
+config BR2_MCHP_SAM_HAS_GPU
+	bool
+	default n
+
+config BR2_MCHP_SAM_HAS_GPU2D
+	bool
+	select BR2_MCHP_SAM_HAS_GPU
+	default n
+
+config BR2_MCHP_SAM_HAS_GFX2D
+	bool
+	select BR2_MCHP_SAM_HAS_GPU2D
+	default n
+
+config BR2_MCHP_SAM_HAS_GC520UL
+	bool
+	select BR2_MCHP_SAM_HAS_GPU2D
+	default n
+
+choice
+	prompt "SAM series"
+
+config BR2_MCHP_SAM_9X5
+	bool "SAM9X5 Series"
+
+config BR2_MCHP_SAM_9X6
+	bool "SAM9X6 Series"
+	select BR2_MCHP_SAM_HAS_GFX2D
+
+config BR2_MCHP_SAM_9X7
+	bool "SAM9X7 Series"
+	select BR2_MCHP_SAM_HAS_GFX2D
+
+config BR2_MCHP_SAM_A5D2
+	bool "SAMA5D2 Series"
+
+config BR2_MCHP_SAM_A5D3
+	bool "SAMA5D3 Series"
+
+config BR2_MCHP_SAM_A5D4
+	bool "SAMA5D4 Series"
+
+config BR2_MCHP_SAM_A7D6
+	bool "SAMA7D6 Series"
+	select BR2_MCHP_SAM_HAS_GC520UL
+
+config BR2_MCHP_SAM_A7G5
+	bool "SAMA7G5 Series"
+endchoice
+
+choice
+	prompt "GPU strategy"
+	default BR2_MCHP_SAM_GFX2D if BR2_MCHP_SAM_HAS_GFX2D
+	default BR2_MCHP_SAM_GC520UL if BR2_MCHP_SAM_HAS_GC520UL
+	default BR2_MCHP_SAM_NO_GPU if !BR2_MCHP_SAM_HAS_GPU
+
+config BR2_MCHP_SAM_GFX2D
+	bool "GFX2D"
+	depends on BR2_MCHP_SAM_HAS_GFX2D
+	help
+	  This option allows to use the GFX2D accelerator.
+
+config BR2_MCHP_SAM_GC520UL
+	bool "GC520UL"
+	depends on BR2_MCHP_SAM_HAS_GC520UL
+	help
+	  This option allows to use the GC520UL accelerator.
+
+config BR2_MCHP_SAM_NO_GPU
+	bool "No GPU"
+	help
+	  This option allows to use software rendering only.
+endchoice

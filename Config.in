@@ -1,3 +1,10 @@
+config BR2_MCHP_SAM
+	bool "SAM family device"
+
+if BR2_MCHP_SAM
+source "$BR2_EXTERNAL_MCHP_PATH/Config.in.sam"
+endif
+
 source "$BR2_EXTERNAL_MCHP_PATH/package/dt-overlay-mchp/Config.in"
 
 source "$BR2_EXTERNAL_MCHP_PATH/package/g1-decoder/Config.in"
