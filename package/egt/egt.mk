@@ -148,6 +148,10 @@ else
 EGT_CONF_OPTS += --without-libmagic
 endif
 
+ifeq ($(BR2_PACKAGE_LIBM2D),y)
+EGT_DEPENDENCIES += libm2d
+endif
+
 define EGT_RUN_AUTOGEN
         cd $(@D) && PATH=$(BR_PATH) ./autogen.sh
 endef

@@ -9,6 +9,7 @@ source "$BR2_EXTERNAL_MCHP_PATH/package/dt-overlay-mchp/Config.in"
 
 source "$BR2_EXTERNAL_MCHP_PATH/package/g1-decoder/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/gst1-at91/Config.in"
+source "$BR2_EXTERNAL_MCHP_PATH/package/libm2d/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/libplanes/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/ptc_examples/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/python-mpio/Config.in"

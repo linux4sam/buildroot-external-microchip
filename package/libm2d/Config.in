@@ -1,0 +1,13 @@
+comment "libm2d requires a GPU strategy"
+	depends on BR2_MCHP_SAM_NO_GPU
+
+comment "libm2d depends on libdrm"
+	depends on !BR2_PACKAGE_LIBDRM
+
+config BR2_PACKAGE_LIBM2D
+	bool "libm2d"
+	depends on BR2_MCHP_SAM_HAS_GPU2D
+	depends on BR2_PACKAGE_LIBDRM
+	depends on !BR2_MCHP_SAM_NO_GPU
+	help
+	  libm2d is a library that provides the Microchip 2D Graphics API.
