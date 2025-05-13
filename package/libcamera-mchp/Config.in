@@ -22,6 +22,14 @@ menuconfig BR2_PACKAGE_LIBCAMERA_MCHP
       Microchip's custom libcamera framework.
 
       https://github.com/linux4microchip/libcamera-mchp.git
+if BR2_PACKAGE_LIBCAMERA_MCHP
+config BR2_PACKAGE_LIBCAMERA_MCHP_IPA
+    bool "libcamera-mchp IPA module"
+    default y
+    help
+      Enable support for Microchip Image Sensor Controller (ISC)
+      Image Processing Algorithm module.
+endif
 
 comment "libcamera-mchp needs a toolchain w/ C++, threads, wchar, dynamic library, gcc >= 8"
     depends on BR2_PACKAGE_LIBCAMERA_MCHP_ARCH_SUPPORTS

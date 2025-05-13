@@ -37,11 +37,12 @@ LIBCAMERA_MCHP_CONF_OPTS = \
 	-Dv4l2=true \
 	-Dcam=enabled \
 	-Dudev=enabled \
+	-Dipas=microchip-isc \
 	-Dlc-compliance=disabled \
 	-Dtest=false \
 	-Ddocumentation=disabled \
 	-Dgstreamer=disabled \
-	-Dpycamera=disabled \
+	-Dpycamera=disabled
 
 # Open-Source IPA shlibs need to be signed in order to be runnable within the
 # same process, otherwise they are deemed Closed-Source and run in another
@@ -66,8 +67,19 @@ define LIBCAMERA_MCHP_INSTALL_SIGN_IPA
 	./ipa-sign-install.sh $(@D)/build/src/ipa-priv-key.pem ipa_*.so
 endef
 
+# Install the IPA module
+define LIBCAMERA_MCHP_INSTALL_IPA_MODULE
+       if [ -f $(@D)/build/src/ipa/microchip-isc/ipa_microchip_isc.so ]; then \
+               $(INSTALL) -D -m 0755 $(@D)/build/src/ipa/microchip-isc/ipa_microchip_isc.so \
+                       $(TARGET_DIR)/usr/lib/libcamera/ipa_microchip_isc.so ; \
+       fi
+endef
+
 LIBCAMERA_MCHP_POST_BUILD_HOOKS += LIBCAMERA_MCHP_BUILD_STRIP_IPA_SO
 LIBCAMERA_MCHP_PRE_INSTALL_TARGET_HOOKS += LIBCAMERA_MCHP_CREATE_DIRS
+ifeq ($(BR2_PACKAGE_LIBCAMERA_MCHP_IPA),y)
+LIBCAMERA_MCHP_POST_INSTALL_TARGET_HOOKS += LIBCAMERA_MCHP_INSTALL_IPA_MODULE
+endif
 LIBCAMERA_MCHP_POST_INSTALL_TARGET_HOOKS += LIBCAMERA_MCHP_INSTALL_SIGN_IPA
 
 $(eval $(meson-package))
