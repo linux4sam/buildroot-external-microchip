@@ -1,11 +1,14 @@
 # Clear the first 140 blocks after the script address in case of clobber
 mw.l 8e000258 00000000 140
+fdt addr ${fdtcontroladdr}
+fdt get value board_compatible / compatible 1
+setenv fitconf conf-${board_compatible}
 ubifsload ${scriptaddr} boot/mpfs_icicle.itb
 ubifsumount
 ubi detach
 setenv base_args "earlycon uio_pdrv_genirq.of_id=generic-uio"
 setenv bootargs "${base_args} ubi.mtd=1 root=ubi0:rootfs rootfstype=ubifs rootwait rw mtdparts=spi2.0:2m(payload),28m(ubi)"
-bootm start ${scriptaddr}#kernel_dtb#pmod3
+bootm start ${scriptaddr}#${fitconf}#conf-microchip,mpfs-icicle-pmod-sf3
 bootm loados ${scriptaddr};
 # Try to load a ramdisk if available inside fitImage
 bootm ramdisk;

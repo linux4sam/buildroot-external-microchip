@@ -1,8 +1,11 @@
+fdt addr ${fdtcontroladdr}
+fdt get value board_compatible / compatible 1
+setenv fitconf conf-${board_compatible}
 ubifsload 0x80000000 boot/mpfs_icicle.itb
 cp 0x80000000 ${scriptaddr} ${filesize}
 setenv base_args "earlycon uio_pdrv_genirq.of_id=generic-uio"
 setenv bootargs "${base_args} ubi.mtd=1 root=ubi0:rootfs rootfstype=ubifs rootwait rw mtdparts=spi2.0:2m(payload),119m(ubi)"
-bootm start ${scriptaddr}#kernel_dtb#f5c
+bootm start ${scriptaddr}#${fitconf}#conf-microchip,mpfs-icicle-flash5-click
 bootm loados ${scriptaddr};
 # Try to load a ramdisk if available inside fitImage
 bootm ramdisk;
