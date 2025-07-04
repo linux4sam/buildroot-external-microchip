@@ -11,7 +11,7 @@ fdt get value board_compatible / compatible 1
 setenv fitconf conf-${board_compatible}
 
 load mmc 0:${distro_bootpart} ${scriptaddr} mpfs_icicle.itb
-bootm start ${scriptaddr}#${fitconf}
+bootm start ${scriptaddr}#${fitconf}#conf-microchip,mpfs-icicle-cpu-opp
 bootm loados ${scriptaddr}
 bootm ramdisk
 bootm prep
