@@ -127,10 +127,10 @@ For more information, check the information on the [at91Wiki][7].
 
 #### Documentation
 
-For more information on using and updating buildroot-at91, see the [buildroot
+For more information on using and updating buildroot-mchp, see the [buildroot
 documentation][3].
 
-### PolarFire SoC
+### PolarFire SoC - Icicle Kit
 
 There are several configurations available for PolarFire SoC Icicle Kit.
 To generate an image, choose any of the Icicle Kit defconfigs provided
@@ -212,6 +212,57 @@ For instructions on how to transfer the image to the external QSPI flash memory
 refer to the *External QSPI Flash Memory* section of the [updating PolarFire SoC dev kits][12]
 documentation.
 
+### PolarFire SoC - Discovery Kit
+
+There is a single configuration available for the PolarFire SoC Discovery Kit.
+To generate an image, use the provided Discovery Kit defconfig in the configs directory and follow the instructions below.
+
+For example, to build an image suitable for programming to the SD card for the Discovery Kit:
+
+    BR2_EXTERNAL=../buildroot-external-microchip/ make mpfs_discovery_kit_defconfig
+    make
+
+Please note that this buildroot external is intended for use with the latest
+version of the [Discovery Kit Reference Design][15].
+
+#### Create an Image for SD Card
+
+An image is generated in the file `sdcard.img` in the output/images
+directory. The first partition of this image contains a U-Boot binary,
+embedded in a Hart Software Services (HSS) payload. The second partition
+contains a FAT filesystem with a U-Boot env and an ITB file containing
+the kernel and the device tree. The third partition contains the file
+system. This image can be written directly to the SD card.
+
+The `mpfs_discovery_kit_defconfig` generates an image containing a root filesystem.
+
+There are several ways to copy the image to the SD card:
+
+a) Copy the image to the SD card using the standard Unix `dd` tool:
+
+Find the device node name for your card and then copy the image as shown below:
+
+    cd output/images
+    sudo dd if=sdcard.img of=/dev/sdX bs=1M
+
+b) Copy the image to the SD card using `bmaptool` (recommended)
+
+This is a generic tool for creating a block map (bmap) for a file and copying
+files using this block map. Raw system image files can be flashed a lot faster
+with bmaptool than with traditional tools, like "dd".
+
+    cd output/images
+    sudo bmaptool copy sdcard.img /dev/sdX
+
+If using an SD Card, you need at least 8GB. All the data on the SD card
+will be lost.
+
+Another method, which is cross platform, to write the image is to use
+[USBImager][10] or [Etcher][5].
+
+For instructions on how to transfer the image to the SD Card, please refer to
+the *Programming the Linux image* section of our [guide on updating PolarFire SoC dev kits][12].
+
 #### Documentation
 
 For more information on using buildroot for PolarFire SoC, see
@@ -223,7 +274,7 @@ There are several configurations available for PIC64GX Curiosity Kit.
 To generate an image, choose any of the PIC64GX Curiosity Kit defconfigs
 provided in the configs directory and follow the corresponding instructions.
 
-For example, to build an image suitable for programming to the SD for the
+For example, to build an image suitable for programming to the SD card for the
 PIC64GX Curiosity Kit:
 
     BR2_EXTERNAL=../buildroot-external-microchip/ make pic64gx_curiosity_kit_defconfig
@@ -260,7 +311,7 @@ with bmaptool than with traditional tools, like "dd".
     cd output/images
     sudo bmaptool copy sdcard.img /dev/sdX
 
-For your SD Card, you need at least 8GB. All the data on the SD card will be lost.
+For your SD card, you need at least 8GB. All the data on the SD card will be lost.
 
 ## License
 
@@ -284,3 +335,4 @@ information.
 [12]: https://mi-v-ecosystem.github.io/redirects/boards-mpfs-generic-updating-mpfs-kit
 [13]: https://github.com/polarfire-soc/icicle-kit-reference-design/releases
 [14]: https://github.com/linux4microchip/buildroot-external-microchip/releases/tag/linux4microchip%2Bfpga-2022.11
+[15]: https://github.com/polarfire-soc/polarfire-soc-discovery-kit-reference-design/releases
