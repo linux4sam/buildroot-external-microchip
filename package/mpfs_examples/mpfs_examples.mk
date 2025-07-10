@@ -7,7 +7,7 @@ MPFS_EXAMPLES_VERSION = 2025.03
 MPFS_EXAMPLES_SITE = $(call github,polarfire-soc,polarfire-soc-linux-examples,v$(MPFS_EXAMPLES_VERSION))
 MPFS_EXAMPLES_LICENSE = MIT
 MPFS_EXAMPLES_LICENSE_FILES = LICENSE
-MPFS_EXAMPLE_DIRS += amp can gpio system-services ethernet fpga-fabric-interfaces dma dt-overlays pdma
+MPFS_EXAMPLE_DIRS += amp can gpio system-services ethernet fpga-fabric-interfaces dma dt-overlays pdma gateware
 MPFS_EXAMPLE_FILES += amp/rpmsg-pingpong/rpmsg-pingpong amp/rpmsg-tty-example/rpmsg-tty can/uio-can-example gpio/gpiod-test gpio/gpio-event system-services/system-services-example system-services/signature-verification-demo fpga-fabric-interfaces/lsram/uio-lsram-read-write dma/uio-dma-interrupt pdma/pdma-ex
 MPFS_EXAMPLE_TARGET_DIR = /opt/microchip/
 
