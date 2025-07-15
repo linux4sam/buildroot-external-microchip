@@ -7,9 +7,11 @@ MPFS_EXAMPLES_VERSION = 2025.03
 MPFS_EXAMPLES_SITE = $(call github,polarfire-soc,polarfire-soc-linux-examples,v$(MPFS_EXAMPLES_VERSION))
 MPFS_EXAMPLES_LICENSE = MIT
 MPFS_EXAMPLES_LICENSE_FILES = LICENSE
-MPFS_EXAMPLE_DIRS += amp can gpio system-services ethernet fpga-fabric-interfaces dma dt-overlays pdma gateware
-MPFS_EXAMPLE_FILES += amp/rpmsg-pingpong/rpmsg-pingpong amp/rpmsg-tty-example/rpmsg-tty can/uio-can-example gpio/gpiod-test gpio/gpio-event system-services/system-services-example system-services/signature-verification-demo fpga-fabric-interfaces/lsram/uio-lsram-read-write dma/uio-dma-interrupt pdma/pdma-ex
+MPFS_EXAMPLE_DIRS = $(call qstrip,$(BR2_PACKAGE_MPFS_EXAMPLES_DIRS))
+MPFS_EXAMPLE_FILES_ALL += amp/rpmsg-pingpong/rpmsg-pingpong amp/rpmsg-tty-example/rpmsg-tty gpio/gpiod-test gpio/gpio-event system-services/system-services-example system-services/signature-verification-demo fpga-fabric-interfaces/lsram/uio-lsram-read-write dma/uio-dma-interrupt pdma/pdma-ex
 MPFS_EXAMPLE_TARGET_DIR = /opt/microchip/
+MPFS_EXAMPLE_FILES = \
+    $(foreach d,$(MPFS_EXAMPLE_DIRS),$(filter $(d)/%,$(MPFS_EXAMPLE_FILES_ALL)))
 
 define MPFS_EXAMPLES_INSTALL_DIRS
 	$(foreach d,$(MPFS_EXAMPLE_DIRS), \
@@ -26,12 +28,14 @@ define MPFS_EXAMPLES_INSTALL_TARGET_CMDS
 	echo $(MPFS_EXAMPLE_FILES)
 	$(foreach example_file,$(MPFS_EXAMPLE_FILES), \
 		$(TARGET_MAKE_ENV) $(MAKE) -C $(@D)/$(dir $(example_file)) \
-		$(notdir $(example_file)) CC=$(TARGET_CC); \
-			$(INSTALL) -D -m 775 $(@D)/$(example_file) \
-			$(TARGET_DIR)$(MPFS_EXAMPLE_TARGET_DIR)/$(dir $(example_file));)
+			$(notdir $(example_file)) CC=$(TARGET_CC); \
+		$(INSTALL) -D -m 775 $(@D)/$(example_file) \
+			$(TARGET_DIR)$(MPFS_EXAMPLE_TARGET_DIR)$(example_file);)
 
-	ln -sf $(MPFS_EXAMPLE_TARGET_DIR)/ethernet/iio-http-server \
-	$(TARGET_DIR)$(MPFS_EXAMPLE_TARGET_DIR)/iiohttpserver
+	if echo "$(MPFS_EXAMPLE_DIRS)" | grep -wq ethernet; then \
+		ln -sf $(MPFS_EXAMPLE_TARGET_DIR)/ethernet/iio-http-server \
+			$(TARGET_DIR)$(MPFS_EXAMPLE_TARGET_DIR)/iiohttpserver; \
+	fi
 endef
 
 define MPFS_EXAMPLES_INSTALL_INIT_SYSTEMD

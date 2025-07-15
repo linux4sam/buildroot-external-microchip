@@ -1,7 +1,15 @@
 config BR2_PACKAGE_MPFS_EXAMPLES
-	bool "mpfs_examples"
-	depends on BR2_PACKAGE_LIBOPENSSL
-	depends on BR2_PACKAGE_LIBGPIOD
-	help
-	  Linux userspace examples for PolarFire SoC
+    bool "mpfs_examples"
+    depends on BR2_PACKAGE_LIBOPENSSL
+    depends on BR2_PACKAGE_LIBGPIOD
+    help
+      Linux userspace examples for PolarFire SoC
 
+if BR2_PACKAGE_MPFS_EXAMPLES
+config BR2_PACKAGE_MPFS_EXAMPLES_DIRS
+    string "MPFS example directories to install"
+    default "can gpio system-services fpga-fabric-interfaces dma dt-overlays pdma gateware"
+    help
+      Space-separated list of example directories to install.
+
+endif
