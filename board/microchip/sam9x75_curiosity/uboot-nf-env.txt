@@ -1,0 +1,18 @@
+video_mode_mipi=Unknown-1:720x1280-16
+video_mode_lvds=Unknown-1:800x480-16
+eth_phy=lan8840
+wilc_S02=wilc
+at91_display_detect=run lvdstest; run mipitest; run at91_prepare_bootargs; run at91_prepare_display_overlay
+lvdstest=test -n $display && test $display = ST7262 && setenv display_var 'lvds' && setenv at91_video_bootargs video=${video_mode_lvds}
+mipitest=test -n $display && test $display = HX8394 && setenv display_var 'mipi' && setenv at91_video_bootargs video=${video_mode_mipi}
+at91_prepare_bootargs=test -n $at91_video_bootargs && setenv bootargs ${bootargs} ${at91_video_bootargs}
+at91_prepare_display_overlay=test -n $display_var && setenv at91_overlays_config ${at91_overlays_config}'#'${display_var}
+bootcmd=run at91_display_detect; run bootcmd_boot;
+bootargs=console=ttyS0,115200 mtdparts=atmel_nand:256k(bootstrap)ro,768k(uboot)ro,256k(env_redundant),256k(env),6656k(itb)ro,-(rootfs) rootfstype=ubifs ubi.mtd=11 root=ubi0:rootfs rw atmel.pm_modes=standby,ulp0
+bootcmd_boot=nand read ${loadaddr} 0x180000 0x800000; bootm ${loadaddr}#kernel_dtb${at91_overlays_config}#${eth_phy}#${wilc_S02}
+bootdelay=1
+loadaddr=0x24000000
+ethact=gmac0
+stderr=serial
+stdin=serial
+stdout=serial
