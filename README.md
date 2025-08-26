@@ -26,7 +26,7 @@ required.  It will let you know what those are.
 ## Buildroot Dependencies
 
 For AT91, this buildroot external works only with the specific buildroot-mchp
-version 2024.02-mchp.
+version 2025.02-mchp.
 
 For PolarFire SoC, this buildroot external was tested and works with buildroot
 version 2025.02.
@@ -42,7 +42,7 @@ the `buildroot-external-microchip/configs` directory for your board.
 For AT91 configurations, as an example, we use `sama5d4_xplained_graphics_defconfig`.
 
     git clone https://github.com/linux4microchip/buildroot-external-microchip.git
-    git clone https://github.com/linux4microchip/buildroot-mchp.git -b 2024.02-mchp
+    git clone https://github.com/linux4microchip/buildroot-mchp.git -b 2025.02-mchp
     cd buildroot-mchp
     export BR2_EXTERNAL=../buildroot-external-microchip/
     make sama5d4_xplained_graphics_defconfig
