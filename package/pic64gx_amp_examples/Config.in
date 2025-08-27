@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PIC64GX_AMP_EXAMPLES
+	bool "pic64gx_amp_examples"
+	select BR2_PACKAGE_HOST_PYTHON3
+	select BR2_PACKAGE_HOST_PYTHON3_SSL
+	select BR2_PACKAGE_HOST_ZEPHYR_SDK
+	help
+	  Build Linux + Zephyr AMP example
+	  for PIC64GX SoC. Cannot be loaded from HSS
