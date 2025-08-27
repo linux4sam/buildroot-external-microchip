@@ -1,0 +1,4 @@
+config BR2_PACKAGE_PIC64GX_EXAMPLES
+	bool "pic64gx_examples"
+	help
+	  Linux userspace examples for PIC64GX SoC
