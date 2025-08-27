@@ -23,6 +23,7 @@ source "$BR2_EXTERNAL_MCHP_PATH/package/hss-payload-generator/Config.in.host"
 source "$BR2_EXTERNAL_MCHP_PATH/package/mpfs_amp_examples/Config.in"
 source "$BR2_EXTERNAL_MCHP_PATH/package/zephyr-sdk/Config.in.host"
 source "$BR2_EXTERNAL_MCHP_PATH/package/pic64gx_amp_examples/Config.in"
+source "$BR2_EXTERNAL_MCHP_PATH/package/pic64gx_amp_examples_hss/Config.in"
 
 menu "WILC BT and WiFi Applications"
 	source "$BR2_EXTERNAL_MCHP_PATH/package/websocket/Config.in"

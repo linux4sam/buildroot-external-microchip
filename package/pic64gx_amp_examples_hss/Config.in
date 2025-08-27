@@ -1,0 +1,9 @@
+config BR2_PACKAGE_PIC64GX_AMP_EXAMPLES_HSS
+	bool "pic64gx_amp_examples_hss"
+	select BR2_PACKAGE_HOST_PYTHON3
+	select BR2_PACKAGE_HOST_PYTHON3_SSL
+	select BR2_PACKAGE_HOST_ZEPHYR_SDK
+	help
+	  Build Linux + Zephyr AMP example
+	  for PIC64GX SoC. The binary is to
+	  be included in the HSS payload.bin
