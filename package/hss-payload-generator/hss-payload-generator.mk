@@ -11,6 +11,9 @@ HOST_HSS_PAYLOAD_GENERATOR_DEPENDENCIES = host-elfutils host-libyaml host-openss
 
 ifeq ($(BR2_PACKAGE_MPFS_AMP_EXAMPLES),y)
 	HOST_HSS_PAYLOAD_GENERATOR_DEPENDENCIES += uboot mpfs_amp_examples
+endif
+ifeq ($(BR2_PACKAGE_PIC64GX_AMP_EXAMPLES),y)
+	HOST_HSS_PAYLOAD_GENERATOR_DEPENDENCIES += uboot pic64gx_amp_examples_hss
 else
 	HOST_HSS_PAYLOAD_GENERATOR_DEPENDENCIES += uboot
 endif
@@ -26,6 +29,10 @@ define HOST_HSS_PAYLOAD_GENERATOR_BUILD_CMDS
 	( \
 		if [ "$(BR2_PACKAGE_MPFS_AMP_EXAMPLES)" = "y" ]; then \
 			cp $(BINARIES_DIR)/mpfs-rpmsg-remote.elf \
+				$(@D)/tools/hss-payload-generator/amp.elf; \
+		fi; \
+		if [ "$(BR2_PACKAGE_PIC64GX_AMP_EXAMPLES)" = "y" ]; then \
+			cp $(BINARIES_DIR)/zephyr.elf \
 				$(@D)/tools/hss-payload-generator/amp.elf; \
 		fi; \
 		cd $(@D)/tools/hss-payload-generator; \
