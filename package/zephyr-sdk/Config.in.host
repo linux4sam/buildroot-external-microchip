@@ -1,0 +1,6 @@
+config BR2_PACKAGE_HOST_ZEPHYR_SDK
+	bool "zephyr-sdk"
+	depends on BR2_riscv
+	depends on BR2_HOSTARCH = "x86_64" || BR2_HOSTARCH = "aarch64"
+	help
+	  Zephyr SDK

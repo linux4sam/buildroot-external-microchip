@@ -1,0 +1,6 @@
+sha256 889f10c68a179f5ff2e4ea84749202c117bb522af705d5a888ebe76373acac5a  zephyr-sdk-0.17.0_linux-aarch64_minimal.tar.xz
+sha256 0514d2c684dfb5f6327374bfed0b3dcf727ff1500195d26b3730f98252fed095  zephyr-sdk-0.17.0_linux-x86_64_minimal.tar.xz
+sha256 ecd7f16fcb53d3415cccbdbc15faeff96a6967001c96f93153407a84342e9d35  toolchain_linux-aarch64_riscv64-zephyr-elf.tar.xz
+sha256 cd97784c88de0207c93cf386f79d8d2606b46598dc74d4ad12cadd5617595964  toolchain_linux-x86_64_riscv64-zephyr-elf.tar.xz
+
+sha256 c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08  LICENSE
