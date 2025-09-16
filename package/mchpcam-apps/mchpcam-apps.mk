@@ -22,7 +22,7 @@ MCHPCAM_APPS_CONF_OPTS = \
 	-Dmchpcam=enabled
 
 define MCHPCAM_APPS_INSTALL_TARGET_CMDS
-	$(INSTALL) -D -m 0755 $(@D)/build/src/apps/mchpcam/mchpcam-still \
+	$(INSTALL) -D -m 0755 $(@D)/buildroot-build/src/apps/mchpcam/mchpcam-still \
 		$(TARGET_DIR)/usr/bin/mchpcam-still
 endef
 
