@@ -14,64 +14,53 @@ EGT_INSTALL_STAGING = YES
 EGT_DEPENDENCIES = cairo
 
 PACKAGE_EGT_EXTRA_CONFIG_OPTIONS = $(call qstrip,$(BR2_PACKAGE_EGT_EXTRA_CONFIG_OPTIONS))
-EGT_CONF_OPTS = --program-prefix='egt_' --disable-debug
 EGT_CONF_OPTS += $(PACKAGE_EGT_EXTRA_CONFIG_OPTIONS)
 
 EGT_CONF_ENV += AR=$(TARGET_CC)-ar RANLIB=true
 EGT_MAKE_ENV += AR=$(TARGET_CC)-ar RANLIB=true
 
 ifeq ($(BR2_PACKAGE_EGT_INSTALL_EXAMPLES),y)
-EGT_CONF_OPTS += --enable-examples
+EGT_CONF_OPTS += -DENABLE_EXAMPLES=ON
 else
-EGT_CONF_OPTS += --disable-examples
+EGT_CONF_OPTS += -DENABLE_EXAMPLES=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_EGT_INSTALL_ICONS),y)
-EGT_CONF_OPTS += --enable-icons
+EGT_CONF_OPTS += -DENABLE_ICONS=ON
 else
-EGT_CONF_OPTS += --disable-icons
+EGT_CONF_OPTS += -DENABLE_ICONS=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_EGT_CHART_SUPPORT),y)
-EGT_CONF_OPTS += --with-plplot
+EGT_CONF_OPTS += -DWITH_PLPLOT=ON
 EGT_DEPENDENCIES += plplot
 else
-EGT_CONF_OPTS += --without-plplot
-endif
-
-ifeq ($(BR2_PACKAGE_LIBDRM),y)
-EGT_CONF_OPTS += --with-libdrm
-EGT_DEPENDENCIES += libdrm
-else
-EGT_CONF_OPTS += --without-libdrm
+EGT_CONF_OPTS += -DWITH_PLPLOT=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_LIBPLANES),y)
-EGT_CONF_OPTS += --with-libplanes
-EGT_DEPENDENCIES += libplanes
-else
-EGT_CONF_OPTS += --without-libplanes
+EGT_DEPENDENCIES += libplanes libdrm
 endif
 
 ifeq ($(BR2_PACKAGE_LIBCURL),y)
-EGT_CONF_OPTS += --with-libcurl
+EGT_CONF_OPTS += -DWITH_LIBCURL=ON
 EGT_DEPENDENCIES += libcurl
 else
-EGT_CONF_OPTS += --without-libcurl
+EGT_CONF_OPTS += -DWITH_LIBCURL=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_LIBRSVG),y)
-EGT_CONF_OPTS += --with-librsvg
+EGT_CONF_OPTS += -DWITH_LIBRSVG=ON
 EGT_DEPENDENCIES += librsvg
 else
-EGT_CONF_OPTS += --without-librsvg
+EGT_CONF_OPTS += -DWITH_LIBRSVG=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_GSTREAMER1),y)
-EGT_CONF_OPTS += --with-gstreamer
+EGT_CONF_OPTS += -DWITH_GSTREAMER=ON
 EGT_DEPENDENCIES += gstreamer1
 else
-EGT_CONF_OPTS += --without-gstreamer
+EGT_CONF_OPTS += -DWITH_GSTREAMER=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_LIBEVDEV),y)
@@ -79,82 +68,80 @@ EGT_DEPENDENCIES += libevdev
 endif
 
 ifeq ($(BR2_PACKAGE_JPEG),y)
-EGT_CONF_OPTS += --with-libjpeg
+EGT_CONF_OPTS += -DWITH_LIBJPEG=ON
 EGT_DEPENDENCIES += jpeg
 else
-EGT_CONF_OPTS += --without-libjpeg
+EGT_CONF_OPTS += -DWITH_LIBJPEG=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_TSLIB),y)
-EGT_CONF_OPTS += --with-tslib
+EGT_CONF_OPTS += -DWITH_TSLIB=ON
 EGT_DEPENDENCIES += tslib
 else
-EGT_CONF_OPTS += --without-tslib
+EGT_CONF_OPTS += -DWITH_TSLIB=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_ALSA_LIB),y)
-EGT_CONF_OPTS += --with-alsa
+EGT_CONF_OPTS += -DWITH_ALSA=ON
 EGT_DEPENDENCIES += alsa-lib
 else
-EGT_CONF_OPTS += --without-alsa
+EGT_CONF_OPTS += -DWITH_ALSA=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_LIBSNDFILE),y)
-EGT_CONF_OPTS += --with-sndfile
+EGT_CONF_OPTS += -DWITH_SNDFILE=ON
 EGT_DEPENDENCIES += libsndfile
 else
-EGT_CONF_OPTS += --without-sndfile
+EGT_CONF_OPTS += -DWITH_SNDFILE=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_ZLIB),y)
-EGT_CONF_OPTS += --with-zlib
+EGT_CONF_OPTS += -DWITH_ZLIB=ON
 EGT_DEPENDENCIES += zlib
 else
-EGT_CONF_OPTS += --without-zlib
+EGT_CONF_OPTS += -DWITH_ZLIB=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_LIBINPUT),y)
-EGT_CONF_OPTS += --with-libinput
+EGT_CONF_OPTS += -DWITH_LIBINPUT=ON
 EGT_DEPENDENCIES += libinput
 else
-EGT_CONF_OPTS += --without-libinput
+EGT_CONF_OPTS += -DWITH_LIBINPUT=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_LUA),y)
-EGT_CONF_OPTS += --with-lua
+EGT_CONF_OPTS += -DWITH_LUA=ON
 EGT_DEPENDENCIES += lua
 else
-EGT_CONF_OPTS += --without-lua
+EGT_CONF_OPTS += -DWITH_LUA=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_LIBXKBCOMMON),y)
-EGT_CONF_OPTS += --with-xkbcommon
+EGT_CONF_OPTS += -DWITH_XCBCOMMON=ON
 EGT_DEPENDENCIES += libxkbcommon
 else
-EGT_CONF_OPTS += --without-xkbcommon
+EGT_CONF_OPTS += -DWITH_XCBCOMMON=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_XLIB_LIBX11),y)
-EGT_CONF_OPTS += --with-x11
+EGT_CONF_OPTS += -DWITH_X11=ON
 EGT_DEPENDENCIES += xlib_libX11
 else
-EGT_CONF_OPTS += --without-x11
+EGT_CONF_OPTS += -DWITH_X11=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_FILE),y)
-EGT_CONF_OPTS += --with-libmagic
+EGT_CONF_OPTS += -DWITH_LIBMAGIC=ON
 EGT_DEPENDENCIES += file
 else
-EGT_CONF_OPTS += --without-libmagic
+EGT_CONF_OPTS += -DWITH_LIBMAGIC=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_LIBM2D),y)
+EGT_CONF_OPTS += -DWITH_LIBM2D=ON
 EGT_DEPENDENCIES += libm2d
+else
+EGT_CONF_OPTS += -DWITH_LIBM2D=OFF
 endif
 
-define EGT_RUN_AUTOGEN
-        cd $(@D) && PATH=$(BR_PATH) ./autogen.sh
-endef
-EGT_POST_PATCH_HOOKS += EGT_RUN_AUTOGEN
-
-$(eval $(autotools-package))
+$(eval $(cmake-package))
