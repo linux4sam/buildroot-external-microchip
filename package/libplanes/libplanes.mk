@@ -4,19 +4,17 @@
 #
 ################################################################################
 
-LIBPLANES_VERSION = v1.1.0
+LIBPLANES_VERSION = v2.0.0-rc1
 LIBPLANES_SITE = $(call github,linux4sam,libplanes,$(LIBPLANES_VERSION))
 LIBPLANES_LICENSE = MIT
 LIBPLANES_LICENSE_FILES = COPYING
-LIBPLANES_AUTORECONF = YES
-LIBPLANES_AUTORECONF_OPTS += -I $(HOST_DIR)/usr/share/autoconf-archive
 LIBPLANES_DEPENDENCIES = libdrm cairo cjson lua \
-	host-pkgconf host-autoconf-archive
+	host-pkgconf
 
-ifeq ($(BR2_PACKAGE_LIBPLANES_INSTALL_EXAMPLES),y)
-LIBPLANES_CONF_OPTS += --enable-examples
+ifeq ($(BR2_PACKAGE_LIBPLANES_ENGINE),y)
+LIBPLANES_CONF_OPTS += -DENABLE_ENGINE=ON
 else
-LIBPLANES_CONF_OPTS += --disable-examples
+LIBPLANES_CONF_OPTS += -DENABLE_ENGINE=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_DIRECTFB),y)
@@ -32,11 +30,6 @@ LIBPLANES_DEPENDENCIES += python3 host-swig
 endif
 
 LIBPLANES_INSTALL_STAGING = YES
-
-define LIBPLANES_RUN_AUTOGEN
-        cd $(@D) && PATH=$(BR_PATH) ./autogen.sh
-endef
-LIBPLANES_POST_PATCH_HOOKS += LIBPLANES_RUN_AUTOGEN
 
 define LIBPLANES_INSTALL_INIT
         $(INSTALL) -m 0755 -D $(LIBPLANES_PKGDIR)/S99planes \
@@ -58,10 +51,12 @@ define LIBPLANES_INSTALL_MENU
                 $(TARGET_DIR)/usr/share/planes/splash.py
         $(INSTALL) -m 0755 -D $(@D)/python/examples/example.py \
                 $(TARGET_DIR)/usr/share/planes/example.py
-	 $(INSTALL) -m 0755 -D $(@D)/scripts/09-planes.xml \
-		$(TARGET_DIR)/opt/applications/resources/09-planes.xml
+        $(INSTALL) -m 0755 -D $(@D)/scripts/09-planes.xml \
+                $(TARGET_DIR)/opt/applications/resources/09-planes.xml
+        $(INSTALL) -m 0644 -D $(@D)/configs/* \
+                $(TARGET_DIR)/usr/share/planes/
 endef
 
 LIBPLANES_POST_INSTALL_TARGET_HOOKS += LIBPLANES_INSTALL_MENU
 
-$(eval $(autotools-package))
+$(eval $(cmake-package))
