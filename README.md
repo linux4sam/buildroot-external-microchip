@@ -32,7 +32,7 @@ For PolarFire SoC, this buildroot external was tested and works with buildroot
 version 2025.02.
 
 For PIC64GX, this buildroot external was tested and works with buildroot
-version 2024.02.
+version 2025.02.
 
 ## Build
 
