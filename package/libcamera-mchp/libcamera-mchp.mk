@@ -3,7 +3,7 @@
 # libcamera-mchp
 #
 ################################################################################
-LIBCAMERA_MCHP_VERSION = linux4microchip-2025.10-rc2
+LIBCAMERA_MCHP_VERSION = linux4microchip-2025.10-rc3
 LIBCAMERA_MCHP_SITE = $(call github,linux4microchip,libcamera-mchp,$(LIBCAMERA_MCHP_VERSION))
 LIBCAMERA_MCHP_LICENSE = \
     LGPL-2.1+ (library), \
