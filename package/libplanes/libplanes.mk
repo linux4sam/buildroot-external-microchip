@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBPLANES_VERSION = v2.0.0
+LIBPLANES_VERSION = v2.0.1
 LIBPLANES_SITE = $(call github,linux4sam,libplanes,$(LIBPLANES_VERSION))
 LIBPLANES_LICENSE = MIT
 LIBPLANES_LICENSE_FILES = COPYING
@@ -19,10 +19,6 @@ endif
 
 ifeq ($(BR2_PACKAGE_DIRECTFB),y)
 LIBPLANES_DEPENDENCIES += directfb
-endif
-
-ifeq ($(BR2_PACKAGE_PYTHON),y)
-LIBPLANES_DEPENDENCIES += python host-swig
 endif
 
 ifeq ($(BR2_PACKAGE_PYTHON3),y)
