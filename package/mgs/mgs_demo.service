@@ -1,0 +1,14 @@
+[Unit]
+Description= Microchip Graphic Suite Launcher Service
+After=network.target
+ConditionPathExists=|/dev/dri/card0
+ConditionPathExists=|/dev/fb0
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/launch_mgs.sh
+RemainAfterExit=yes
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
