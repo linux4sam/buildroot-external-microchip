@@ -1,6 +1,5 @@
 config BR2_PACKAGE_MGS
-    bool "Microchip Graphics Suite (MGS)"
+	bool "Microchip Graphics Suite (MGS)"
 	select BR2_PACKAGE_LIBDRM
-    default y
-    help
-      If unsure, say Y.
+	help
+	  If unsure, say N.
