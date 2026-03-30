@@ -1,0 +1,8 @@
+config BR2_PACKAGE_UDMABUF
+    bool "udmabuf kernel module"
+    depends on BR2_LINUX_KERNEL
+    help
+      User space mappable DMA buffer device driver for Linux.
+
+      This package builds the udmabuf kernel module from:
+      https://github.com/ikwzm/udmabuf
