@@ -137,7 +137,7 @@ else
 EGT_CONF_OPTS += -DWITH_LIBMAGIC=OFF
 endif
 
-ifeq ($(BR2_PACKAGE_LIBM2D),y)
+ifneq ($(strip $(and $(filter y,$(BR2_PACKAGE_LIBM2D)),$(filter n,$(BR2_MCHP_SAM_HAS_GC520UL)))),)
 EGT_CONF_OPTS += -DWITH_LIBM2D=ON
 EGT_DEPENDENCIES += libm2d
 else
