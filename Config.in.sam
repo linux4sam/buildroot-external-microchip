@@ -57,7 +57,7 @@ choice
 	prompt "GPU strategy"
 	default BR2_MCHP_SAM_SAM9X6_GFX2D if BR2_MCHP_SAM_HAS_SAM9X6_GFX2D
 	default BR2_MCHP_SAM_SAM9X7_GFX2D if BR2_MCHP_SAM_HAS_SAM9X7_GFX2D
-	default BR2_MCHP_SAM_GC520UL if BR2_MCHP_SAM_HAS_GC520UL
+	default BR2_MCHP_SAM_GC520UL_NANO2D if BR2_MCHP_SAM_HAS_GC520UL
 	default BR2_MCHP_SAM_NO_GPU if !BR2_MCHP_SAM_HAS_GPU
 
 config BR2_MCHP_SAM_SAM9X6_GFX2D
@@ -72,11 +72,17 @@ config BR2_MCHP_SAM_SAM9X7_GFX2D
 	help
 	  This option allows to use the GFX2D accelerator on SAM9X7 series.
 
-config BR2_MCHP_SAM_GC520UL
-	bool "GC520UL"
+config BR2_MCHP_SAM_GC520UL_NANO2D
+	bool "GC520UL with Nano2D driver"
 	depends on BR2_MCHP_SAM_HAS_GC520UL
 	help
-	  This option allows to use the GC520UL accelerator.
+	  This option allows to use the GC520UL accelerator with the Nano2D driver.
+
+config BR2_MCHP_SAM_GC520UL_ETNAVIV
+	bool "GC520UL with Etnaviv driver"
+	depends on BR2_MCHP_SAM_HAS_GC520UL
+	help
+	  This option allows to use the GC520UL accelerator with the Etnaviv driver.
 
 config BR2_MCHP_SAM_NO_GPU
 	bool "No GPU"
