@@ -1,0 +1,4 @@
+config BR2_PACKAGE_NANO2D
+	bool "nano2d"
+	help
+	  nano2d is a user-space library and kernel module that supports Vivante GCxxx 2D GPU.
