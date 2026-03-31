@@ -7,7 +7,12 @@ config BR2_MCHP_SAM_HAS_GPU2D
 	select BR2_MCHP_SAM_HAS_GPU
 	default n
 
-config BR2_MCHP_SAM_HAS_GFX2D
+config BR2_MCHP_SAM_HAS_SAM9X60_GFX2D
+	bool
+	select BR2_MCHP_SAM_HAS_GPU2D
+	default n
+
+config BR2_MCHP_SAM_HAS_SAM9X7_GFX2D
 	bool
 	select BR2_MCHP_SAM_HAS_GPU2D
 	default n
@@ -25,11 +30,11 @@ config BR2_MCHP_SAM_9X5
 
 config BR2_MCHP_SAM_9X6
 	bool "SAM9X6 Series"
-	select BR2_MCHP_SAM_HAS_GFX2D
+	select BR2_MCHP_SAM_HAS_SAM9X6_GFX2D
 
 config BR2_MCHP_SAM_9X7
 	bool "SAM9X7 Series"
-	select BR2_MCHP_SAM_HAS_GFX2D
+	select BR2_MCHP_SAM_HAS_SAM9X7_GFX2D
 
 config BR2_MCHP_SAM_A5D2
 	bool "SAMA5D2 Series"
@@ -50,15 +55,22 @@ endchoice
 
 choice
 	prompt "GPU strategy"
-	default BR2_MCHP_SAM_GFX2D if BR2_MCHP_SAM_HAS_GFX2D
+	default BR2_MCHP_SAM_SAM9X6_GFX2D if BR2_MCHP_SAM_HAS_SAM9X6_GFX2D
+	default BR2_MCHP_SAM_SAM9X7_GFX2D if BR2_MCHP_SAM_HAS_SAM9X7_GFX2D
 	default BR2_MCHP_SAM_GC520UL if BR2_MCHP_SAM_HAS_GC520UL
 	default BR2_MCHP_SAM_NO_GPU if !BR2_MCHP_SAM_HAS_GPU
 
-config BR2_MCHP_SAM_GFX2D
-	bool "GFX2D"
-	depends on BR2_MCHP_SAM_HAS_GFX2D
+config BR2_MCHP_SAM_SAM9X6_GFX2D
+	bool "GFX2D on SAM9X6 series"
+	depends on BR2_MCHP_SAM_HAS_SAM9X6_GFX2D
 	help
-	  This option allows to use the GFX2D accelerator.
+	  This option allows to use the GFX2D accelerator on SAM9X6 series.
+
+config BR2_MCHP_SAM_SAM9X7_GFX2D
+	bool "GFX2D on SAM9X7 series"
+	depends on BR2_MCHP_SAM_HAS_SAM9X7_GFX2D
+	help
+	  This option allows to use the GFX2D accelerator on SAM9X7 series.
 
 config BR2_MCHP_SAM_GC520UL
 	bool "GC520UL"
