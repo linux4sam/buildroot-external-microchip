@@ -19,6 +19,6 @@
 SUBSYSTEM=="input", KERNEL=="event[0-9]*", ENV{ID_INPUT_TOUCHSCREEN}=="1", SYMLINK+="input/touchscreen0"
 
 # Create a symlink for the button keyboard input which has a platform parent
-SUBSYSTEM=="input", SUBSYSTEMS=="platform", KERNEL=="event[0-9]*", ENV{ID_INPUT_KEY}=="1", SYMLINK+="input/keyboard0"
+SUBSYSTEM=="input", SUBSYSTEMS=="platform", KERNEL=="event[0-9]*", DRIVERS=="gpio-keys", ENV{ID_INPUT_KEY}=="1", SYMLINK+="input/keyboard0"
 # Create a symlink for the panel keyboard input which has an I2C parent (if present)
 SUBSYSTEM=="input", SUBSYSTEMS=="i2c", KERNEL=="event[0-9]*", ENV{ID_INPUT_KEY}=="1", SYMLINK+="input/keyboard0"
