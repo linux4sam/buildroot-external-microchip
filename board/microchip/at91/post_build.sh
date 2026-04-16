@@ -15,3 +15,6 @@ if grep -Eq "^BR2_PACKAGE_SYSTEMD=y$" ${BR2_CONFIG}; then
                ${TARGET_DIR}/etc/systemd/system/basic.target.wants/tee-supplicant.service
        fi
 fi
+
+# Force root password change on first login
+sed -i 's/^\(root:[^:]*\):[^:]*:/\1:0:/' "$TARGET_DIR/etc/shadow"
