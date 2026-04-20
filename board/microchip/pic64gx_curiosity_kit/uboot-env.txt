@@ -2,9 +2,6 @@
 
 # Try to boot a fitImage from eMMC/SD
 
-setenv fdt_high 0xbfffffff
-setenv initrd_high 0xbfffffff
-
 load mmc 0:${distro_bootpart} ${scriptaddr} pic64gx_curiosity_kit.itb;
 bootm start ${scriptaddr}#kernel_dtb;
 bootm loados ${scriptaddr};
