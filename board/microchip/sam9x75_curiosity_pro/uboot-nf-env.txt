@@ -1,7 +1,7 @@
 board=sam9x75_curiosity_pro
 video_mode_mipi=Unknown-1:720x1280-16
 video_mode_lvds=Unknown-1:800x480-16
-eth_phy=lan8840
+eth_phy=vsc8541
 ethact=gmac0
 loadaddr=0x24000000
 lvdstest=test -n $display && test $display = ST7262 && setenv display_var 'lvds' && setenv at91_video_bootargs video=${video_mode_lvds}
