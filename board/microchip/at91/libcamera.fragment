@@ -1,0 +1,3 @@
+# libcamera IPA sandbox requires user namespaces.
+CONFIG_NAMESPACES=y
+CONFIG_USER_NS=y
