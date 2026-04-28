@@ -17,11 +17,12 @@ dependencies are required.
     sudo apt-get install subversion build-essential bison flex gettext \
     libncurses5-dev texinfo autoconf automake libtool mercurial git-core \
     gperf gawk expat curl cvs libexpat-dev bzr unzip bc python3-dev \
-    wget cpio rsync xxd bmap-tools libgnutls28-dev
+    wget cpio rsync xxd bmap-tools libgnutls28-dev libgl1
 
 For AT91 boards, download and extract the [SAM-BA in-system programmer][16],
 then add the extracted directory to your $PATH environment variable to ensure
-the `sam-ba` binary can be located by buildroot.
+the `sam-ba` binary can be located by buildroot. Also [upgrade the CMake
+tool][17].
 
 In some cases, buildroot will notify that additional host dependencies are
 required.  It will let you know what those are.
@@ -49,7 +50,7 @@ For AT91 configurations, as an example, we use `sama5d4_xplained_graphics_defcon
     git clone https://github.com/linux4microchip/buildroot-mchp.git -b 2025.02-mchp
     cd buildroot-mchp
     export BR2_EXTERNAL=../buildroot-external-microchip/
-    make sama5d4_xplained_graphics_defconfig
+    make sama7d65_curiosity_graphics_defconfig
     make
 
 For PolarFire SoC configurations, as an example, we use `icicle_defconfig`.
@@ -328,10 +329,10 @@ information.
 [1]: https://buildroot.org/downloads/manual/manual.html#outside-br-custom
 [2]: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 [3]: https://buildroot.org/docs.html
-[4]: https://www.linux4sam.org/bin/view/Linux4SAM/SDCardBootNotice
+[4]: https://developerhelp.microchip.com/xwiki/bin/view/applications/linux4sam/faq/demo-sd/WebHome
 [5]: https://etcher.io/
-[6]: https://www.linux4sam.org/bin/view/Linux4SAM/PDADetectionAtBoot
-[7]: https://www.linux4sam.org/bin/view/Linux4SAM/UsingFITwithOverlays
+[6]: https://developerhelp.microchip.com/xwiki/bin/view/applications/linux4sam/faq/pda-detect-boot/
+[7]: https://developerhelp.microchip.com/xwiki/bin/view/applications/linux4sam/faq/using-fit-with-overlays/
 [8]: https://github.com/polarfire-soc/polarfire-soc-documentation
 [9]: https://mi-v-ecosystem.github.io/redirects/asymmetric-multiprocessing_amp
 [10]: https://bztsrc.gitlab.io/usbimager/
@@ -341,3 +342,4 @@ information.
 [14]: https://github.com/linux4microchip/buildroot-external-microchip/releases/tag/linux4microchip%2Bfpga-2022.11
 [15]: https://github.com/polarfire-soc/polarfire-soc-discovery-kit-reference-design/releases
 [16]: https://www.microchip.com/en-us/development-tool/SAM-BA-In-system-Programmer
+[17]: https://apt.kitware.com/
