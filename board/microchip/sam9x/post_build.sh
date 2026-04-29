@@ -50,21 +50,25 @@ if grep -Eq "^BR2_PACKAGE_LIBCAMERA_MCHP_IPA=y$" "${BR2_CONFIG}"; then
 	echo "===== Re-signing IPA modules ====="
 
 	# Extract libcamera-mchp version
-	LIBCAMERA_MCHP_VERSION=$(grep -E '^LIBCAMERA_MCHP_VERSION\s*=' "${BR2_EXTERNAL_MCHP_PATH}/package/libcamera-mchp/"* | cut -d= -f2 | xargs)
+	LIBCAMERA_MCHP_VERSION=$(grep -E '^LIBCAMERA_MCHP_VERSION\s*=' \
+		"${BR2_EXTERNAL_MCHP_PATH}/package/libcamera-mchp/libcamera-mchp.mk" \
+		| cut -d= -f2 | xargs)
 
 	# Find the libcamera build directory
 	LIBCAMERA_DIR="${BUILD_DIR}/libcamera-mchp-${LIBCAMERA_MCHP_VERSION}"
+	IPA_SIGN="${LIBCAMERA_DIR}/src/ipa/ipa-sign.sh"
+	IPA_KEY="${LIBCAMERA_DIR}/buildroot-build/src/ipa-priv-key.pem"
 
-	if [ -d "${LIBCAMERA_DIR}" ]; then
-		echo "Using libcamera-mchp version: ${LIBCAMERA_MCHP_VERSION}"
+	if [ ! -f "${IPA_SIGN}" ] || [ ! -f "${IPA_KEY}" ]; then
+		echo "WARNING: ipa-sign.sh or ipa-priv-key.pem not found, skipping"
+		echo "  sign: ${IPA_SIGN}"
+		echo "  key:  ${IPA_KEY}"
+	else
+		find "${TARGET_DIR}/usr/lib/libcamera/ipa" -name "ipa_*.so" | \
+		while read -r module; do
+			echo "Signing ${module}"
+			"${IPA_SIGN}" "${IPA_KEY}" "${module}" "${module}.sign"
+		done
+		echo "===== IPA modules signing complete ====="
 	fi
-
-	if [ -d "${TARGET_DIR}/usr/lib/libcamera" ] && [ -n "${LIBCAMERA_DIR}" ]; then
-		find "${TARGET_DIR}/usr/lib/libcamera" -name "ipa_*.so" \
-			-exec "${LIBCAMERA_DIR}/src/ipa/ipa-sign-install.sh" \
-			"${LIBCAMERA_DIR}/build/src/ipa-priv-key.pem" {} \; \
-			-exec touch {}.sign \;
-	fi
-
-	echo "===== IPA modules signing complete ====="
 fi
