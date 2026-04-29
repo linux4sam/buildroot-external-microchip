@@ -3,7 +3,7 @@
 # libcamera-mchp
 #
 ################################################################################
-LIBCAMERA_MCHP_VERSION = linux4microchip-2025.10
+LIBCAMERA_MCHP_VERSION = linux4microchip-2026.04
 LIBCAMERA_MCHP_SITE = $(call github,linux4microchip,libcamera-mchp,$(LIBCAMERA_MCHP_VERSION))
 LIBCAMERA_MCHP_LICENSE = \
     LGPL-2.1+ (library), \
@@ -26,7 +26,7 @@ LIBCAMERA_MCHP_DEPENDENCIES = \
 	host-python-jinja2 \
 	host-python-ply \
 	udev \
-	gnutls \
+	openssl \
 	libevent \
 	libyaml \
 	jpeg \
@@ -48,7 +48,7 @@ LIBCAMERA_MCHP_CONF_OPTS = \
 # same process, otherwise they are deemed Closed-Source and run in another
 # process and communicate over IPC.
 LIBCAMERA_MCHP_STRIP_FIND_CMD = \
-	find $(@D)/build/src/ipa \
+	find $(@D)/buildroot-build/src/ipa \
 	$(if $(call qstrip,$(BR2_STRIP_EXCLUDE_FILES)), \
 		-not \( $(call findfileclauses,$(call qstrip,$(BR2_STRIP_EXCLUDE_FILES))) \) ) \
 	-type f -name 'ipa_*.so' -print0
@@ -57,29 +57,31 @@ define LIBCAMERA_MCHP_BUILD_STRIP_IPA_SO
 	$(LIBCAMERA_MCHP_STRIP_FIND_CMD) | xargs --no-run-if-empty -0 $(STRIPCMD)
 endef
 
+# libgmp (used by gnutls/nettle for RSA) contains Thumb-2 instructions that
+# are illegal on ARMv5TE (ARM926EJ-S). Swap detection order so libcrypto
+# (OpenSSL) is used instead, which does not depend on libgmp.
+define LIBCAMERA_MCHP_USE_OPENSSL_FOR_IPA_SIGNING
+	$(SED) 's|dependency.*gnutls.*required.*false)|dependency('\''libcrypto'\'', required : false)|' \
+		$(@D)/src/libcamera/meson.build
+	$(SED) 's|config_h.set.*HAVE_GNUTLS.*|config_h.set('\''HAVE_CRYPTO'\'', 1)|' \
+		$(@D)/src/libcamera/meson.build
+endef
+
+LIBCAMERA_MCHP_PRE_CONFIGURE_HOOKS += LIBCAMERA_MCHP_USE_OPENSSL_FOR_IPA_SIGNING
+
 define LIBCAMERA_MCHP_CREATE_DIRS
-	$(INSTALL) -d $(TARGET_DIR)/usr/lib/libcamera/
+	$(INSTALL) -d $(TARGET_DIR)/usr/lib/libcamera/ipa/
 endef
 
 define LIBCAMERA_MCHP_INSTALL_SIGN_IPA
-	$(INSTALL) -D -m 755 $(@D)/src/ipa/ipa-sign-install.sh $(TARGET_DIR)/usr/lib/libcamera/
-	cd $(TARGET_DIR)/usr/lib/libcamera/ && \
-	./ipa-sign-install.sh $(@D)/build/src/ipa-priv-key.pem ipa_*.so
-endef
-
-# Install the IPA module
-define LIBCAMERA_MCHP_INSTALL_IPA_MODULE
-       if [ -f $(@D)/build/src/ipa/microchip-isc/ipa_microchip_isc.so ]; then \
-               $(INSTALL) -D -m 0755 $(@D)/build/src/ipa/microchip-isc/ipa_microchip_isc.so \
-                       $(TARGET_DIR)/usr/lib/libcamera/ipa_microchip_isc.so ; \
-       fi
+	PATH="$(HOST_DIR)/bin:$(PATH)" $(@D)/src/ipa/ipa-sign.sh \
+		$(@D)/buildroot-build/src/ipa-priv-key.pem \
+		$(TARGET_DIR)/usr/lib/libcamera/ipa/ipa_microchip_isc.so \
+		$(TARGET_DIR)/usr/lib/libcamera/ipa/ipa_microchip_isc.so.sign
 endef
 
 LIBCAMERA_MCHP_POST_BUILD_HOOKS += LIBCAMERA_MCHP_BUILD_STRIP_IPA_SO
 LIBCAMERA_MCHP_PRE_INSTALL_TARGET_HOOKS += LIBCAMERA_MCHP_CREATE_DIRS
-ifeq ($(BR2_PACKAGE_LIBCAMERA_MCHP_IPA),y)
-LIBCAMERA_MCHP_POST_INSTALL_TARGET_HOOKS += LIBCAMERA_MCHP_INSTALL_IPA_MODULE
-endif
 LIBCAMERA_MCHP_POST_INSTALL_TARGET_HOOKS += LIBCAMERA_MCHP_INSTALL_SIGN_IPA
 
 $(eval $(meson-package))
