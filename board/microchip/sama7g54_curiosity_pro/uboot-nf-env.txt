@@ -1,0 +1,7 @@
+board=sama7g54_curiosity_pro
+board_name=sama7g54_curiosity_pro
+loadaddr=0x63000000
+eth_phy=rgmii-phy
+bootargs=console=ttyS0,115200 mtdparts=atmel_nand:256k(bootstrap)ro,1M(uboot)ro,256k(env),256k(env_redundant),512k(dtb),6M(itb)ro,-(rootfs) rootfstype=ubifs ubi.mtd=6 root=ubi0:rootfs rw rootwait cma=192m atmel.pm_modes=standby,ulp0
+bootcmd=nand read ${loadaddr} 0x200000 0x600000; bootm ${loadaddr}#kernel_dtb#${eth_phy}
+bootdelay=1

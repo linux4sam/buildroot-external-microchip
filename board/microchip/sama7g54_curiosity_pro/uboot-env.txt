@@ -1,0 +1,7 @@
+board=sama7g54_curiosity_pro
+board_name=sama7g54_curiosity_pro
+loadaddr=0x63000000
+eth_phy=rgmii-phy
+bootargs=console=ttyS0,115200 root=/dev/mmcblk1p2 rootfstype=ext4 rw rootwait cma=192m atmel.pm_modes=standby,ulp0
+bootcmd=fatload mmc 1:1 ${loadaddr} sama7g54_curiosity_pro.itb; bootm ${loadaddr}#kernel_dtb#${eth_phy}
+bootdelay=1
