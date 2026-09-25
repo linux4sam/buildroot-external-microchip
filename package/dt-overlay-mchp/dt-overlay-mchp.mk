@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-DT_OVERLAY_MCHP_VERSION = linux4microchip-2026.04
+DT_OVERLAY_MCHP_VERSION = 7e65458d943f59f624d7d84e94f656881d88d9db
 DT_OVERLAY_MCHP_SITE = $(call github,linux4microchip,dt-overlay-mchp,$(DT_OVERLAY_MCHP_VERSION))
 DT_OVERLAY_MCHP_LICENSE = GPL-2.0 MIT
 DT_OVERLAY_MCHP_LICENSE_FILES = COPYING LICENSES/GPL-2.0 LICENSES/MIT
