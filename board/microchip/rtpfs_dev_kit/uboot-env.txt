@@ -1,0 +1,16 @@
+# this assumes ${scriptaddr} is already set!!
+
+# Try to boot a fitImage from eMMC/SD
+
+fdt addr ${fdtcontroladdr}
+fdt get value board_compatible / compatible 1
+
+setenv fitconf conf-${board_compatible}
+
+load mmc 0:${distro_bootpart} ${scriptaddr} rtpfs_dev_kit.itb
+bootm start ${scriptaddr}#${fitconf}#conf-microchip,rtpfs-dev-kit
+bootm loados ${scriptaddr}
+bootm ramdisk
+bootm prep
+run design_overlays
+bootm go

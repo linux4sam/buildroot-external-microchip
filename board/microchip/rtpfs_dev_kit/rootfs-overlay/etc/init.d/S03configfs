@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# Mount kernel virtual file system for using overlays at runtime.
+
+if [ -e /sys/kernel/config ] && grep -q configfs /proc/filesystems; then
+  mount -t configfs configfs /sys/kernel/config
+fi
