@@ -3,8 +3,8 @@
 # Microchip PolarFire SoC AMP Examples
 #
 ################################################################################
-MPFS_AMP_EXAMPLES_VERSION = 2025.07
-MPFS_AMP_EXAMPLES_SITE = $(call github,polarfire-soc,polarfire-soc-amp-examples,v$(MPFS_AMP_EXAMPLES_VERSION))
+MPFS_AMP_EXAMPLES_VERSION = cfdc16d57935b492d1512c9f7567a6c22c010036
+MPFS_AMP_EXAMPLES_SITE = $(call github,polarfire-soc,polarfire-soc-amp-examples,$(MPFS_AMP_EXAMPLES_VERSION))
 MPFS_AMP_EXAMPLES_INSTALL_TARGET = NO
 MPFS_AMP_EXAMPLES_INSTALL_IMAGES = YES
 MPFS_AMP_EXAMPLES_LICENSE = MIT
