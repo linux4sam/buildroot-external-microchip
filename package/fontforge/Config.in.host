@@ -1,0 +1,8 @@
+config BR2_PACKAGE_HOST_FONTFORGE
+	bool "host fontforge"
+	help
+	  FontForge is an outline font editor. Only the command line
+	  tool with Python scripting support is built, to generate
+	  fonts from their sources.
+
+	  https://fontforge.org
