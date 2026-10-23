@@ -11,10 +11,16 @@ NOTO_FONTS_LICENSE = OFL-1.1
 NOTO_FONTS_FONTS = \
 	$(call qstrip,$(BR2_PACKAGE_NOTO_FONTS_FONTS))
 
-# Map font filenames to their respective GitHub URLs
-NOTO_FONTS_URL_NotoSans-Regular.ttf = https://github.com/notofonts/notofonts.github.io/raw/main/fonts/NotoSans/unhinted/ttf/NotoSans-Regular.ttf
-NOTO_FONTS_URL_NotoSansCJKsc-Regular.otf = https://github.com/notofonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf
-NOTO_FONTS_URL_NotoColorEmoji.ttf = https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoColorEmoji.ttf
+NOTO_FONTS_NOTOSANS_TAG = noto-monthly-release-2026.09.01
+NOTO_FONTS_NOTOCJK_TAG = Sans2.004
+NOTO_FONTS_NOTOEMOJI_TAG = v2.051
+
+# Map font filenames to their respective GitHub URLs. Fetch from tags rather
+# than the default branch: the upstream repositories reorganise their
+# directory layout on main, which silently breaks the fetch.
+NOTO_FONTS_URL_NotoSans-Regular.ttf = https://github.com/notofonts/notofonts.github.io/raw/$(NOTO_FONTS_NOTOSANS_TAG)/fonts/NotoSans/unhinted/ttf/NotoSans-Regular.ttf
+NOTO_FONTS_URL_NotoSansCJKsc-Regular.otf = https://github.com/notofonts/noto-cjk/raw/$(NOTO_FONTS_NOTOCJK_TAG)/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf
+NOTO_FONTS_URL_NotoColorEmoji.ttf = https://github.com/googlefonts/noto-emoji/raw/$(NOTO_FONTS_NOTOEMOJI_TAG)/fonts/NotoColorEmoji.ttf
 
 define NOTO_FONTS_EXTRACT_CMDS
 	mkdir -p $(@D)
