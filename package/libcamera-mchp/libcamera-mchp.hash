@@ -1,5 +1,5 @@
-# source hash for https://github.com/linux4microchip/libcamera-mchp/archive/refs/tags/linux4microchip-2026.04.tar.gz
-sha256  63b236377c476da25842fd4f81fc1ed71494b93a2c40fc60655e877952c89c9d  libcamera-mchp-linux4microchip-2026.04.tar.gz
+# source hash for https://github.com/linux4microchip/libcamera-mchp/archive/refs/tags/linux4microchip-2026.10-rc1.tar.gz
+sha256  3afb50d51165a76773c63a274fa4560d76c18192dd6b254150d95f0a4e918d09  libcamera-mchp-linux4microchip-2026.10-rc1.tar.gz
 
 # license files
 sha256  fd38b2c053c0cce46d9c5ef3545a6e34d157a240ba99c9b8dca5d37a8147da6c  LICENSES/BSD-2-Clause.txt
