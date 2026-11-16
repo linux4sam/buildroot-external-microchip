@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-PIC64GX_AMP_EXAMPLES_VERSION = a094fe781e35c9ffe11c8f5c45718dbc1b145a6d
+PIC64GX_AMP_EXAMPLES_VERSION = 1c97b9c4489862cb58faf53b3c9a23d40265413f
 PIC64GX_AMP_EXAMPLES_SITE_METHOD = git
 PIC64GX_AMP_EXAMPLES_SITE = https://github.com/pic64gx/pic64gx-zephyr-examples-wrapper.git
 PIC64GX_AMP_EXAMPLES_GIT_SUBMODULES = YES
@@ -20,12 +20,13 @@ PIC64GX_AMP_EXAMPLES_DEPENDENCIES = host-pkgconf \
 ZEPHYR_MODULES = $(@D)/modules/lib/open-amp
 ZEPHYR_MODULES += $(@D)/modules/hal/libmetal
 
-PIC64GX_AMP_EXAMPLES_CONF_ENV = BOARD=pic64gx_curiosity_kit \
+PIC64GX_AMP_EXAMPLES_CONF_ENV = BOARD=pic64gx_curiosity_kit/pic64gx1000/u54 \
 				ZEPHYR_BASE="$(@D)/zephyr" \
 				ZEPHYR_MODULES="$(subst $(space),;,$(ZEPHYR_MODULES));" \
 				ZEPHYR_SDK_INSTALL_DIR="$(HOST_DIR)/opt/zephyr-sdk"
 
-PIC64GX_AMP_EXAMPLES_CONF_OPTS = -DCMAKE_C_FLAGS="" -DCMAKE_CXX_FLAGS="" -DCMAKE_ASM_FLAGS=""
+PIC64GX_AMP_EXAMPLES_CONF_OPTS = -DCONFIG_PIC64GX_RESOURCE_TABLE_USE_CHOSEN=y
+PIC64GX_AMP_EXAMPLES_CONF_OPTS += -DCMAKE_C_FLAGS="" -DCMAKE_CXX_FLAGS="" -DCMAKE_ASM_FLAGS=""
 PIC64GX_AMP_EXAMPLES_SUBDIR = pic64gx-soc/apps/amp_example_openamp
 PIC64GX_AMP_EXAMPLES_SUPPORTS_IN_SOURCE_BUILD = NO
 
@@ -41,6 +42,7 @@ define PIC64GX_AMP_EXAMPLES_BUILD_CMDS
 	source $(@D)/.venv/bin/activate; \
 	PATH=$(BR_PATH):${PATH}; \
 	$(MAKE) -C $(@D)/$(PIC64GX_AMP_EXAMPLES_SUBDIR)/buildroot-build;
+	cp $(@D)/$(PIC64GX_AMP_EXAMPLES_SUBDIR)/buildroot-build/zephyr/zephyr.elf $(BINARIES_DIR);
 	$(INSTALL) -D -m 775 $(@D)/$(PIC64GX_AMP_EXAMPLES_SUBDIR)/buildroot-build/zephyr/zephyr.elf \
 		$(TARGET_DIR)$(PIC64GX_AMP_EXAMPLES_TARGET_DIR)/rproc-remote-context-fw;
 endef

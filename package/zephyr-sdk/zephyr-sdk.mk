@@ -3,7 +3,7 @@
 # Zephyr SDK
 #
 ################################################################################
-HOST_ZEPHYR_SDK_VERSION = 0.17.0
+HOST_ZEPHYR_SDK_VERSION = 1.0.1
 HOST_ZEPHYR_SDK_SITE = https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v$(HOST_ZEPHYR_SDK_VERSION)
 HOST_ZEPHYR_SDK_SOURCE = zephyr-sdk-$(HOST_ZEPHYR_SDK_VERSION)_linux-$(HOSTARCH)_minimal.tar.xz
 HOST_ZEPHYR_SDK_EXTRA_DOWNLOADS =  https://raw.githubusercontent.com/zephyrproject-rtos/sdk-ng/refs/tags/v$(HOST_ZEPHYR_SDK_VERSION)/LICENSE
